@@ -1,0 +1,105 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: Montserrat, verdana, arial, sans-serif;
+}
+
+body {
+    width: 100%;
+}
+
+header, header div, ul, ul a, section, section > div{
+    display: flex;
+}
+
+header {
+    font-size: 1.2rem;
+    padding: 0 1rem;
+    justify-content: space-between;
+    align-items: flex-end;
+    background-color: #f8f9fa;
+    color: gray;
+}
+
+header div{
+    align-items: center;
+    margin: 1rem;
+}
+
+ul {
+    list-style-type: none;
+    align-items: flex-end;
+}
+
+ul a {
+    text-decoration-line: none;
+    text-align: center;
+    height: 5rem;
+    align-items: center;
+    justify-content: center;
+    width: 8vw;
+    border-bottom-width: 7px;
+    border-bottom-style: solid;
+    border-bottom-color: #f8f9fa;
+    color: gray;
+}
+
+ul li:nth-child(1) a{
+    border-bottom-color: #e09700;
+    color: #e09700;
+    font-weight: bold;
+}
+
+ul li:nth-child(2) a {
+    border-bottom-color: #07819c;
+}
+
+ul li:nth-child(3) a {
+    border-bottom-color: #d54398;
+}
+
+ul li:nth-child(4) a {
+    border-bottom-color: #4ea392;
+}
+
+ul li:nth-child(5) a {
+    border-bottom-color: #a2c31b;
+}
+
+#glass, #logoUser {
+    width: 2rem;
+    height: 2rem;
+}
+
+section {
+    padding: 5rem 10rem;
+    flex-wrap: wrap;
+}
+
+section > div {
+    flex-basis: 50%;
+    border: 1px dashed black;
+    padding-bottom: 15%;
+    border-radius: 0 15px 15px 15px;
+    overflow: hidden;
+}
+
+section div span {
+    color : white;
+    flex-basis: 100%;
+    padding: .5rem;
+}
+
+section div:nth-child(1) span {
+    background-color: #07819c;
+}
+
+article {
+
+}
