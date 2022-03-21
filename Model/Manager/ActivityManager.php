@@ -52,5 +52,15 @@ class ActivityManager {
 
         return $request->execute();
     }
+
+    /**
+     * Delete activity
+     * @param $id
+     */
+    public function supprActivity($id){
+        $request = $this->db->prepare("DELETE FROM activity WHERE id = :id");
+        $request->bindValue(":id", $id);
+        $request->execute();
+    }
 }
 
