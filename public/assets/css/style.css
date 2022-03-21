@@ -125,32 +125,6 @@ ul li:nth-child(5) a:hover {
 }
 
 /*
- * Page content
- */
-section {
-    padding: 5rem 10rem;
-    flex-wrap: wrap;
-}
-
-section > div {
-    flex-basis: 50%;
-    border: 1px dashed black;
-    padding-bottom: 15%;
-    border-radius: 0 15px 15px 15px;
-    overflow: hidden;
-}
-
-section div span {
-    color : white;
-    flex-basis: 100%;
-    padding: .5rem;
-}
-
-section div:nth-child(1) span {
-    background-color: #07819c;
-}
-
-/*
  * home
  */
 #band {
