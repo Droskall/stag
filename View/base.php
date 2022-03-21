@@ -26,7 +26,7 @@
                     <img id="glass" src="/img/blue-glass.png" alt="">
                 </a></li>
             <li><a href="">
-                    <img id="logoUser" src="/img/blueUser.png" alt="">
+                    <img id="logoUser" src="/img/blueUser.png" alt="">aaaaaa
                 </a></li>
         </ul>
     </nav>
