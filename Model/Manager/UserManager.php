@@ -35,14 +35,16 @@ class UserManager {
      * @param $email
      * @param $name
      * @param $pass
+     * @param $avatar
      * @param $role
      * @return User|string
      */
-    public function insertUser($email ,$name, $pass, $role){
+    public function insertUser($email ,$name, $pass, $avatar ,$role){
         $request = $this->db->prepare("SELECT username FROM user WHERE username = :name");
         $request->bindValue(':name', $name);
+        $request->bindValue(':mail', $email);
         if($request->execute() && $request->fetch()){
-            return "Un utilisateur existe déjà avec le pseudo " . $name;
+            return "Un utilisateur existe déjà avec le pseudo ou possede la meme adresse email" . $name;
         }else{
             $user = new User();
             $user
@@ -50,9 +52,10 @@ class UserManager {
                 ->setEmail($email)
                 ->setUsername($name)
                 ->setPassword($pass)
-                ->setRole('admin');
+                ->setAvatar($avatar)
+                ->setRole('user');
 
-            $request = $this->db->prepare("INSERT INTO user (email, username, password, role) VALUES ( :mail ,:name, :pass, 'admin')");
+            $request = $this->db->prepare("INSERT INTO user (email, username, password, avatar ,role) VALUES ( :mail ,:name, :pass, :avatar ,'user')");
             $request->bindValue(":mail", $email);
             $request->bindValue(":name", $name);
             $request->bindValue(":pass", $pass);
@@ -68,15 +71,17 @@ class UserManager {
      * @param $pass
      * @return User|string
      */
-    public function getUser($name, $pass){
+    public function getUser($email, $pass){
         $request = $this->db->prepare("SELECT * FROM user WHERE username = :name");
-        $request->bindValue(":name", $name);
+        $request->bindValue(":mail", $email);
         if ($request->execute() && $select = $request->fetch()){
             if (password_verify($pass, $select["password"])){
                 $user = new User();
                 $user
                     ->setId($select["id"])
+                    ->setEmail($select["mail"])
                     ->setUsername($select["username"])
+                    ->setAvatar($select["avatar"])
                     ->setRole($select["admin"]);
                 return $user;
             }
@@ -84,4 +89,22 @@ class UserManager {
         }
         return "Mauvais pseudo !";
     }
+
+    /**
+     * Return all available users.
+     * @return array
+     */
+    public function getAll(): array
+    {
+        $users = [];
+        $result = $this->db->query("SELECT * FROM user");
+
+        if($result) {
+            foreach ($result->fetchAll() as $data) {
+                $users[] = (new UserManager)->getUser($data, $data);
+            }
+        }
+        return $users;
+    }
+
 }

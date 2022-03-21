@@ -9,9 +9,6 @@ trait ManagerTrait {
 
     private ?PDO $db;
 
-    /**
-     * ArticleManager constructor.
-     */
     public function __construct()
     {
         $this->db = DB::getInstance();

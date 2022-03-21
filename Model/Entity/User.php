@@ -8,6 +8,7 @@ class User {
     private ?string $email;
     private ?string $username;
     private ?string $password;
+    private ?string $avatar;
     private ?string $role;
 
 
@@ -18,12 +19,14 @@ class User {
      * @param string|null $role
      * @param int $id
      */
-    public function __construct(string $email = null, string $username = null, string $password = null, string $role = null , int $id = null) {
+    public function __construct(string $email = null, string $username = null, string $password = null,
+                                string $avatar = null ,string $role = null , int $id = null) {
 
         $this->id = $id;
         $this->email = $email;
         $this->username = $username;
         $this->password = $password;
+        $this->avatar = $avatar;
         $this->role = $role;
     }
 
@@ -37,6 +40,7 @@ class User {
 
     /**
      * @param int|null $id
+     * @return User
      */
     public function setId(?int $id): User
     {
@@ -54,6 +58,7 @@ class User {
 
     /**
      * @param string $email
+     * @return User
      */
     public function setEmail(string $email): User
     {
@@ -71,6 +76,7 @@ class User {
 
     /**
      * @param string $username
+     * @return User
      */
     public function setUsername(string $username): User
     {
@@ -88,12 +94,31 @@ class User {
 
     /**
      * @param string $password
+     * @return User
      */
     public function setPassword(string $password): User
     {
         $this->password = $password;
         return $this;
     }
+
+    /**
+     * @return string|null
+     */
+    public function getAvatar(): ?string
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * @param string|null $avatar
+     */
+    public function setAvatar(?string $avatar): User
+    {
+        $this->avatar = $avatar;
+        return $this;
+    }
+
 
     /**
      * @return string
@@ -105,6 +130,7 @@ class User {
 
     /**
      * @param string $role
+     * @return User
      */
     public function setRole(string $role): User
     {
