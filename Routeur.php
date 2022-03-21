@@ -56,14 +56,13 @@ class Routeur
         }
     }
 
-
     /**
      * Check if the Controller exist, if true return a new one, else return an error controller
      * @param string $controller
      * @return ErrorController|mixed
-     */
+     **/
     private static function controllerExist(string $controller) {
-        $controller = ucfirst($controller) . 'Controller';
+        $controller = "App\Controller\\" . ucfirst($controller) . 'Controller';
 
         if (class_exists($controller)) {
             return new $controller();
