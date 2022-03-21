@@ -14,18 +14,19 @@
     <div>
         <img src="/assets/img/logo.png" alt="logo de La 3CA">
         <span>Communauté de Commune du Coeur de l'Avesnois</span>
+        <a href="" id="logoUser"><img src="/assets/img/blueUser.png" alt=""></a>
     </div>
     <nav>
-        <ul>
+        <span class="menu"><i class="fas fa-bars"></i></span>
+        <div class="menu">
+            <ul>
             <li><a href="">ACCUEIL</a></li>
             <li><a href="">ACTIVITES SPORTIVES</a></li>
             <li><a href="">SORTIES CULTURELLES</a></li>
             <li><a href="">LE NUMERIQUE</a></li>
             <li><a href="">UTILE</a></li>
-            <li><a href="" id="logoUser">
-                    <img src="/assets/img/blueUser.png" alt="">
-                </a></li>
-        </ul>
+            </ul>
+        </div>
     </nav>
 </header>
 <section>
@@ -52,6 +53,7 @@
     </div>
 </section>
 
+<script src="https://kit.fontawesome.com/25d98733ec.js" crossorigin="anonymous"></script>
 <script src="/assets/js/app.js"></script>
 </body>
 </html>

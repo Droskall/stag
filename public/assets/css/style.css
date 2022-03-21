@@ -16,7 +16,7 @@ body {
 /*
  * Navbar
  */
-header, header div, ul, ul a, section, section > div{
+header, header div, ul, ul a, section, section > div {
     display: flex;
 }
 
@@ -29,13 +29,17 @@ header {
     color: gray;
 }
 
-header div{
+header div {
     align-items: center;
-    margin: 1rem;
 }
 
 header div > span {
     margin-left: 1rem;
+}
+
+span.menu {
+    font-size: 1.5rem;
+    display: none;
 }
 
 ul {
@@ -50,16 +54,11 @@ ul a {
     align-items: center;
     justify-content: center;
     width: 10rem;
-    border-bottom-width: 7px;
+    border-bottom-width: 5px;
     border-bottom-style: solid;
-    border-bottom-color: #f8f9fa;
     color: gray;
-}
-
-
-ul li a {
     font-weight: bold;
-    padding-bottom: 1rem;
+    padding: 3rem 0;
     transition: border-bottom-color 300ms;
 }
 
@@ -114,9 +113,11 @@ ul li:nth-child(5) a:hover {
 }
 
 #logoUser {
+    display: inline-block;
     width: 2.5rem;
     height: 2.5rem;
     margin: 2rem;
+    min-width: 2rem;
 }
 
 #logoUser img {
@@ -158,5 +159,30 @@ section div:nth-child(1) span {
  */
 
 @media screen and (max-width: 860px){
+    div.menu {
+        display: none;
+    }
 
+    span.menu {
+        margin: 0 2rem 2.5rem 0;
+        display: inline-block;
+    }
+
+    div.menu {
+        position: absolute;
+        z-index: 10;
+        right: 5px;
+        top: 5rem;
+        width: 10rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav li {
+        width: 100%;
+        justify-content: center;
+        background-color: #f8f9fa;
+    }
 }
