@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -14,7 +13,10 @@ body {
     width: 100%;
 }
 
-header, header div, ul, ul a, section, section > div{
+/*
+ * Navbar
+ */
+header, header div, ul, ul a, section, section > div {
     display: flex;
 }
 
@@ -27,9 +29,17 @@ header {
     color: gray;
 }
 
-header div{
+header div {
     align-items: center;
-    margin: 1rem;
+}
+
+header div > span {
+    margin-left: 1rem;
+}
+
+span.menu {
+    font-size: 1.5rem;
+    display: none;
 }
 
 ul {
@@ -43,40 +53,80 @@ ul a {
     height: 5rem;
     align-items: center;
     justify-content: center;
-    width: 8vw;
-    border-bottom-width: 7px;
+    width: 10rem;
+    border-bottom-width: 5px;
     border-bottom-style: solid;
-    border-bottom-color: #f8f9fa;
     color: gray;
+    font-weight: bold;
+    padding: 3rem 0;
+    transition: border-bottom-color 300ms;
 }
 
 ul li:nth-child(1) a{
     border-bottom-color: #e09700;
     color: #e09700;
-    font-weight: bold;
+}
+
+ul li:nth-child(1) a:hover {
+    border-bottom-color: rgba(224, 151, 0, 0.70);
+    color: rgba(224, 151, 0, 0.70);
 }
 
 ul li:nth-child(2) a {
     border-bottom-color: #07819c;
+    color: #07819c;
+}
+
+ul li:nth-child(2) a:hover {
+    border-bottom-color: rgba(7, 129, 156, 0.70);
+    color: rgba(7, 129, 156, 0.70);
 }
 
 ul li:nth-child(3) a {
     border-bottom-color: #d54398;
+    color: #d54398;
+}
+
+ul li:nth-child(3) a:hover {
+    border-bottom-color: rgba(213, 67, 152, 0.70);
+    color: rgba(213, 67, 152, 0.70);
 }
 
 ul li:nth-child(4) a {
     border-bottom-color: #4ea392;
+    color: #4ea392;
+}
+
+ul li:nth-child(4) a:hover {
+    border-bottom-color: rgba(78, 163, 146, 0.70);
+    color: rgba(78, 163, 146, 0.70);
 }
 
 ul li:nth-child(5) a {
     border-bottom-color: #a2c31b;
+    color: #a2c31b;
 }
 
-#glass, #logoUser {
-    width: 2rem;
-    height: 2rem;
+ul li:nth-child(5) a:hover {
+    border-bottom-color: rgba(162, 195, 27, 0.70);
+    color: rgba(162, 195, 27, 0.70);
 }
 
+#logoUser {
+    display: inline-block;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin: 2rem;
+    min-width: 2rem;
+}
+
+#logoUser img {
+    max-width: 100%;
+}
+
+/*
+ * Page content
+ */
 section {
     padding: 5rem 10rem;
     flex-wrap: wrap;
@@ -100,6 +150,39 @@ section div:nth-child(1) span {
     background-color: #07819c;
 }
 
-article {
+/*
+ * RESPONSIVE
+ */
 
+/*
+ * menu
+ */
+
+@media screen and (max-width: 860px){
+    div.menu {
+        display: none;
+    }
+
+    span.menu {
+        margin: 0 2rem 2.5rem 0;
+        display: inline-block;
+    }
+
+    div.menu {
+        position: absolute;
+        z-index: 10;
+        right: 5px;
+        top: 5rem;
+        width: 10rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav li {
+        width: 100%;
+        justify-content: center;
+        background-color: #f8f9fa;
+    }
 }
