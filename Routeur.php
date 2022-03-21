@@ -57,7 +57,6 @@ class Routeur
         }
     }
 
-
     /**
      * Check if the Controller exist, if true return a new one, else return an error controller
      * @param string $controller
