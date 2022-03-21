@@ -28,29 +28,8 @@
         </div>
     </nav>
 </header>
-<section>
-    <div id="sport">
-        <article>
-            <a href=""></a>
-            <span>ACTIVITES SPORTIVES</span>
-        </article>
-    </div>
-    <div id="culture">
-        <article>
-            <span>SORTIES CULTURELLES</span>
-        </article>
-    </div>
-    <div id="numerical">
-        <article>
-            <span>LE NUMERIQUE</span>
-        </article>
-    </div>
-    <div id="useful">
-        <article>
-            <span>UTILE</span>
-        </article>
-    </div>
-</section>
+
+<main><?= $page ?></main>
 
 <script src="https://kit.fontawesome.com/25d98733ec.js" crossorigin="anonymous"></script>
 <script src="/assets/js/app.js"></script>
