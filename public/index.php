@@ -1,5 +1,8 @@
 <?php
 
-require __DIR__ . "/../includes.php";
+use App\Routeur;
+require __DIR__ . '/../includes.php';
 
-require __DIR__ . "/../View/base.php";
+session_start();
+
+Routeur::route();
