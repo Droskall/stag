@@ -29,7 +29,6 @@ class Routeur
         // else
         $action = self::methodExist($controller, $action);
 
-        // if no action (or doesn't exist) default
         if($action === null || $action === '') {
             $controller->default();
 
@@ -61,7 +60,7 @@ class Routeur
      * Check if the Controller exist, if true return a new one, else return an error controller
      * @param string $controller
      * @return ErrorController|mixed
-     */
+     **/
     private static function controllerExist(string $controller) {
         $controller = "App\Controller\\" . ucfirst($controller) . 'Controller';
 
