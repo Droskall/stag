@@ -350,13 +350,18 @@ h1 {
  * toolbox
  */
 #toolbox {
+    width: 90%;
     flex-wrap: wrap;
     justify-content: center;
+    background-color: #f8f9fa;
+    margin: 0 auto;
 }
 
 #toolbox a {
     flex-basis: 40%;
-    margin: 1rem;
+    margin: 2rem;
+    background-color: #a2c31b;
+    justify-content: center;
 }
 
 
