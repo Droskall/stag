@@ -3,7 +3,6 @@
 namespace Model\Manager;
 
 use Model\Entity\Activity;
-use Model\Entity\User;
 use Model\Manager\Traits\ManagerTrait;
 
 class ActivityManager {
@@ -44,7 +43,7 @@ class ActivityManager {
         $request->bindValue(':type', $activity->getType());
         $request->bindValue(':name', $activity->getName());
         $request->bindValue(":description", $activity->getDescription());
-        $request->bindValue(":location", $activity->getLocattion());
+        $request->bindValue(":location", $activity->getLocation());
         $request->bindValue(":email", $activity->getEmail());
         $request->bindValue(":phone", $activity->getPhone());
         $request->bindValue(":schedules", $activity->getSchedules());
