@@ -122,7 +122,7 @@ class ActivityManager {
      * @return array
      */
 
-    function getSticker($id): array
+    public function getSticker($id): array
     {
       $request = $this->db->prepare("SELECT sticker.id, sticker.type FROM
                                sticker_activity as a 
@@ -146,6 +146,28 @@ class ActivityManager {
           }
           return $stickers;
       }
+    }
+
+    /**
+     * Add a sticker to a selected activity
+     * @param int $idUser
+     * @param int $idActivity
+     * @param string $type
+     */
+    public function addSticker(int $idUser, int $idActivity, string $type){
+        $request = $this->db->prepare("INSERT INTO sticker (type) VALUES (:type)");
+        $request->bindValue(":content", sanitize($type));
+        $request->execute();
+        $id = $this->db->lastInsertId();
+
+        $request = $this->db->prepare("INSERT INTO sticker_activity (activity_id, sticker_id, user_id) 
+                                VALUES (:activity_id, :sticker_id, :user_id)"
+        )
+        ;
+        $request->bindValue(":activity_id", $idActivity);
+        $request->bindValue(":sticker_id", $id);
+        $request->bindValue(":user_id", $idUser);
+        $request->execute();
     }
 }
 
