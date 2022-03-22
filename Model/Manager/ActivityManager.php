@@ -43,7 +43,7 @@ class ActivityManager {
         $request->bindValue(':type', $activity->getType());
         $request->bindValue(':name', $activity->getName());
         $request->bindValue(":description", $activity->getDescription());
-        $request->bindValue(":location", $activity->getLocattion());
+        $request->bindValue(":location", $activity->getLocation());
         $request->bindValue(":email", $activity->getEmail());
         $request->bindValue(":phone", $activity->getPhone());
         $request->bindValue(":schedules", $activity->getSchedules());
@@ -51,6 +51,38 @@ class ActivityManager {
         $request->bindValue(":image", $activity->getImage());
 
         return $request->execute();
+    }
+
+    /**
+     * Modyfi a activity
+     * @param $id
+     * @param $type
+     * @param $name
+     * @param $description
+     * @param $locattion
+     * @param $email
+     * @param $phone
+     * @param $schedules
+     * @param $link
+     * @param $image
+     */
+    public function modifActivity($id, $type, $name, $description, $locattion, $email, $phone, $schedules, $link, $image){
+        $request = $this->db->prepare("UPDATE activity SET type = :type, name = :name, description = :description,
+                    location = :location, email = :email, phone = :phone, schedules = :schedules, link = :link,
+                    image = :image 
+        WHERE id = :id"
+        );
+        $request->bindValue(":type", sanitize($type));
+        $request->bindValue(":name", sanitize($name));
+        $request->bindValue(":description", sanitize($description));
+        $request->bindValue(":location", sanitize($locattion));
+        $request->bindValue(":email", $email);
+        $request->bindValue(":phone", $phone);
+        $request->bindValue(":schedules", sanitize($schedules));
+        $request->bindValue(":link", $link);
+        $request->bindValue(":image", $image);
+        $request->bindValue(":id", $id);
+        $request->execute();
     }
 
     /**
@@ -62,5 +94,6 @@ class ActivityManager {
         $request->bindValue(":id", $id);
         $request->execute();
     }
+
 }
 

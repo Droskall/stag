@@ -13,3 +13,6 @@
         <span>Boîte à outils</span>
     </a>
 </section>
+<section class="white">
+    <h1 id="title"><span>So</span><span>D'Avesnois !</span></h1>
+</section>

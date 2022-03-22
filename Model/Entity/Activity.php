@@ -8,7 +8,7 @@ class Activity {
     private string $type;
     private string $name;
     private string $description;
-    private string $locattion;
+    private string $location;
     private string $email;
     private string $phone;
     private string $schedules;
@@ -33,7 +33,7 @@ class Activity {
         $this->type = $type;
         $this->name = $name;
         $this->description = $description;
-        $this->locattion = $locattion;
+        $this->location = $locattion;
         $this->email = $email;
         $this->phone = $phone;
         $this->schedules = $schedules;
@@ -108,17 +108,17 @@ class Activity {
     /**
      * @return string
      */
-    public function getLocattion(): string
+    public function getLocation(): string
     {
-        return $this->locattion;
+        return $this->location;
     }
 
     /**
-     * @param string $locattion
+     * @param string $location
      */
-    public function setLocattion(string $locattion): void
+    public function setLocation(string $location): void
     {
-        $this->locattion = $locattion;
+        $this->location = $location;
     }
 
     /**
