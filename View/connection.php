@@ -1,5 +1,5 @@
 <div class="flex white connection_register">
-    <form id="connection" action="" method="post">
+    <form id="connection" action="/index.php?c=connection&a=connect" method="post">
         <h2>Connexion</h2>
         <input type="email" placeholder="Votre email" name="email">
         <input type="password" placeholder="Votre mot de passe" name="password">

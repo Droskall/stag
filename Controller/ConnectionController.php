@@ -103,10 +103,6 @@ class ConnectionController extends AbstractController
             $error[] = "l'adresse email doit faire entre 8 et 150 caractères";
         }
 
-        if (strlen($_POST['password']) < 8 || strlen($_POST['password']) >= 255) {
-            $error[] = "le mot de passe doit faire au moins 8 caractères";
-        }
-
         $userManager  = new UserManager();
         $user = $userManager->getUser($mail);
 
