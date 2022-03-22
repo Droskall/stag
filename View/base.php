@@ -19,11 +19,11 @@
         <span class="menu"><i class="fas fa-bars"></i></span>
         <div class="menu">
             <ul>
-            <li><a href="">ACCUEIL</a></li>
-            <li><a href="">ACTIVITES SPORTIVES</a></li>
-            <li><a href="">SORTIES CULTURELLES</a></li>
-            <li><a href="">LE NUMERIQUE</a></li>
-            <li><a href="">UTILE</a></li>
+                <li><a href="/index.php">ACCUEIL</a></li>
+                <li><a href="/index.php?c=category">ACTIVITES SPORTIVES</a></li>
+                <li><a href="/index.php?c=category">SORTIES CULTURELLES</a></li>
+                <li><a href="/index.php?c=category">LE NUMERIQUE</a></li>
+                <li><a href="/index.php?c=category">UTILE</a></li>
             </ul>
         </div>
     </nav>

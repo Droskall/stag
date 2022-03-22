@@ -1,15 +1,15 @@
 <section id="band">
-    <a href="">
+    <a href="/index.php?c=category">
         <span>Activités sportives</span>
     </a>
-    <a href="">
+    <a href="/index.php?c=category">
         <span>Activités culturelles</span>
     </a>
-    <a href="">
+    <a href="/index.php?c=category">
         <span>Le numérique</span>
     </a>
 
-    <a href="">
+    <a href="/index.php?c=category">
         <span>Boîte à outils</span>
     </a>
 </section>

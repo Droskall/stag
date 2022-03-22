@@ -16,6 +16,9 @@ html {
 body {
     width: 100%;
     color: var(--black);
+    background-image: url("/assets/img/bocage.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 h1 {
@@ -151,6 +154,7 @@ ul li:nth-child(5) a:hover {
     border-radius: 20px;
     width: 30rem;
     margin: 1rem;
+    background-color: white;
 }
 
 span.circle {
@@ -163,6 +167,7 @@ span.circle {
 .activity_preview h2 {
     display: inline-block;
 }
+
 .activity_preview .flex {
     display: flex;
     justify-content: space-between;
