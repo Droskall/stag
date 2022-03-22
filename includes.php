@@ -14,6 +14,8 @@ require __DIR__ . "/Controller/ErrorController.php";
 require __DIR__ . "/Controller/HomeController.php";
 require __DIR__ . "/Controller/ActivityController.php";
 require __DIR__ . "/Controller/CategoryController.php";
+require __DIR__ . "/Controller/UsefulController.php";
+require __DIR__ . "/Controller/ConnectionController.php";
 
 
 require __DIR__ . "/Routeur.php";
