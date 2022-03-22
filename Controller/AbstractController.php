@@ -14,4 +14,12 @@ abstract class AbstractController
         require __DIR__ . "/../View/base.php";
     }
 
+    //Basic security function
+    public function sanitize($data): string
+    {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return addslashes($data);
+    }
 }

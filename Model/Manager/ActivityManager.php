@@ -3,6 +3,7 @@
 namespace Model\Manager;
 
 use Model\Entity\Activity;
+use Model\Entity\Sticker;
 use Model\Manager\Traits\ManagerTrait;
 
 class ActivityManager {
@@ -35,7 +36,7 @@ class ActivityManager {
      */
     public function add(Activity $activity): bool
     {
-        $request = $this->db->prepare("INSERT INTO activity (id, type, name, description, location, email, phone, schedules, link, image) 
+        $request = $this->db->prepare("INSERT INTO activity (id, type, name, descirption, location, mail, phone, schedules, link, image) 
             VALUES (:type, :name, :description, :location, :email, :phone, :schedules, :link, :image, :id)
             "
         );
@@ -67,12 +68,12 @@ class ActivityManager {
      * @param $image
      */
     public function modifActivity($id, $type, $name, $description, $locattion, $email, $phone, $schedules, $link, $image){
-        $request = $this->db->prepare("UPDATE activity SET type = :type, name = :name, description = :description,
-                    location = :location, email = :email, phone = :phone, schedules = :schedules, link = :link,
+        $request = $this->db->prepare("UPDATE activity SET type = :type, name = :name, descirption = :description,
+                    location = :location, mail = :email, phone = :phone, schedules = :schedules, link = :link,
                     image = :image 
         WHERE id = :id"
         );
-        $request->bindValue(":type", sanitize($type));
+        $request->bindValue(":type", $this->sanitize($type));
         $request->bindValue(":name", sanitize($name));
         $request->bindValue(":description", sanitize($description));
         $request->bindValue(":location", sanitize($locattion));
@@ -95,5 +96,56 @@ class ActivityManager {
         $request->execute();
     }
 
+    /**
+     * Get article by id
+     * @param $id
+     * @return Activity
+     */
+    public function getById($id): Activity
+    {
+        $request = $this->db->prepare("SELECT * FROM activity WHERE id = :id");
+        $request->bindValue(":id", $id);
+        if($request->execute()){
+            if($selected = $request->fetch()){
+                return new Activity($selected["id"], $selected["type"], $selected['name'], $selected['location'],
+                $selected["email"], $selected["phone"], $selected["schedules"], $selected['link'], $selected['image']);
+            }
+
+            return new Activity("L'article nexiste pas ", "Inconnu", "inconnue", "Inconnu",
+            "Inconnu", "Inconnu", "Inconnu", "Inconnu", "Inconnu", "");
+        }
+    }
+
+    /**
+     * Get sticker by activity id
+     * @param $id
+     * @return array
+     */
+
+    function getSticker($id): array
+    {
+      $request = $this->db->prepare("SELECT sticker.id, sticker.type FROM
+                               sticker_activity as a 
+                               INNER JOIN sticker ON a.sticker_id = sticker.id
+                               WHERE a.activity_id = :id"
+      )
+      ;
+      $request->bindValue(":id", $id);
+      if ($request->execute()){
+          $stickers = [];
+          $activityManager = new ActivityManager();
+          $userManager = new UserManager();
+          foreach ($request->fetchAll() as $selected){
+              $sticker = new Sticker();
+              $sticker
+                  ->setId($selected["id"])
+                  ->setType($selected["selected"])
+                  ->setActivity($activityManager->getById("activity_id"))
+                  ->setUser($userManager->getById("user_id"));
+              $stickers[] = $sticker;
+          }
+          return $stickers;
+      }
+    }
 }
 
