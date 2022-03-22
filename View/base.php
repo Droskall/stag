@@ -12,7 +12,18 @@
 <header>
     <?php
     if (isset($_SESSION['error'])) {
-        var_dump($_SESSION['error']);
+    ?>
+        <div class="error">
+    <?php
+        foreach ($_SESSION['error'] as $value) {
+        ?>
+            <p><?= $value ?></p>
+        <?php
+        }
+    ?>
+            <button id="close">x</button>
+        </div>
+    <?php
         unset($_SESSION['error']);
     }
     ?>

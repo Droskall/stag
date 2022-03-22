@@ -32,6 +32,36 @@ a {
 }
 
 /*
+ * Error
+ */
+.error {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 1rem;
+    width: 100%;
+    background-color: #d35447;
+    color: white;
+    font-size: 1.3rem;
+}
+
+#close {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    background-color: transparent;
+    border: 1px solid #953f35;
+    padding: 0.3rem 0.5rem;
+    font-size: 1.3rem;
+    color: white;
+}
+
+#close:hover {
+    cursor: pointer;
+}
+
+/*
  * Navbar
  */
 
