@@ -123,7 +123,7 @@ class Routeur
 
 
     /**
-     * Get param from $_GET
+     * Get and sanitized param from $_GET
      * @param string $key
      * @param null $default
      * @return string|null
