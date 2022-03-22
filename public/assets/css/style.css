@@ -27,6 +27,10 @@ h1 {
     justify-content: center;
 }
 
+a {
+    text-decoration-line: none;
+}
+
 /*
  * Navbar
  */
@@ -63,7 +67,6 @@ ul {
 }
 
 ul a {
-    text-decoration-line: none;
     text-align: center;
     height: 5rem;
     align-items: center;
@@ -154,7 +157,6 @@ ul li:nth-child(5) a:hover {
     border-radius: 20px;
     width: 30rem;
     margin: 1rem;
-    background-color: white;
 }
 
 span.circle {
@@ -196,7 +198,6 @@ span.circle {
 }
 
 #band a {
-    text-decoration-line: none;
     border-radius: 50%;
     border: white 2px solid;
     width: 22vh;
@@ -245,6 +246,9 @@ span.circle {
 
 .white {
     background-color: white;
+}
+
+#homeTitle {
     height: 53vh;
     width: 100%;
     justify-content: center;
@@ -269,7 +273,6 @@ h1 {
     width: 90%;
     margin: 0 auto;
     padding: 3rem;
-    background-color: white;
 }
 
 #activity article {
@@ -309,29 +312,6 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-}
-
-.activity_preview {
-    border: 5px solid gray;
-    border-radius: 20px;
-    width: 30rem;
-    margin: 1rem;
-}
-
-span.circle {
-    font-size: 1.2rem;
-    border: 1px solid gray;
-    border-radius: 50px;
-    padding: 1rem 1rem;
-}
-
-.activity_preview h2 {
-    display: inline-block;
-}
-.activity_preview .flex {
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
 }
 
 .small-image {
