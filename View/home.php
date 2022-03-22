@@ -13,6 +13,6 @@
         <span>Boîte à outils</span>
     </a>
 </section>
-<section class="white flex">
+<section class="white flex" id="homeTitle">
     <h1 class="flex" id="title"><span>So</span><span>D'Avesnois !</span></h1>
 </section>

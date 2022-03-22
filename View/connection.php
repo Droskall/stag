@@ -1,6 +1,4 @@
-<h1>Connexion / Inscription</h1>
-
-<div class="flex connection_register">
+<div class="flex white connection_register">
     <form id="connection" action="" method="post">
         <h2>Connexion</h2>
         <input type="email" placeholder="Votre email" name="mail">
