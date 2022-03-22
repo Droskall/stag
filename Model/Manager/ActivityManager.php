@@ -3,6 +3,7 @@
 namespace Model\Manager;
 
 use Model\Entity\Activity;
+use Model\Entity\User;
 use Model\Manager\Traits\ManagerTrait;
 
 class ActivityManager {
@@ -54,6 +55,38 @@ class ActivityManager {
     }
 
     /**
+     * Modyfi a activity
+     * @param $id
+     * @param $type
+     * @param $name
+     * @param $description
+     * @param $locattion
+     * @param $email
+     * @param $phone
+     * @param $schedules
+     * @param $link
+     * @param $image
+     */
+    public function modifActivity($id, $type, $name, $description, $locattion, $email, $phone, $schedules, $link, $image){
+        $request = $this->db->prepare("UPDATE activity SET type = :type, name = :name, description = :description,
+                    location = :location, email = :email, phone = :phone, schedules = :schedules, link = :link,
+                    image = :image 
+        WHERE id = :id"
+        );
+        $request->bindValue(":type", sanitize($type));
+        $request->bindValue(":name", sanitize($name));
+        $request->bindValue(":description", sanitize($description));
+        $request->bindValue(":location", sanitize($locattion));
+        $request->bindValue(":email", $email);
+        $request->bindValue(":phone", $phone);
+        $request->bindValue(":schedules", sanitize($schedules));
+        $request->bindValue(":link", $link);
+        $request->bindValue(":image", $image);
+        $request->bindValue(":id", $id);
+        $request->execute();
+    }
+
+    /**
      * Delete activity
      * @param $id
      */
@@ -62,5 +95,6 @@ class ActivityManager {
         $request->bindValue(":id", $id);
         $request->execute();
     }
+
 }
 
