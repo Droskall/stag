@@ -304,22 +304,6 @@ h1 {
     height: 3vw;
 }
 
-/*
- * Activity preview
- */
-
-.preview_container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.small-image {
-    border: 1px solid gray;
-    width: 90%;
-    height: 15rem;
-    margin: 1rem auto;
-}
 
 /*
  * Connection / Inscription
@@ -360,6 +344,19 @@ h1 {
     border: none;
     background-color: #e09700;
     color: #f8f9fa;
+}
+
+/*
+ * toolbox
+ */
+#toolbox {
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#toolbox a {
+    flex-basis: 40%;
+    margin: 1rem;
 }
 
 
