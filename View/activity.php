@@ -1,4 +1,4 @@
-<div id="activity" class="flex">
+<div id="activity" class="flex white">
     <article class="flex">
         <div class="big-image" style="background-image: url('/assets/img/sport.jpg')"></div>
         <div id="description" class="flex">
