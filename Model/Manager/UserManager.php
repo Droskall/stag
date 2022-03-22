@@ -35,59 +35,45 @@ class UserManager {
      * @param $email
      * @param $name
      * @param $pass
-     * @param $avatar
-     * @param $role
-     * @return User|string
+     * @return User
      */
-    public function insertUser($email ,$name, $pass, $avatar ,$role){
-        $request = $this->db->prepare("SELECT username FROM user WHERE username = :name");
-        $request->bindValue(':name', $name);
-        $request->bindValue(':mail', $email);
-        if($request->execute() && $request->fetch()){
-            return "Un utilisateur existe déjà avec le pseudo ou possede la meme adresse email" . $name;
-        }else{
-            $user = new User();
-            $user
-                ->setId($this->db->lastInsertId())
-                ->setEmail($email)
-                ->setUsername($name)
-                ->setPassword($pass)
-                ->setAvatar($avatar)
-                ->setRole('user');
+    public function insertUser($email ,$name, $pass): User {
 
-            $request = $this->db->prepare("INSERT INTO user (email, username, password, avatar ,role) VALUES ( :mail ,:name, :pass, :avatar ,'user')");
-            $request->bindValue(":mail", $email);
-            $request->bindValue(":name", $name);
-            $request->bindValue(":pass", $pass);
-            $request->execute();
+        $request = $this->db->prepare("INSERT INTO user (email, username, password, role) VALUES ( :mail ,:name, :pass ,'user')");
+        $request->bindValue(":mail", $email);
+        $request->bindValue(":name", $name);
+        $request->bindValue(":pass", $pass);
+        $request->execute();
 
-            return $user;
-        }
+        $user = new User();
+        return $user
+            ->setId($this->db->lastInsertId())
+            ->setEmail($email)
+            ->setUsername($name)
+            ->setPassword($pass)
+            ->setRole('user');
     }
 
     /**
      * Function that selects a user if he exists in database
-     * @param $name
-     * @param $pass
-     * @return User|string
+     * @param $email
+     * @return User
      */
-    public function getUser($email, $pass){
-        $request = $this->db->prepare("SELECT * FROM user WHERE username = :name");
-        $request->bindValue(":mail", $email);
+    public function getUser($email): ?User{
+        $request = $this->db->prepare("SELECT * FROM user WHERE email = :email");
+        $request->bindValue(":email", $email);
+
         if ($request->execute() && $select = $request->fetch()){
-            if (password_verify($pass, $select["password"])){
                 $user = new User();
-                $user
+            return $user
                     ->setId($select["id"])
-                    ->setEmail($select["mail"])
+                    ->setEmail($select["email"])
                     ->setUsername($select["username"])
+                    ->setPassword($select['password'])
                     ->setAvatar($select["avatar"])
-                    ->setRole($select["admin"]);
-                return $user;
-            }
-            return "Mauvais mot de passe !";
+                    ->setRole($select["role"]);
         }
-        return "Mauvais pseudo !";
+        return null;
     }
 
     /**

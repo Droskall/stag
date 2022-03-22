@@ -10,6 +10,12 @@
 </head>
 <body>
 <header>
+    <?php
+    if (isset($_SESSION['error'])) {
+        var_dump($_SESSION['error']);
+        unset($_SESSION['error']);
+    }
+    ?>
     <div>
         <img src="/assets/img/logo.png" alt="logo de La 3CA">
         <span>Communauté de Commune du Coeur de l'Avesnois</span>
