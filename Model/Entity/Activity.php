@@ -5,35 +5,38 @@ namespace Model\Entity;
 class Activity {
 
     private ?int $id;
-    private string $type;
-    private string $name;
-    private string $description;
-    private string $location;
-    private string $email;
-    private string $phone;
-    private string $schedules;
-    private string $link;
-    private string $image;
+    private ?string $type;
+    private ?string $name;
+    private ?string $description;
+    private ?string $location;
+    private ?string $email;
+    private ?string $phone;
+    private ?string $schedules;
+    private ?string $link;
+    private ?string $image;
 
 
     /**
      * @param string $type
      * @param string $name
      * @param string $description
-     * @param string $locattion
+     * @param string $location
      * @param string $email
      * @param string $phone
      * @param string $schedules
      * @param string $link
      * @param string $image
+     * @param int $id
      */
-    public function __construct(string $type, string $name, string $description, string $locattion, string $email,
-                                string $phone, string $schedules, string $link, string $image, int $id) {
+    public function __construct(string $type = null, string $name = null, string $description = null,
+                                string $location = null, string $email = null, string $phone = null,
+                                string $schedules = null, string $link = null, string $image = null,
+                                int    $id = null) {
         $this->id = $id;
         $this->type = $type;
         $this->name = $name;
         $this->description = $description;
-        $this->location = $locattion;
+        $this->location = $location;
         $this->email = $email;
         $this->phone = $phone;
         $this->schedules = $schedules;
