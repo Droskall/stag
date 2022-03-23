@@ -29,25 +29,54 @@ class StickerActivityManager
 
     /**
      * get a sticker by an id following the given $filed
-     * @param string $filed
+     * @param string $field
      * @param int $id
+     * @param string|null $type
      * @return array
      */
-    public function getStickersByAnId(string $filed, int $id): array
-    {
-        $query = $this->db->query("SELECT * FROM " . self::TABLE . " WHERE $filed = $id");
+    public function getStickersByAnId(string $field, int $id, string $type = null): array {
+        $query = $this->db->query("SELECT * FROM " . self::TABLE . " WHERE $field = $id");
 
-        $array = [];
+        $sortedArray = [];
 
         if ($query && $data = $query->fetchAll()) {
             $activityManager = new ActivityManager();
             $userManager = new UserManager();
             $stickerManager = new StickerManager();
 
+            $array = [];
+
             foreach ($data as $value) {
                $array[] = self::createSticker($value, $activityManager, $userManager, $stickerManager);
             }
+
+            foreach ($array as $value) {
+                if ($value->getType() === $type) {
+                    $sortedArray[] = $value;
+                }
+            }
         }
-        return $array;
+        return $sortedArray;
     }
+
+    /**
+     * Count every interaction on an activity
+     * @param $id
+     * @return mixed|null
+     */
+    public function countActivityInteractions($id) {
+        $query = $this->db->query("SELECT count(*) FROM " . self::TABLE . " WHERE activity_id = $id");
+
+        if ($query) {
+            return $query->fetch()['count(*)'];
+        }
+
+        return null;
+    }
+
+    public function countInteractionByType() {
+
+    }
+
+
 }
