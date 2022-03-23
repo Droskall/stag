@@ -11,6 +11,9 @@
 <body>
 <header>
     <?php
+
+    use Model\Entity\User;
+
     if (isset($_SESSION['error'])) {
     ?>
         <div class="error">
@@ -31,6 +34,7 @@
         <img src="/assets/img/logo.png" alt="logo de La 3CA">
         <span>Communauté de Commune du Coeur de l'Avesnois</span>
         <a href="/index.php?c=connection" id="logoUser"><img src="/assets/img/blueUser.png" alt=""></a>
+
     </div>
     <nav>
         <span class="menu"><i class="fas fa-bars"></i></span>
