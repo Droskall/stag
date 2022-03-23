@@ -83,4 +83,23 @@ class StickerManager
         return null;
     }
 
+    /**
+     * Check if a user has already reacted to an activity (if yes return the type of reaction else null)
+     * @param int $activityId
+     * @param int $userId
+     * @return mixed|null
+     */
+    public function hasAlreadyReacted(int $activityId, int $userId) {
+        $query = $this->db->query(
+            "SELECT type FROM " . self::TABLE .
+                " WHERE activity_id = $activityId AND user_id = $userId"
+        );
+
+        if ($query) {
+            return $query->fetch()['type'];
+        }
+
+        return null;
+    }
+
 }
