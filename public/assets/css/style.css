@@ -327,7 +327,7 @@ h1 {
  * Activity
  */
 
-#activity, #toolbox {
+#activity, #toolbox, #profile {
     width: 90%;
     margin: 0 auto;
     padding: 3rem;
@@ -379,9 +379,11 @@ h1 {
 .user-reaction img, #all-reaction img {
     height: 3vw;
 }
+
 /*
  * Connection / Inscription
  */
+
 .connection_register {
     margin: 2rem auto;
     justify-content: space-around;
@@ -450,13 +452,44 @@ h1 {
  */
 
 #profile {
-    width: 90%;
-    margin: 0 auto;
-    padding: 1rem;
     flex-direction: column;
     align-items: center;
 }
 
+#profile > div {
+    width: 100%;
+    border: 5px #000 solid;
+    border-radius: 20px;
+    flex-direction: column;
+    align-items: center;
+}
+
+#profile-content {
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+#profile-content h3 {
+    margin: .5rem 0;
+}
+
+#profile-content div, #admin div {
+    padding: .5rem;
+}
+
+#profile-content a img {
+    width: 3vw;
+}
+
+#user-data p {
+    margin: .5rem 0;
+}
+
+#admin {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 1rem;
+}
 
 /*
  * RESPONSIVE
