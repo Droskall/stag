@@ -123,7 +123,8 @@ class ConnectionController extends AbstractController
 
             self::render('home');
 
-        } else {
+        }
+        else {
 
             $_SESSION['error'] = ['Adresse mail ou mot de passe incorrect'];
             self::default();
