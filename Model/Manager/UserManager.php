@@ -77,6 +77,31 @@ class UserManager {
     }
 
     /**
+     * Check if a user exists.
+     * @param int $id
+     * @return bool
+     */
+    public function userExists(int $id): bool
+    {
+        $result = $this->db->query("SELECT count(*) as cnt FROM user WHERE id = $id");
+        return $result ? $result->fetch()['cnt'] : 0;
+    }
+
+    /**
+     * Delete a user from user db.
+     * @param User $user
+     * @return bool
+     */
+    public function deleteUser(User $user): bool {
+        if(self::userExists($user->getId())) {
+            return $this->db->exec("
+            DELETE FROM user WHERE id = {$user->getId()}
+        ");
+        }
+        return false;
+    }
+
+    /**
      * Return all available users.
      * @return array
      */
