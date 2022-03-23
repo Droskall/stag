@@ -355,6 +355,7 @@ h1 {
 
 #top-activity {
     text-align: center;
+    flex-basis: 10%;
 }
 
 #all-reaction, .user-reaction {
@@ -365,14 +366,19 @@ h1 {
     margin: 1rem;
 }
 
-.user-reaction img, #all-reaction img {
-    height: 3vw;
+#content-activity {
+    flex-basis: 80%;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 #content-activity p {
     margin: 1rem 0;
 }
 
+.user-reaction img, #all-reaction img {
+    height: 3vw;
+}
 /*
  * Connection / Inscription
  */

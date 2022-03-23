@@ -31,5 +31,17 @@
                 <span>Pas intérressé</span>
             </a>
         </div>
+        <section id="admin">
+            <h2>Ajouter un article</h2>
+            <form action="" method="post">
+                <input type="text" name="title" placeholder="titre de l'activité">
+                <select name="type" id="activity-type">
+                    <option value="sport">Activité sportive</option>
+                    <option value="cultural">Activité culturelle</option>
+                    <option value="numerical">Numérique</option>
+                </select>
+            </form>
+            <h2>Ajouter un lien utile</h2>
+        </section>
     </div>
 </section>
