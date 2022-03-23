@@ -41,14 +41,14 @@ class ActivityController extends AbstractController
 
 
     /**
-     * Displays the article that has a certain id
+     * Displays the activity that has a certain id
      * @param $id
      */
-    public function showArticle($id){
+    public function showActicity($id){
         $activityManager = new ActivityManager();
 
         $activity = $this->$activityManager->getById($id);
-        $this->render('article');
+        $this->render('activity');
     }
 
 }
