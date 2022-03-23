@@ -51,7 +51,13 @@
 </header>
 
 <main><?= $page ?></main>
+<?php
+echo '<div class="white"><pre>';
+$test = new \Model\Manager\StickerActivityManager();
 
+var_dump($test->countActivityInteractions(1));
+echo '</pre></div>'
+?>
 <script src="https://kit.fontawesome.com/25d98733ec.js" crossorigin="anonymous"></script>
 <script src="/assets/js/app.js"></script>
 </body>
