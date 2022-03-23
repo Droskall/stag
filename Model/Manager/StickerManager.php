@@ -50,6 +50,24 @@ class StickerManager
     }
 
     /**
+     * Update a sticker's type
+     * @param string $type
+     * @param int $userId
+     * @param int $activityId
+     * @return bool
+     */
+    public function updateSticker(string $type, int $userId, int $activityId): bool
+    {
+        $stmt = $this->db->prepare("UPDATE " . self::TABLE . " SET type = :type WHERE user_id = :user AND activity_id = :activity");
+
+        $stmt->bindParam(':type', $type);
+        $stmt->bindParam(':user', $userId);
+        $stmt->bindParam(':activity', $activityId);
+
+        return $stmt->execute();
+    }
+
+    /**
      * get stickers by a type and an id following the given $field
      * @param string $field
      * @param int $id
