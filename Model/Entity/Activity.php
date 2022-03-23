@@ -28,10 +28,12 @@ class Activity {
      * @param string|null $image
      * @param int|null $id
      */
-    public function __construct(string $type = null, string $name = null, string $description = null,
-                                string $location = null, string $email = null, string $phone = null,
-                                string $schedules = null, string $link = null, string $image = null,
-                                int    $id = null) {
+    public function __construct(
+        int $id = null, string $type = null, string $name = null,
+        string $description = null, string $location = null, string $email = null,
+        string $phone = null, string $schedules = null, string $link = null,
+        string $image = null
+    ) {
         $this->id = $id;
         $this->type = $type;
         $this->name = $name;

@@ -107,7 +107,7 @@ class ActivityManager {
         $request->bindValue(":id", $id);
         if($request->execute()){
             if($selected = $request->fetch()){
-                return new Activity($selected["id"], $selected["type"], $selected['name'], $selected['location'],
+                return new Activity($selected["id"], $selected["type"], $selected['name'], $selected['description'], $selected['location'],
                 $selected["email"], $selected["phone"], $selected["schedules"], $selected['link'], $selected['image']);
             }
         }
@@ -121,6 +121,7 @@ class ActivityManager {
      * @return array
      */
 
+    /*
     public function getSicker($id): array
     {
         $request = $this->db->prepare("SELECT sodavesnois.sticker.id, sodavesnois.sticker.type FROM
@@ -146,6 +147,7 @@ class ActivityManager {
             return $stickers;
         }
     }
+    */
 
     /**
      * Add a sticker to a selected activity

@@ -9,7 +9,8 @@ require __DIR__ . "/Model/DB.php";
 require __DIR__ . "/Model/Manager/Traits/ManagerTrait.php";
 require __DIR__ . "/Model/Manager/ActivityManager.php";
 require __DIR__ . "/Model/Manager/UserManager.php";
-require __DIR__ . "/Model/Manager/StickersActivityManager.php";
+require __DIR__ . "/Model/Manager/StickerManager.php";
+require __DIR__ . "/Model/Manager/StickerActivityManager.php";
 
 require __DIR__ . "/Controller/AbstractController.php";
 require __DIR__ . "/Controller/ErrorController.php";
