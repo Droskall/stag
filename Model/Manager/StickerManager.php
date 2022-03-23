@@ -27,6 +27,28 @@ class StickerManager
         );
     }
 
+
+    /**
+     * add a new sticker in the db
+     * @param string $type
+     * @param int $userId
+     * @param int $activityId
+     * @return bool
+     */
+    public function addSticker(string $type, int $userId, int $activityId): bool
+    {
+        $stmt = $this->db->prepare("
+                    INSERT INTO " . self::TABLE . " (type, user_id, activity_id) 
+                    VALUES (:type, :user, :activity)
+       ");
+
+        $stmt->bindParam(':type', $type);
+        $stmt->bindParam(':user', $userId);
+        $stmt->bindParam(':activity', $activityId);
+
+        return $stmt->execute();
+    }
+
     /**
      * get stickers by a type and an id following the given $field
      * @param string $field
