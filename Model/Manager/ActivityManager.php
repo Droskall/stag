@@ -55,7 +55,7 @@ class ActivityManager {
     }
 
     /**
-     * Modify a activity
+     * Modify an activity
      * @param $id
      * @param $type
      * @param $name
@@ -99,9 +99,9 @@ class ActivityManager {
     /**
      * Get article by id
      * @param $id
-     * @return Activity
+     * @return Activity|null
      */
-    public function getById($id): Activity
+    public function getById($id): ?Activity
     {
         $request = $this->db->prepare("SELECT * FROM activity WHERE id = :id");
         $request->bindValue(":id", $id);
@@ -110,10 +110,9 @@ class ActivityManager {
                 return new Activity($selected["id"], $selected["type"], $selected['name'], $selected['location'],
                 $selected["email"], $selected["phone"], $selected["schedules"], $selected['link'], $selected['image']);
             }
-
-            return new Activity("L'article nexiste pas ", "Inconnu", "inconnue", "Inconnu",
-            "Inconnu", "Inconnu", "Inconnu", "Inconnu", "Inconnu", "");
         }
+
+        return null;
     }
 
     /**
@@ -156,7 +155,7 @@ class ActivityManager {
      */
     public function addSticker(int $idUser, int $idActivity, string $type){
         $request = $this->db->prepare("INSERT INTO sticker (type) VALUES (:type)");
-        $request->bindValue(":content", sanitize($type));
+        $request->bindValue(":content", $type);
         $request->execute();
         $id = $this->db->lastInsertId();
 

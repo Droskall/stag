@@ -117,5 +117,4 @@ class UserManager {
         }
         return $users;
     }
-
 }

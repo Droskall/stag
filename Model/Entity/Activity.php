@@ -17,16 +17,16 @@ class Activity {
 
 
     /**
-     * @param string $type
-     * @param string $name
-     * @param string $description
-     * @param string $location
-     * @param string $email
-     * @param string $phone
-     * @param string $schedules
-     * @param string $link
-     * @param string $image
-     * @param int $id
+     * @param string|null $type
+     * @param string|null $name
+     * @param string|null $description
+     * @param string|null $location
+     * @param string|null $email
+     * @param string|null $phone
+     * @param string|null $schedules
+     * @param string|null $link
+     * @param string|null $image
+     * @param int|null $id
      */
     public function __construct(string $type = null, string $name = null, string $description = null,
                                 string $location = null, string $email = null, string $phone = null,

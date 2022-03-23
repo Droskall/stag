@@ -34,6 +34,7 @@ class Sticker
 
     /**
      * @param int|null $id
+     * @return Sticker
      */
     public function setId(?int $id): Sticker
     {
@@ -51,6 +52,7 @@ class Sticker
 
     /**
      * @param string|null $type
+     * @return Sticker
      */
     public function setType(?string $type): Sticker
     {
@@ -68,6 +70,7 @@ class Sticker
 
     /**
      * @param Activity|null $activity
+     * @return Sticker
      */
     public function setActivity(?Activity $activity): Sticker
     {
@@ -85,6 +88,7 @@ class Sticker
 
     /**
      * @param User|null $user
+     * @return Sticker
      */
     public function setUser(?User $user): Sticker
     {

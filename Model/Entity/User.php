@@ -16,8 +16,9 @@ class User {
      * @param string|null $email
      * @param string|null $username
      * @param string|null $password
+     * @param string|null $avatar
      * @param string|null $role
-     * @param int $id
+     * @param int|null $id
      */
     public function __construct(string $email = null, string $username = null, string $password = null,
                                 string $avatar = null ,string $role = null , int $id = null) {
@@ -112,6 +113,7 @@ class User {
 
     /**
      * @param string|null $avatar
+     * @return User
      */
     public function setAvatar(?string $avatar): User
     {
