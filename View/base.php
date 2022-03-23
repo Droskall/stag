@@ -33,7 +33,12 @@
     <div>
         <img src="/assets/img/logo.png" alt="logo de La 3CA">
         <span>Communauté de Commune du Coeur de l'Avesnois</span>
-        <a href="/index.php?c=connection" id="logoUser"><img src="/assets/img/blueUser.png" alt=""></a>
+        <?php
+        if (isset($_SESSION['user'])) {?>
+        <a href="/index.php?c=profile" id="logoUser"><img src="/assets/img/blueUser.png" alt=""></a>
+        <?php } else{?>
+            <a href="/index.php?c=connection" id="logoUser"><img src="/assets/img/blueUser.png" alt=""></a>
+        <?php }?>
 
     </div>
     <nav>
