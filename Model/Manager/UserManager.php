@@ -29,7 +29,6 @@ class UserManager {
         return $user;
     }
 
-
     /**
      * Add a user in bdd
      * @param $email
@@ -39,7 +38,7 @@ class UserManager {
      */
     public function insertUser($email ,$name, $pass): User {
 
-        $request = $this->db->prepare("INSERT INTO user (email, username, password, role) VALUES ( :mail ,:name, :pass ,'user')");
+        $request = $this->db->prepare("INSERT INTO user (email, username, password, role) VALUES ( :mail ,:name, :pass , 'user')");
         $request->bindValue(":mail", $email);
         $request->bindValue(":name", $name);
         $request->bindValue(":pass", $pass);
@@ -99,6 +98,19 @@ class UserManager {
         ");
         }
         return false;
+    }
+
+    /**
+     * Modify a user role
+     * @param $role
+     */
+    public function modifUserRole($role){
+
+        $request = $this->db->prepare("UPDATE user SET role = :role WHERE id = :id");
+
+        $request->bindValue(":role", $role);
+
+        $request->execute();
     }
 
     /**
