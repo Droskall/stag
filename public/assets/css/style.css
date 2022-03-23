@@ -350,18 +350,28 @@ h1 {
 
 #description {
     flex-direction: column;
-    justify-content: space-evenly;
     font-size: 2rem;
 }
 
-.user-reaction div {
+#top-activity {
+    text-align: center;
+}
+
+#all-reaction, .user-reaction {
+    justify-content: center;
+}
+
+.user-reaction, #all-reaction div {
     margin: 1rem;
 }
 
-.user-reaction img {
+.user-reaction img, #all-reaction img {
     height: 3vw;
 }
 
+#content-activity p {
+    margin: 1rem 0;
+}
 
 /*
  * Connection / Inscription
