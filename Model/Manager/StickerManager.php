@@ -28,7 +28,7 @@ class StickerManager
     }
 
     /**
-     * get stickers by a type and an id following the given $filed
+     * get stickers by a type and an id following the given $field
      * @param string $field
      * @param int $id
      * @param string|null $type
