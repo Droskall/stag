@@ -44,7 +44,7 @@ class ActivityController extends AbstractController
      * Displays the activity that has a certain id
      * @param $id
      */
-    public function showActicity($id){
+    public function showActivity($id){
         $activityManager = new ActivityManager();
 
         $activity = $this->$activityManager->getById($id);
