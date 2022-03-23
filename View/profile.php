@@ -2,7 +2,7 @@
     <div class="flex">
         <h2>PROFIL</h2>
         <div id="profile-content" class="flex">
-            <div>
+            <div class="flex">
                 <h2>Utilisateur</h2>
                 <div id="user-data">
                     <h3>Vos informations personnelles</h3>
@@ -11,31 +11,34 @@
                     <p>Email : chéninmi@tiot.fr</p>
                     <p>Role : Utilisateur</p>
                 </div>
-                <div>
+                <div id="user-reaction" class="flex">
                     <h3>Vos interractions</h3>
-                    <a href="">
-                        <img src="/assets/img/emojis/heart.png" alt="heart">
-                        <span>Coup de coeur</span>
-                    </a>
-                    <a href="">
-                        <img src="/assets/img/emojis/like.png" alt="love">
-                        <span>Sympa</span>
-                    </a>
-                    <a href="">
-                        <img src="/assets/img/emojis/lol.png" alt="fun">
-                        <span>Drole</span>
-                    </a>
-                    <a href="">
-                        <img src="/assets/img/emojis/smiley.png" alt="happy">
-                        <span>Heureux</span>
-                    </a>
-                    <a href="">
-                        <img src="/assets/img/emojis/bad_colored.png" alt="dislike">
-                        <span>Pas intérressé</span>
-                    </a>
+                    <div class="flex">
+                        <a href="">
+                            <img src="/assets/img/emojis/heart_colored.png" alt="heart">
+                            <span>Coup de coeur</span>
+                        </a>
+                        <a href="">
+                            <img src="/assets/img/emojis/good_colored.png" alt="love">
+                            <span>Sympa</span>
+                        </a>
+                        <a href="">
+                            <img src="/assets/img/emojis/fun_colored.png" alt="fun">
+                            <span>Drole</span>
+                        </a>
+                        <a href="">
+                            <img src="/assets/img/emojis/happy_colored.png" alt="happy">
+                            <span>Heureux</span>
+                        </a>
+                        <a href="">
+                            <img src="/assets/img/emojis/bad_colored.png" alt="dislike">
+                            <span>Pas intérressé</span>
+                        </a>
+                    </div>
+
                 </div>
             </div>
-            <section id="admin" class="flex">
+            <div id="admin" class="flex">
                 <h2>Administrateur</h2>
                 <div>
                     <div id="add-activity">
@@ -83,7 +86,7 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
         </div>
     </div>
 </section>
