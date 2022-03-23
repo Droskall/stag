@@ -16,7 +16,7 @@ class UserManager {
      */
     public function getById(int $id): User {
         $user = new User();
-        $request = $this->db->prepare("SELECT id, username FROM user WHERE id = 'id'");
+        $request = $this->db->prepare("SELECT id, username FROM user WHERE id = $id");
         $request->bindValue('id', $id);
         $result = $request->execute();
         if ($result) {
