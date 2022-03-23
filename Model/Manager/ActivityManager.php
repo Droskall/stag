@@ -55,7 +55,7 @@ class ActivityManager {
     }
 
     /**
-     * Modyfi a activity
+     * Modify a activity
      * @param $id
      * @param $type
      * @param $name
@@ -71,15 +71,15 @@ class ActivityManager {
         $request = $this->db->prepare("UPDATE activity SET type = :type, name = :name, descirption = :description,
                     location = :location, mail = :email, phone = :phone, schedules = :schedules, link = :link,
                     image = :image 
-        WHERE id = :id"
+                    WHERE id = :id"
         );
-        $request->bindValue(":type", $this->sanitize($type));
-        $request->bindValue(":name", sanitize($name));
-        $request->bindValue(":description", sanitize($description));
-        $request->bindValue(":location", sanitize($locattion));
+        $request->bindValue(":type", $type);
+        $request->bindValue(":name", $name);
+        $request->bindValue(":description", $description);
+        $request->bindValue(":location", $locattion);
         $request->bindValue(":email", $email);
         $request->bindValue(":phone", $phone);
-        $request->bindValue(":schedules", sanitize($schedules));
+        $request->bindValue(":schedules", $schedules);
         $request->bindValue(":link", $link);
         $request->bindValue(":image", $image);
         $request->bindValue(":id", $id);
@@ -90,7 +90,7 @@ class ActivityManager {
      * Delete activity
      * @param $id
      */
-    public function supprActivity($id){
+    public function deletActivity($id){
         $request = $this->db->prepare("DELETE FROM activity WHERE id = :id");
         $request->bindValue(":id", $id);
         $request->execute();
@@ -122,30 +122,30 @@ class ActivityManager {
      * @return array
      */
 
-    public function getSticker($id): array
+    public function getSicker($id): array
     {
-      $request = $this->db->prepare("SELECT sticker.id, sticker.type FROM
-                               sticker_activity as a 
-                               INNER JOIN sticker ON a.sticker_id = sticker.id
-                               WHERE a.activity_id = :id"
-      )
-      ;
-      $request->bindValue(":id", $id);
-      if ($request->execute()){
-          $stickers = [];
-          $activityManager = new ActivityManager();
-          $userManager = new UserManager();
-          foreach ($request->fetchAll() as $selected){
-              $sticker = new Sticker();
-              $sticker
-                  ->setId($selected["id"])
-                  ->setType($selected["selected"])
-                  ->setActivity($activityManager->getById("activity_id"))
-                  ->setUser($userManager->getById("user_id"));
-              $stickers[] = $sticker;
-          }
-          return $stickers;
-      }
+        $request = $this->db->prepare("SELECT sodavesnois.sticker.id, sodavesnois.sticker.type FROM
+                                     sticker_activity as a
+                                     INNER JOIN sticker s ON a.sticker_id = s.id
+                                     WHERE a.activity_id = :id"
+        )
+        ;
+        $request->bindValue(":id", $id);
+        if ($request->execute()){
+            $stickers = [];
+            $activityManager = new ActivityManager();
+            $userManager = new UserManager();
+            foreach ($request->fetchAll() as $selected){
+                $sticker = new Sticker();
+                $sticker
+                    ->setId($selected["id"])
+                    ->setType($selected["type"])
+                    ->setActivity($activityManager->getById("activity_id"))
+                    ->setUser($userManager->getById("user_id"));
+                $stickers[] = $sticker;
+            }
+            return $stickers;
+        }
     }
 
     /**
