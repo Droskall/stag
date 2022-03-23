@@ -8,11 +8,11 @@
             <div class="user-reaction flex"><!--   users icones    -->
                 <div>
                     <span>1</span>
-                    <img src="/assets/img/lol.png" alt="lol">
+                    <img src="/assets/img/emojis/lol.png" alt="lol">
                 </div>
                 <div>
                     <span>3</span>
-                    <img src="/assets/img/top.png" alt="top">
+                    <img src="/assets/img/emojis/like.png" alt="top">
                 </div>
             </div>
             <p>lieu : xxxxx</p>

@@ -317,7 +317,7 @@ h1 {
  * Activity
  */
 
-#activity {
+#activity, #toolbox {
     width: 90%;
     margin: 0 auto;
     padding: 3rem;
@@ -325,7 +325,7 @@ h1 {
 
 #activity article {
     border: 5px #d54398 solid;
-    justify-content: space-between;
+    border-radius: 20px;
 }
 
 #activity article > div {
@@ -397,19 +397,26 @@ h1 {
 /*
  * toolbox
  */
-#toolbox {
-    width: 90%;
+
+#toolbox > div {
     flex-wrap: wrap;
     justify-content: center;
     background-color: #f8f9fa;
-    margin: 0 auto;
+    border: 5px #a2c31b solid;
+    text-align: center;
+    font-size: 1vw;
+    border-radius: 20px;
 }
 
 #toolbox a {
-    flex-basis: 40%;
+    flex-basis: 45%;
     margin: 2rem;
     background-color: #a2c31b;
     justify-content: center;
+}
+
+#toolbox img {
+    width: 78%;
 }
 
 /*
