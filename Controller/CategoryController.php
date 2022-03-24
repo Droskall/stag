@@ -5,6 +5,7 @@ namespace App\Controller;
 
 
 use Model\Manager\ActivityManager;
+use Model\Manager\StickerManager;
 use Model\Manager\UserManager;
 
 class CategoryController extends AbstractController
@@ -14,14 +15,27 @@ class CategoryController extends AbstractController
         $this->render('category');
     }
 
+    /**
+     * get the activities by category name
+     * @param string $name
+     */
     public function getCategory(string $name) {
 
         $category = filter_var($name, FILTER_SANITIZE_STRING);
 
         $activityManager = new ActivityManager();
+        $stickerManager = new StickerManager();
 
-        var_dump($activityManager->getByCategoryAndType('sport', 'cl'));
+        $activities =  $activityManager->getActivitiesByCategory($name);
+        $data =  [];
 
-        //self::render('category');
+        foreach ($activities as $value) {
+            $data[] = [
+                'activity' => $value,
+               'interactions' => $stickerManager->countActivityInteractions($value->getId()),
+            ];
+        }
+
+        self::render('category', $data);
     }
 }

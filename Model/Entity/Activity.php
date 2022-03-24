@@ -84,7 +84,7 @@ class Activity {
     /**
      * @return string
      */
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->type;
     }
@@ -100,7 +100,7 @@ class Activity {
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -116,7 +116,7 @@ class Activity {
     /**
      * @return string
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
@@ -132,7 +132,7 @@ class Activity {
     /**
      * @return string
      */
-    public function getLocation(): string
+    public function getLocation(): ?string
     {
         return $this->location;
     }
@@ -148,7 +148,7 @@ class Activity {
     /**
      * @return string
      */
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
@@ -164,7 +164,7 @@ class Activity {
     /**
      * @return string
      */
-    public function getPhone(): string
+    public function getPhone(): ?string
     {
         return $this->phone;
     }
@@ -180,7 +180,7 @@ class Activity {
     /**
      * @return string
      */
-    public function getSchedules(): string
+    public function getSchedules(): ?string
     {
         return $this->schedules;
     }
@@ -196,7 +196,7 @@ class Activity {
     /**
      * @return string
      */
-    public function getLink(): string
+    public function getLink(): ?string
     {
         return $this->link;
     }
@@ -212,7 +212,7 @@ class Activity {
     /**
      * @return string
      */
-    public function getImage(): string
+    public function getImage(): ?string
     {
         return $this->image;
     }

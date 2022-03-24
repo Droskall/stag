@@ -1,13 +1,29 @@
-<div class="preview_container">
-    <a href="/index.php?c=activity">
-        <div class="activity_preview white">
-            <div class="flex">
-                <h2>Intitulé de l'activité</h2>
-                <span class="circle">15</span>
-            </div>
-            <div class="small-image" style="background-image: "></div>
-        </div>
-    </a>
-</div>
+<div class="flex content">
 <?php
-var_dump($data);
+foreach ($data as $value) {
+
+    $image = '/assets/img/activity-placeholder.png';
+
+    if ($value['activity']->getImage() === null) {
+        $image = $value['activity']->getImage();
+    }
+
+    ?>
+    <div class="preview_container">
+        <a href="/index.php?c=activity&id=<?= $value['activity']->getId() ?>">
+            <div class="activity_preview white">
+                <div class="flex">
+                    <h2><?= $value['activity']->getName() ?></h2>
+                    <span class="circle"><?= $value['interactions'] ?></span>
+                </div>
+                <div class="small-image" style="background-image: url(<?= $image ?>);"></div>
+            </div>
+        </a>
+    </div>
+<?php
+}
+?>
+</div>
+
+
+

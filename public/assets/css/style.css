@@ -216,6 +216,10 @@ ul li:nth-child(5) a:hover {
 /*
  * Activity preview
  */
+.content {
+    flex-wrap: wrap;
+    justify-content: center;
+}
 
 .preview_container {
     display: flex;
@@ -249,10 +253,10 @@ span.circle {
 }
 
 .small-image {
-    border: 1px solid gray;
-    width: 90%;
-    height: 15rem;
+    width: 89%;
+    height: 20rem;
     margin: 1rem auto;
+    background-size: cover;
 }
 
 /*
