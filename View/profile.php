@@ -35,7 +35,9 @@
                             <span>Pas intérressé</span>
                         </a>
                     </div>
-
+                    <?php if($_SESSION["user"]->getRole() === "admin"){?>
+                        <a href="/index.php?c=user" id="listUser">Liste Utilisateurs</a>
+                    <?php }?>
                 </div>
             </div>
 
