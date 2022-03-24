@@ -59,11 +59,12 @@ class ActivityManager {
      */
     public function add(Activity $activity): bool
     {
-        $request = $this->db->prepare("INSERT INTO activity (id, type, name, description, location, email, phone, schedules, link, image) 
-            VALUES (:type, :name, :description, :location, :email, :phone, :schedules, :link, :image, :id)
+        $request = $this->db->prepare("INSERT INTO activity (category, type, name, description, location, email, phone, schedules, link, image) 
+            VALUES (:category, :type, :name, :description, :location, :email, :phone, :schedules, :link, :image)
             "
         );
 
+        $request->bindValue(':category', $activity->getCategory());
         $request->bindValue(':type', $activity->getType());
         $request->bindValue(':name', $activity->getName());
         $request->bindValue(":description", $activity->getDescription());
@@ -80,26 +81,28 @@ class ActivityManager {
     /**
      * Modify an activity
      * @param $id
+     * @param $category
      * @param $type
      * @param $name
      * @param $description
-     * @param $locattion
+     * @param $location
      * @param $email
      * @param $phone
      * @param $schedules
      * @param $link
      * @param $image
      */
-    public function modifActivity($id, $type, $name, $description, $locattion, $email, $phone, $schedules, $link, $image){
-        $request = $this->db->prepare("UPDATE activity SET type = :type, name = :name, description = :description,
+    public function modifActivity($id, $category, $type, $name, $description, $location, $email, $phone, $schedules, $link, $image){
+        $request = $this->db->prepare("UPDATE activity SET category = :category, type = :type, name = :name, description = :description,
                     location = :location, email = :email, phone = :phone, schedules = :schedules, link = :link,
                     image = :image 
                     WHERE id = :id"
         );
+        $request->bindValue(":category", $category);
         $request->bindValue(":type", $type);
         $request->bindValue(":name", $name);
         $request->bindValue(":description", $description);
-        $request->bindValue(":location", $locattion);
+        $request->bindValue(":location", $location);
         $request->bindValue(":email", $email);
         $request->bindValue(":phone", $phone);
         $request->bindValue(":schedules", $schedules);
@@ -130,8 +133,9 @@ class ActivityManager {
         $request->bindValue(":id", $id);
         if($request->execute()){
             if($selected = $request->fetch()){
-                return new Activity($selected["id"], $selected["type"], $selected['name'], $selected['description'], $selected['location'],
-                $selected["email"], $selected["phone"], $selected["schedules"], $selected['link'], $selected['image']);
+                return new Activity($selected["id"], $selected['category'], $selected["type"], $selected['name'],
+                    $selected['description'], $selected['location'], $selected["email"], $selected["phone"],
+                    $selected["schedules"], $selected['link'], $selected['image']);
             }
         }
 
