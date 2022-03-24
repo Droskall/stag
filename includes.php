@@ -21,5 +21,6 @@ require __DIR__ . "/Controller/CategoryController.php";
 require __DIR__ . "/Controller/ToolboxController.php";
 require __DIR__ . "/Controller/ConnectionController.php";
 require __DIR__ . "/Controller/ProfileController.php";
+require __DIR__ . "/Controller/UserController.php";
 
 require __DIR__ . "/Routeur.php";

@@ -35,7 +35,9 @@
                             <span>Pas intérressé</span>
                         </a>
                     </div>
-
+                    <?php if($_SESSION["user"]->getRole() === "admin"){?>
+                        <a href="/index.php?c=user" id="listUser">Liste Utilisateurs</a>
+                    <?php }?>
                 </div>
             </div>
 
@@ -64,23 +66,23 @@
                                 </div>
                                 <textarea name="content" id="content" cols="30" rows="15"></textarea>
                                 <div>
-                                    <label for="location">Localisation</label>
+                                    <label for="location">Localisation :</label>
                                     <input type="text" id="location" name="location">
                                 </div>
                                 <div>
-                                    <label for="email">Email</label>
+                                    <label for="email">Email :</label>
                                     <input type="email" id="email" name="email">
                                 </div>
                                 <div>
-                                    <label for="phone">Téléphone</label>
+                                    <label for="phone">Téléphone :</label>
                                     <input type="text" id="phone" name="phone">
                                 </div>
                                 <div>
-                                    <label for="schedules">Date & Horaires</label>
+                                    <label for="schedules">Date & Horaires :</label>
                                     <input type="text" id="schedules" name="schedules">
                                 </div>
                                 <div>
-                                    <label for="url">Lien</label>
+                                    <label for="url">Lien :</label>
                                     <input type="url" id="url" name="url">
                                 </div>
                                 <div>

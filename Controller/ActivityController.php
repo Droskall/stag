@@ -39,7 +39,6 @@ class ActivityController extends AbstractController
         $this->render('profile');
     }
 
-
     /**
      * Displays the activity that has a certain id
      * @param $id

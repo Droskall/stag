@@ -93,7 +93,7 @@ div.error_page {
  * Navbar
  */
 
-header,h1 ,header div, ul, ul a, #band, #band a, .flex {
+header,h1 ,header div, .menu ul, .menu ul a, #band, #band a, .flex {
     display: flex;
 }
 
@@ -123,12 +123,12 @@ a.menu {
     font-size: 1.5rem;
 }
 
-ul {
+.menu ul {
     list-style-type: none;
     align-items: flex-end;
 }
 
-ul a {
+.menu ul a {
     text-align: center;
     height: 5rem;
     align-items: center;
