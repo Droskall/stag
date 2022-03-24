@@ -18,6 +18,7 @@ class CategoryController extends AbstractController
     /**
      * get the activities by category name
      * @param string $name
+     * @param string $type
      */
     public function getCategory(string $name, string $type = '') {
 
