@@ -68,6 +68,22 @@ class StickerManager
     }
 
     /**
+     * Update a sticker's type
+     * @param int $userId
+     * @param int $activityId
+     * @return bool
+     */
+    public function deleteSticker(int $userId, int $activityId): bool
+    {
+        $stmt = $this->db->prepare("DELETE FROM " . self::TABLE . " WHERE user_id = :user AND activity_id = :activity");
+
+        $stmt->bindParam(':user', $userId);
+        $stmt->bindParam(':activity', $activityId);
+
+        return $stmt->execute();
+    }
+
+    /**
      * get stickers by a type and an id following the given $field
      * @param string $field
      * @param int $id
