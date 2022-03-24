@@ -58,7 +58,9 @@ class StickerManager
      */
     public function updateSticker(string $type, int $userId, int $activityId): bool
     {
-        $stmt = $this->db->prepare("UPDATE " . self::TABLE . " SET type = :type WHERE user_id = :user AND activity_id = :activity");
+        $stmt = $this->db->prepare("
+                    UPDATE " . self::TABLE . " SET type = :type WHERE user_id = :user AND activity_id = :activity
+        ");
 
         $stmt->bindParam(':type', $type);
         $stmt->bindParam(':user', $userId);
