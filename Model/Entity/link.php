@@ -6,14 +6,14 @@ class link
 {
 
     private ?int $id;
-    private ?string $link;
+    private ?string $url;
     private ?string $type;
     private ?string $title;
 
 
-    public function __construct(?int $id, ?string $link, ?string $type, ?string $title) {
+    public function __construct(?int $id, ?string $url, ?string $type, ?string $title) {
         $this->id = $id;
-        $this->link = $link;
+        $this->url = $url;
         $this->type = $type;
         $this->title = $title;
     }
@@ -37,17 +37,17 @@ class link
     /**
      * @return string|null
      */
-    public function getLink(): ?string
+    public function getUrl(): ?string
     {
-        return $this->link;
+        return $this->url;
     }
 
     /**
-     * @param string|null $link
+     * @param string|null $url
      */
-    public function setLink(?string $link): void
+    public function setUrl(?string $url): void
     {
-        $this->link = $link;
+        $this->url = $url;
     }
 
     /**
@@ -81,7 +81,5 @@ class link
     {
         $this->title = $title;
     }
-
-
 
 }
