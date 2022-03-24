@@ -7,9 +7,9 @@
                 <div id="user-data">
                     <h3>Vos informations personnelles</h3>
                     <img src="/assets/img/avatar.png" alt="user logo">
-                    <p>Nom / Pseudo : Ché-mi</p>
-                    <p>Email : chéninmi@tiot.fr</p>
-                    <p>Role : Utilisateur</p>
+                    <p>Nom / Pseudo : <?= $_SESSION['user']->getUsername() ?></p>
+                    <p>Email : <?= $_SESSION['user']->getEmail() ?></p>
+                    <p>Role : <?= $_SESSION['user']->getRole() ?></p>
                 </div>
                 <div id="user-reaction" class="flex">
                     <h3>Vos interractions</h3>
