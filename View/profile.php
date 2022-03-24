@@ -49,7 +49,7 @@
                     <div>
                         <div id="add-activity">
                             <h3>Ajouter un article</h3>
-                            <form action="#" method="post" enctype="multipart/form-data">
+                            <form action="/index.php?c=activity&a=add" method="post" enctype="multipart/form-data">
                                 <div>
                                     <label for="title">Titre :</label>
                                     <input type="text" id="title" name="title">

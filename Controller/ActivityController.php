@@ -18,7 +18,7 @@ class ActivityController extends AbstractController
     /**
      * Add a new activity.
      */
-    public function addActivity($form){
+    public function add($form){
         if(isset($form["title"]) && strlen($form["title"]) > 45){
             echo "<div id='error'>Merci de respecter la limite du titre</div>";
         }else{
