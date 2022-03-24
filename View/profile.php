@@ -36,7 +36,9 @@
                         </a>
                     </div>
                     <?php if($_SESSION["user"]->getRole() === "admin"){?>
-                        <a href="/index.php?c=user" id="listUser">Liste Utilisateurs</a>
+                        <div class="buton">
+                            <a href="/index.php?c=user" id="listUser">Liste Utilisateurs</a>
+                        </div>
                     <?php }?>
                 </div>
             </div>
