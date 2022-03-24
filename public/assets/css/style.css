@@ -218,6 +218,29 @@ ul li:nth-child(5) a:hover {
     justify-content: center;
 }
 
+div.preview {
+    text-align: center;
+    width: 40rem;
+    max-width: 90%;
+    border-radius: 15px;
+    margin: 1rem auto;
+    padding: 0.5rem;
+    border: 5px solid gray;
+}
+
+button.preview {
+    margin: 1rem;
+    padding: 0.8rem 1.2rem;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.28);
+}
+
+.preview a {
+    color: #f8f9fa;
+    font-size: 1.5rem;
+}
+
 .preview_container {
     display: flex;
     flex-wrap: wrap;
@@ -229,6 +252,7 @@ ul li:nth-child(5) a:hover {
     border-radius: 20px;
     width: 30rem;
     margin: 1rem;
+    color: var(--black);
 }
 
 span.circle {
