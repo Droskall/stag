@@ -124,7 +124,7 @@ class UserManager {
 
         if($result) {
             foreach ($result->fetchAll() as $data) {
-                $users[] = (new UserManager)->getUser($data, $data);
+                $users[] = (new UserManager)->getUser($data['email']);
             }
         }
         return $users;
