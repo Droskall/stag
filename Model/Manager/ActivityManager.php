@@ -22,9 +22,9 @@ class ActivityManager {
         if($result) {
             $data = $request->fetchAll();
             foreach ($data as $activity) {
-                $activity[] = new Activity($activity['type'], $activity['name'], $activity['description'],
+                $activity[] = new Activity($activity['id'], $activity['category'], $activity['type'], $activity['name'], $activity['description'],
                 $activity['location'], $activity['email'], $activity['phone'], $activity['schedules'],
-                $activity['link'], $activity['image'], $activity['id']
+                $activity['link'], $activity['image']
                 );
             }
         }
@@ -33,18 +33,40 @@ class ActivityManager {
 
     /**
      * get Activities by a type
-     * @param string $type
+     * @param string $category
      * @return array
      */
-    public function getActivitiesByType(string $type): array {
-        $query = $this->db->query("SELECT * FROM " . self::TABLE . " WHERE type = '$type'");
+    public function getActivitiesByCategory(string $category): array {
+        $query = $this->db->query("SELECT * FROM " . self::TABLE . " WHERE category = '$category'");
 
         $array = [];
 
         if ($query && $data = $query->fetchAll()) {
 
             foreach ($data as $value) {
-                $array[] = new Activity($value["id"], $value["type"], $value['name'], $value['description'], $value['location'],
+                $array[] = new Activity($value["id"], $value['category'], $value["type"], $value['name'], $value['description'], $value['location'],
+                    $value["email"], $value["phone"], $value["schedules"], $value['link'], $value['image']);
+            }
+        }
+
+        return $array;
+    }
+
+    /**
+     * Get Activity by category and type
+     * @param $category
+     * @param $type
+     * @return array
+     */
+    public function getByCategoryAndType($category, $type) {
+        $query = $this->db->query("SELECT * FROM " . self::TABLE . " WHERE category = '$category' AND type = '$type'");
+
+        $array = [];
+
+        if ($query && $data = $query->fetchAll()) {
+
+            foreach ($data as $value) {
+                $array[] = new Activity($value["id"], $value['category'], $value["type"], $value['name'], $value['description'], $value['location'],
                     $value["email"], $value["phone"], $value["schedules"], $value['link'], $value['image']);
             }
         }
