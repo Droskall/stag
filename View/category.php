@@ -2,9 +2,9 @@
 $category = array_pop($data);
 ?>
 <div>
-    <button><a href="/index.php?c=category&a=get-category&name=<?= $category ?>&type=club">Clubs</a></button>
-    <button><a href="/index.php?c=category&a=get-category&name=<?= $category ?>&type=event">Événements</a></button>
-    <button><a href="/index.php?c=category&a=get-category&name=<?= $category ?>&type=place">Lieux</a></button>
+    <button style="background-color: <?= $color ?>"><a href="/index.php?c=category&a=get-category&name=<?= $category ?>&type=club">Clubs</a></button>
+    <button style="background-color: <?= $color ?>"><a href="/index.php?c=category&a=get-category&name=<?= $category ?>&type=event">Événements</a></button>
+    <button style="background-color: <?= $color ?>"><a href="/index.php?c=category&a=get-category&name=<?= $category ?>&type=place">Lieux</a></button>
 </div>
 
 <div class="flex content">

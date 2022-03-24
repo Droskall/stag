@@ -7,7 +7,7 @@ abstract class AbstractController
 
     abstract public function default();
 
-    public function render(string $directoryFile, array $data = null) {
+    public function render(string $directoryFile, array $data = null, string $color = null) {
         ob_start();
         require __DIR__ . "/../View/" . $directoryFile . ".php";
         $page = ob_get_clean();

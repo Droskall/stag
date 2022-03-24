@@ -1,5 +1,7 @@
 <?php
 
+require __DIR__ . "/Color.php";
+
 require __DIR__ . "/Model/Entity/Activity.php";
 require __DIR__ . "/Model/Entity/User.php";
 require __DIR__ . "/Model/Entity/Sticker.php";

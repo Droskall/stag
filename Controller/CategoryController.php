@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 
+use App\Color;
 use Model\Manager\ActivityManager;
 use Model\Manager\StickerManager;
 use Model\Manager\UserManager;
@@ -23,16 +24,12 @@ class CategoryController extends AbstractController
     public function getCategory(string $name, string $type = '') {
 
         $category = filter_var($name, FILTER_SANITIZE_STRING);
+        $type = filter_var($type, FILTER_SANITIZE_STRING);
 
         $activityManager = new ActivityManager();
         $stickerManager = new StickerManager();
 
-        if ($type === '') {
-            $activities =  $activityManager->getActivitiesByCategory($name);
-        } else {
-            $activities =  $activityManager->getByCategoryAndType($name, $type);
-        }
-
+        $activities = $type === '' ? $activityManager->getActivitiesByCategory($category) : $activityManager->getByCategoryAndType($category, $type);
         $data = [];
 
         foreach ($activities as $value) {
@@ -41,8 +38,8 @@ class CategoryController extends AbstractController
                 'interactions' => $stickerManager->countActivityInteractions($value->getId()),
             ];
         }
-        $data += ['category' => $name];
+        $data += ['category' => $category];
 
-        self::render('category', $data);
+        self::render('category', $data, Color::getColor($category));
     }
 }
