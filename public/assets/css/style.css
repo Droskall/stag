@@ -264,40 +264,33 @@ span.circle {
     background-size: 110%;
     background-repeat: no-repeat;
     background-position: bottom;
-    height: 40vh;
     padding: 5vh 0;
     justify-content: space-evenly;
 }
 
-#band a {
-    border-radius: 50%;
-    border: white 2px solid;
-    width: 22vh;
-    height: 22vh;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    font-size: 1.5vw;
-    text-align: center;
-    font-weight: bold;
+#band div {
+    width: 22vw;
+    padding-bottom: 22vw;
+
+    background-size: contain;
 }
 
-#band a:nth-child(1) {
-    background-color: #07819c;
+#band a:nth-child(1) div {
+    background-image: url("/assets/img/bubble/bubble_blue1.png");
     align-self: flex-end;
 }
 
-#band a:nth-child(2) {
-    background-color: #d54398;
+#band a:nth-child(2) div {
+    background-image: url("/assets/img/bubble/bubble_pink.png");
 }
 
-#band a:nth-child(3) {
-    background-color: #4ea392;
+#band a:nth-child(3) div {
+    background-image: url("/assets/img/bubble/bubble_blue2.png");
     align-self: flex-end;
 }
 
-#band a:nth-child(4) {
-    background-color: #a2c31b;
+#band a:nth-child(4) div {
+    background-image: url("/assets/img/bubble/bubble_green.png");
 }
 
 .grow {

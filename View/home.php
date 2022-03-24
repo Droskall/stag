@@ -1,16 +1,15 @@
 <section id="band">
     <a href="/index.php?c=category&a=get-category&name=sport&type">
-        <span>Activités sportives</span>
+        <div></div>
     </a>
     <a href="/index.php?c=category&a=get-category&name=cultural&type">
-        <span>Activités culturelles</span>
+        <div></div>
     </a>
     <a href="/index.php?c=category&a=get-category&name=numerical&type">
-        <span>Le numérique</span>
+        <div></div>
     </a>
-
     <a href="/index.php?c=category">
-        <span>Boîte à outils</span>
+        <div></div>
     </a>
 </section>
 <section class="white flex" id="homeTitle">
