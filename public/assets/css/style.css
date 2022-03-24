@@ -517,6 +517,21 @@ h1 {
 }
 
 /*
+ * user list
+ */
+.list {
+    flex-direction: column;
+}
+
+.frame {
+    border: 5px #000 solid;
+    border-radius: 20px;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+
+/*
  * RESPONSIVE
  */
 
