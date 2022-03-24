@@ -45,7 +45,7 @@
                     <div>
                         <div id="add-activity">
                             <h3>Ajouter un article</h3>
-                            <form action="" method="post" enctype="multipart/form-data">
+                            <form action="#" method="post" enctype="multipart/form-data">
                                 <div>
                                     <label for="title">Titre :</label>
                                     <input type="text" id="title" name="title">
@@ -63,6 +63,26 @@
                                     <input type="file" id="picture" name="picture" accept=".image/jpeg, .jpg, .png">&nbsp;(Max : 2Mo)
                                 </div>
                                 <textarea name="content" id="content" cols="30" rows="15"></textarea>
+                                <div>
+                                    <label for="location">Localisation</label>
+                                    <input type="text" id="location" name="location">
+                                </div>
+                                <div>
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email">
+                                </div>
+                                <div>
+                                    <label for="phone">Téléphone</label>
+                                    <input type="text" id="phone" name="phone">
+                                </div>
+                                <div>
+                                    <label for="schedules">Date & Horaires</label>
+                                    <input type="text" id="schedules" name="schedules">
+                                </div>
+                                <div>
+                                    <label for="url">Lien</label>
+                                    <input type="url" id="url" name="url">
+                                </div>
                                 <div>
                                     <input type="submit" name="addAct">
                                 </div>
