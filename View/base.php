@@ -36,7 +36,7 @@
         <?php
         if (isset($_SESSION['user'])) {?>
         <a href="/index.php?c=profile" id="logoUser"><img src="/assets/img/blueUser.png" alt=""></a>
-            <a class="menu" href="/index.php??c=connection&a=logout" id="logout"><i class="fas fa-sign-out-alt"></i></a>
+            <a class="menu" href="/index.php?c=connection&a=logout" id="logout"><i class="fas fa-sign-out-alt"></i></a>
         <?php } else{?>
             <a href="/index.php?c=connection" id="logoUser"><img src="/assets/img/blueUser.png" alt=""></a>
         <?php }?>
