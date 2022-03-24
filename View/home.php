@@ -1,11 +1,11 @@
 <section id="band">
-    <a href="/index.php?c=category&a=get-category&name=sport">
+    <a href="/index.php?c=category&a=get-category&name=sport&type">
         <span>Activités sportives</span>
     </a>
-    <a href="/index.php?c=category&a=get-category&name=cultural">
+    <a href="/index.php?c=category&a=get-category&name=cultural&type">
         <span>Activités culturelles</span>
     </a>
-    <a href="/index.php?c=category&a=get-category&name=numerical">
+    <a href="/index.php?c=category&a=get-category&name=numerical&type">
         <span>Le numérique</span>
     </a>
 

@@ -83,8 +83,7 @@ div.error_page {
     color: var(--black);
     display: inline-block;
     width: 22rem;
-    background-size: 100% 50%;
-    background: linear-gradient(190deg, #e2be77 0%, #e09700 100%) no-repeat 0 50%;
+    background: linear-gradient(190deg, #e2be77 0%, #e09700 100%);
 }
 
 /*
