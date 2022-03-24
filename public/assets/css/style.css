@@ -119,6 +119,10 @@ span.menu {
     display: none;
 }
 
+a.menu {
+    font-size: 1.5rem;
+}
+
 ul {
     list-style-type: none;
     align-items: flex-end;
