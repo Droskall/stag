@@ -47,7 +47,7 @@
         <div class="menu">
             <ul>
                 <li><a href="/index.php">ACCUEIL</a></li>
-                <li><a href="/index.php?c=category">ACTIVITES SPORTIVES</a></li>
+                <li><a href="/index.php?c=category&a=get-category&name=sport">ACTIVITES SPORTIVES</a></li>
                 <li><a href="/index.php?c=category">SORTIES CULTURELLES</a></li>
                 <li><a href="/index.php?c=category">LE NUMERIQUE</a></li>
                 <li><a href="/index.php?c=toolbox">UTILE</a></li>
