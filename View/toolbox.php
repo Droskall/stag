@@ -2,26 +2,17 @@
     <div class="flex">
         <a class="flex" href="">
             <div>
-                <h2>Clubs et associations</h2>
-                <img src="/assets/img/toolLogo/clubAsso.jpg" alt="logo club">
+                <h2>Santé</h2>
             </div>
         </a>
         <a class="flex" href="">
             <div>
-                <h2>Evénements récurrents</h2>
-                <img src="/assets/img/toolLogo/calendar.png" alt="calendar logo">
+                <h2>Mobilité</h2>
             </div>
         </a>
         <a class="flex" href="">
             <div>
-                <h2>Lieux à connaître</h2>
-                <img src="/assets/img/toolLogo/village.png" alt="town logo">
-            </div>
-        </a>
-        <a class="flex" href="">
-            <div>
-                <h2>Utiles</h2>
-                <img src="/assets/img/toolLogo/toolbox.png" alt="useful logo">
+                <h2>Aide</h2>
             </div>
         </a>
     </div>

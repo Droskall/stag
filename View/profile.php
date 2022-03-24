@@ -36,7 +36,9 @@
                         </a>
                     </div>
                     <?php if($_SESSION["user"]->getRole() === "admin"){?>
-                        <a href="/index.php?c=user" id="listUser">Liste Utilisateurs</a>
+                        <div class="buton">
+                            <a href="/index.php?c=user" id="listUser">Liste Utilisateurs</a>
+                        </div>
                     <?php }?>
                 </div>
             </div>
@@ -53,11 +55,19 @@
                                     <input type="text" id="title" name="title">
                                 </div>
                                 <div>
-                                    <label for="activity-type">Type :</label>
-                                    <select name="activity-type" id="activity-type">
+                                    <label for="category-type">Categorie :</label>
+                                    <select name="category-type" id="category-type">
                                         <option value="sport">Activité sportive</option>
                                         <option value="cultural">Activité culturelle</option>
                                         <option value="numerical">Numérique</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="activity-type">Type :</label>
+                                    <select name="activity-type" id="activity-type">
+                                        <option value="club">Club</option>
+                                        <option value="event">Evenement</option>
+                                        <option value="place">Lieux</option>
                                     </select>
                                 </div>
                                 <div>
@@ -91,14 +101,14 @@
                             </form>
                         </div>
                         <div id="add-link">
-                            <h3>Ajouter un lien dans la boîte à outils</h3>
+                            <h3>Ajouter un lien utile</h3>
                             <div>
                                 <label for="link-type">Type</label>
                                 <select name="link-type" id="link-type">
-                                    <option value="club">Club et Association</option>
-                                    <option value="event">Evênement</option>
-                                    <option value="place">Lieu</option>
-                                    <option value="useful">Utile</option>
+                                    <option value="mealth">Sante</option>
+                                    <option value="mobility">Mobilité</option>
+                                    <option value="help">Aide</option>
+                                    <option value="other">Autre</option>
                                 </select>
                             </div>
                             <div>

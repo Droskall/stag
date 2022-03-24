@@ -1,21 +1,23 @@
-<section id="userList" class="flex white">
-    <div>
+<section id="userList" class="flex">
+    <div class="white">
         <h2>Liste des utilisateurs</h2>
         <div class="list flex">
             <?php
             foreach ($data as $item){?>
                 <div class="frame flex">
+                    <!--   todo replace by avatar   -->
                     <img src="/assets/img/avatar.png" width="50px" alt="user logo">
                     <div>
-                        <p><?= $item->getUsername() ?></p>
-                        <p><?= $item->getEmail() ?></p>
+                        <p>Nom : <?= $item->getUsername() ?></p>
+                        <p>Email : <?= $item->getEmail() ?></p>
                         <div class="flex">
-                            <p><?= $item->getRole() ?></p>
-
+                            Role : <p><?= $item->getRole() ?></p>
                             <select name="userRole" id="userRole">
                                 <option value="">admin</option>
                                 <option value="user">user</option>
                             </select>
+                            <input type="submit">
+                            <input type="submit" name="suppr" value="Supprimer">
                         </div>
                     </div>
                 </div>

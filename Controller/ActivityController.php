@@ -31,7 +31,7 @@ class ActivityController extends AbstractController
 
                 $activity = new Activity($content, $title);
                 $this->$activityManager->add($activity);
-                header("Location: index.php?controller=articles");
+                header("Location: index.php?c=activity");
 
             }
         }
