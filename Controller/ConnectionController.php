@@ -131,4 +131,14 @@ class ConnectionController extends AbstractController
             exit();
         }
     }
+
+    public function logout() {
+
+        // We destroy the variables of our session.
+        session_unset();
+        // We destroy our session.
+        session_destroy();
+
+        self::render('home');
+    }
 }
