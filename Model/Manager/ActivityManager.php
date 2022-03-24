@@ -10,6 +10,8 @@ class ActivityManager {
 
     use ManagerTrait;
 
+    public const TABLE = 'activity';
+
     /**
      * Return all items.
      */
@@ -30,13 +32,34 @@ class ActivityManager {
     }
 
     /**
+     * get Activities by a type
+     * @param string $type
+     * @return array
+     */
+    public function getActivitiesByType(string $type): array {
+        $query = $this->db->query("SELECT * FROM " . self::TABLE . " WHERE type = '$type'");
+
+        $array = [];
+
+        if ($query && $data = $query->fetchAll()) {
+
+            foreach ($data as $value) {
+                $array[] = new Activity($value["id"], $value["type"], $value['name'], $value['description'], $value['location'],
+                    $value["email"], $value["phone"], $value["schedules"], $value['link'], $value['image']);
+            }
+        }
+
+        return $array;
+    }
+
+    /**
      * Add an article into the database.
      * @param Activity $activity
      * @return bool
      */
     public function add(Activity $activity): bool
     {
-        $request = $this->db->prepare("INSERT INTO activity (id, type, name, descirption, location, mail, phone, schedules, link, image) 
+        $request = $this->db->prepare("INSERT INTO activity (id, type, name, description, location, email, phone, schedules, link, image) 
             VALUES (:type, :name, :description, :location, :email, :phone, :schedules, :link, :image, :id)
             "
         );
@@ -68,8 +91,8 @@ class ActivityManager {
      * @param $image
      */
     public function modifActivity($id, $type, $name, $description, $locattion, $email, $phone, $schedules, $link, $image){
-        $request = $this->db->prepare("UPDATE activity SET type = :type, name = :name, descirption = :description,
-                    location = :location, mail = :email, phone = :phone, schedules = :schedules, link = :link,
+        $request = $this->db->prepare("UPDATE activity SET type = :type, name = :name, description = :description,
+                    location = :location, email = :email, phone = :phone, schedules = :schedules, link = :link,
                     image = :image 
                     WHERE id = :id"
         );
@@ -90,7 +113,7 @@ class ActivityManager {
      * Delete activity
      * @param $id
      */
-    public function deletActivity($id){
+    public function deleteActivity($id){
         $request = $this->db->prepare("DELETE FROM activity WHERE id = :id");
         $request->bindValue(":id", $id);
         $request->execute();
@@ -113,62 +136,6 @@ class ActivityManager {
         }
 
         return null;
-    }
-
-    /**
-     * Get sticker by activity id
-     * @param $id
-     * @return array
-     */
-
-    /*
-    public function getSicker($id): array
-    {
-        $request = $this->db->prepare("SELECT sodavesnois.sticker.id, sodavesnois.sticker.type FROM
-                                     sticker_activity as a
-                                     INNER JOIN sticker s ON a.sticker_id = s.id
-                                     WHERE a.activity_id = :id"
-        )
-        ;
-        $request->bindValue(":id", $id);
-        if ($request->execute()){
-            $stickers = [];
-            $activityManager = new ActivityManager();
-            $userManager = new UserManager();
-            foreach ($request->fetchAll() as $selected){
-                $sticker = new Sticker();
-                $sticker
-                    ->setId($selected["id"])
-                    ->setType($selected["type"])
-                    ->setActivity($activityManager->getById("activity_id"))
-                    ->setUser($userManager->getById("user_id"));
-                $stickers[] = $sticker;
-            }
-            return $stickers;
-        }
-    }
-    */
-
-    /**
-     * Add a sticker to a selected activity
-     * @param int $idUser
-     * @param int $idActivity
-     * @param string $type
-     */
-    public function addSticker(int $idUser, int $idActivity, string $type){
-        $request = $this->db->prepare("INSERT INTO sticker (type) VALUES (:type)");
-        $request->bindValue(":content", $type);
-        $request->execute();
-        $id = $this->db->lastInsertId();
-
-        $request = $this->db->prepare("INSERT INTO sticker_activity (activity_id, sticker_id, user_id) 
-                                VALUES (:activity_id, :sticker_id, :user_id)"
-        )
-        ;
-        $request->bindValue(":activity_id", $idActivity);
-        $request->bindValue(":sticker_id", $id);
-        $request->bindValue(":user_id", $idUser);
-        $request->execute();
     }
 }
 
