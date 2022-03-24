@@ -7,10 +7,10 @@
                 <div class="frame flex">
                     <img src="/assets/img/avatar.png" width="50px" alt="user logo">
                     <div>
-                        <p><?= $item->getUsername() ?></p>
-                        <p><?= $item->getEmail() ?></p>
+                        <p>Nom : <?= $item->getUsername() ?></p>
+                        <p>Email : <?= $item->getEmail() ?></p>
                         <div class="flex">
-                            <p><?= $item->getRole() ?></p>
+                            Role : <p><?= $item->getRole() ?></p>
 
                             <select name="userRole" id="userRole">
                                 <option value="">admin</option>
