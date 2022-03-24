@@ -200,6 +200,15 @@ ul li:nth-child(5) a:hover {
     max-width: 100%;
 }
 
+#logout {
+    display: inline-block;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin: 2rem;
+    min-width: 2rem;
+    color: red;
+}
+
 /*
  * Activity preview
  */
