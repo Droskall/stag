@@ -19,22 +19,28 @@ class CategoryController extends AbstractController
      * get the activities by category name
      * @param string $name
      */
-    public function getCategory(string $name) {
+    public function getCategory(string $name, string $type = '') {
 
         $category = filter_var($name, FILTER_SANITIZE_STRING);
 
         $activityManager = new ActivityManager();
         $stickerManager = new StickerManager();
 
-        $activities =  $activityManager->getActivitiesByCategory($name);
-        $data =  [];
+        if ($type === '') {
+            $activities =  $activityManager->getActivitiesByCategory($name);
+        } else {
+            $activities =  $activityManager->getByCategoryAndType($name, $type);
+        }
+
+        $data = [];
 
         foreach ($activities as $value) {
             $data[] = [
                 'activity' => $value,
-               'interactions' => $stickerManager->countActivityInteractions($value->getId()),
+                'interactions' => $stickerManager->countActivityInteractions($value->getId()),
             ];
         }
+        $data += ['category' => $name];
 
         self::render('category', $data);
     }

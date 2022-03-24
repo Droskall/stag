@@ -45,9 +45,14 @@ class Routeur
                 $args = [];
 
                 foreach ($parameters as $value) {
+                    if (!isset($_GET[$value['param']])) {
+                        $error = new ErrorController();
+                        $error->default();
+                        exit();
+                    }
+
                     $var = $_GET[$value['param']];
                     settype($var, $value['type']);
-
                     $args[] = $var;
                 }
 

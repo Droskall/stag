@@ -1,7 +1,15 @@
+<?php
+$category = array_pop($data);
+?>
+<div>
+    <button><a href="/index.php?c=category&a=get-category&name=<?= $category ?>&type=club">Clubs</a></button>
+    <button><a href="/index.php?c=category&a=get-category&name=<?= $category ?>&type=event">Événements</a></button>
+    <button><a href="/index.php?c=category&a=get-category&name=<?= $category ?>&type=place">Lieux</a></button>
+</div>
+
 <div class="flex content">
 <?php
 foreach ($data as $value) {
-
     $image = '/assets/img/activity-placeholder.png';
 
     if ($value['activity']->getImage() === null) {
