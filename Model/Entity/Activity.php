@@ -5,6 +5,7 @@ namespace Model\Entity;
 class Activity {
 
     private ?int $id;
+    private ?string $category;
     private ?string $type;
     private ?string $name;
     private ?string $description;
@@ -17,6 +18,7 @@ class Activity {
 
 
     /**
+     * @param int|null $id
      * @param string|null $type
      * @param string|null $name
      * @param string|null $description
@@ -26,15 +28,15 @@ class Activity {
      * @param string|null $schedules
      * @param string|null $link
      * @param string|null $image
-     * @param int|null $id
      */
     public function __construct(
-        int $id = null, string $type = null, string $name = null,
+        int $id = null, string $category = null, string $type = null, string $name = null,
         string $description = null, string $location = null, string $email = null,
         string $phone = null, string $schedules = null, string $link = null,
         string $image = null
     ) {
         $this->id = $id;
+        $this->category = $category;
         $this->type = $type;
         $this->name = $name;
         $this->description = $description;
@@ -61,6 +63,23 @@ class Activity {
     {
         $this->id = $id;
     }
+
+    /**
+     * @return string|null
+     */
+    public function getCategory(): ?string
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param string|null $category
+     */
+    public function setCategory(?string $category): void
+    {
+        $this->id = $category;
+    }
+
 
     /**
      * @return string
