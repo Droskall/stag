@@ -12,12 +12,13 @@
                         <p>Email : <?= $item->getEmail() ?></p>
                         <div class="flex">
                             Role : <p><?= $item->getRole() ?></p>
-                            <form action="/index.php?c=user&a=update-role" method="post">
+                            <form action="/index.php?c=user&a=update" method="post">
+                                <input type="hidden" name="id" value="<?= $item->getId() ?>">
                                 <select name="userRole" id="userRole">
                                     <option value="admin">admin</option>
                                     <option value="user">user</option>
                                 </select>
-                                <input type="submit">
+                                <input type="submit" name="update">
                             </form>
                             <input type="submit" name="suppr" value="Supprimer">
                         </div>
