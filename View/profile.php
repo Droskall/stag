@@ -49,13 +49,14 @@
                     <div>
                         <div id="add-activity">
                             <h3>Ajouter un article</h3>
+                            <span>* = champ obligatoire</span>
                             <form action="/index.php?c=activity&a=add" method="post" enctype="multipart/form-data">
                                 <div>
-                                    <label for="title">Titre :</label>
+                                    <label for="title">Titre * :</label>
                                     <input type="text" id="title" name="title">
                                 </div>
                                 <div>
-                                    <label for="category-type">Categorie :</label>
+                                    <label for="category-type">Categorie * :</label>
                                     <select name="category-type" id="category-type">
                                         <option value="sport">Activité sportive</option>
                                         <option value="cultural">Activité culturelle</option>
@@ -63,7 +64,7 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <label for="activity-type">Type :</label>
+                                    <label for="activity-type">Type * :</label>
                                     <select name="activity-type" id="activity-type">
                                         <option value="club">Club</option>
                                         <option value="event">Evenement</option>
@@ -71,12 +72,13 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <label for="picture"></label>
-                                    <input type="file" id="picture" name="picture" accept=".image/jpeg, .jpg, .png">&nbsp;(Max : 2Mo)
+                                    <label for="picture">image : </label>
+                            <!--        todo gerer la taille max de l'image     -->
+                                    <input type="file" id="picture" name="picture" accept=".image/jpeg, .jpg, .png">
                                 </div>
-                                <textarea name="content" id="content" cols="30" rows="15"></textarea>
+                                <textarea name="content" id="content" cols="30" rows="15"></textarea>*
                                 <div>
-                                    <label for="location">Localisation :</label>
+                                    <label for="location">Localisation * :</label>
                                     <input type="text" id="location" name="location">
                                 </div>
                                 <div>
@@ -88,11 +90,11 @@
                                     <input type="text" id="phone" name="phone">
                                 </div>
                                 <div>
-                                    <label for="schedules">Date & Horaires :</label>
+                                    <label for="schedules">Date & Horaires * :</label>
                                     <input type="text" id="schedules" name="schedules">
                                 </div>
                                 <div>
-                                    <label for="url">Lien :</label>
+                                    <label for="url">Lien * :</label>
                                     <input type="url" id="url" name="url">
                                 </div>
                                 <div>

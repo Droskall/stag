@@ -41,6 +41,14 @@ class ActivityController extends AbstractController
 
                 $activity = new Activity(null,$category, $type , $title, $content, $location, $email,
                     $phone, $schedules, $link, null);
+
+                if(isset($_FILES['picture'])){
+                    $tmp_name = $_FILES['picture']['tmp_name'];
+                    $image = $_FILES['picture']['name'];
+                    $activity->setImage($image);
+                    move_uploaded_file($tmp_name, 'uploads/' . $image);
+                }
+
                 $activityManager->addActivity($activity);
                 header("Location: index.php?c=activity");
 

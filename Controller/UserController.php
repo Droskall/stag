@@ -28,4 +28,20 @@ class UserController extends AbstractController
         self::render('userList', $data);
     }
 
+    public function updateRole(){
+
+        $userManager = new UserManager();
+
+        $userManager->modifUserRole($_POST["userRole"], $_SESSION['user']->getId());
+
+        $data = [];
+        $userManager = new UserManager();
+        $users = $userManager->getAll();
+        foreach ($users as $user){
+            $data[] = $user;
+        }
+
+        self::render('userList', $data);
+    }
+
 }

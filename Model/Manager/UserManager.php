@@ -103,14 +103,17 @@ class UserManager {
     /**
      * Modify a user role
      * @param $role
+     * @param $id
      */
-    public function modifUserRole($role){
+    public function modifUserRole($role, $id){
 
         $request = $this->db->prepare("UPDATE user SET role = :role WHERE id = :id");
 
         $request->bindValue(":role", $role);
+        $request->bindValue(":id", $id);
 
         $request->execute();
+
     }
 
     /**
