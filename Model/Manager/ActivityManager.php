@@ -75,11 +75,11 @@ class ActivityManager {
     }
 
     /**
-     * Add an article into the database.
+     * Add an activity into the database.
      * @param Activity $activity
      * @return bool
      */
-    public function add(Activity $activity): bool
+    public function addActivity(Activity $activity): bool
     {
         $request = $this->db->prepare("INSERT INTO activity (category, type, name, description, location, email, phone, schedules, link, image) 
             VALUES (:category, :type, :name, :description, :location, :email, :phone, :schedules, :link, :image)
@@ -99,6 +99,7 @@ class ActivityManager {
 
         return $request->execute();
     }
+
 
     /**
      * Modify an activity

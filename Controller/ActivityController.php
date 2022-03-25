@@ -18,19 +18,30 @@ class ActivityController extends AbstractController
     /**
      * Add a new activity.
      */
-    public function add($form){
-        if(isset($form["title"]) && strlen($form["title"]) > 45){
+    public function add(){
+        if(isset($_POST["title"]) && strlen($_POST["title"]) > 45){
             echo "<div id='error'>Merci de respecter la limite du titre</div>";
-        }else{
-            if(isset($form['content'], $form['user'])) {
+        }
+        else{
+            if(isset($_POST['category-type'], $_POST['activity-type'], $_POST['title'],
+            $_POST['content'], $_POST['location'], $_POST['email'], $_POST['phone'],
+            $_POST['schedules'], $_POST['url'])) {
 
                 $activityManager = new ActivityManager();
 
-                $content = htmlentities($form['content']);
-                $title = htmlentities($form['title']);
+                $category = htmlentities($_POST['category-type']);
+                $type = htmlentities($_POST['activity-type']);
+                $title = htmlentities($_POST['title']);
+                $content = htmlentities($_POST['content']);
+                $location = htmlentities($_POST['location']);
+                $email = htmlentities($_POST['email']);
+                $phone = htmlentities($_POST['phone']);
+                $schedules = htmlentities($_POST['schedules']);
+                $link = htmlentities($_POST['url']);
 
-                $activity = new Activity($content, $title);
-                $this->$activityManager->add($activity);
+                $activity = new Activity(null,$category, $type , $title, $content, $location, $email,
+                    $phone, $schedules, $link, null);
+                $activityManager->addActivity($activity);
                 header("Location: index.php?c=activity");
 
             }
