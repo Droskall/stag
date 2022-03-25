@@ -28,11 +28,7 @@ class UserController extends AbstractController
         self::render('userList', $data);
     }
 
-    public function updateRole(){
-
-        $userManager = new UserManager();
-
-        $userManager->modifUserRole($_POST["userRole"], $_SESSION['user']->getId());
+    public function update(){
 
         $data = [];
         $userManager = new UserManager();
@@ -41,7 +37,8 @@ class UserController extends AbstractController
             $data[] = $user;
         }
 
+        $userManager->modifUserRole($_POST["userRole"], $_POST["id"]);
+
         self::render('userList', $data);
     }
-
 }
