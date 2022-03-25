@@ -5,6 +5,7 @@ namespace App\Controller;
 
 
 use App\Color;
+use Exception;
 use Model\Entity\Activity;
 use Model\Manager\ActivityManager;
 use Model\Manager\StickerManager;
@@ -55,7 +56,7 @@ class ActivityController extends AbstractController
 
                 if(isset($_FILES['picture'])){
                     $tmp_name = $_FILES['picture']['tmp_name'];
-                    $image = $_FILES['picture']['name'];
+                    $image = $this->randomName($_FILES['picture']['name']);
                     $activity->setImage($image);
                     move_uploaded_file($tmp_name, 'uploads/' . $image);
                 }
@@ -106,5 +107,19 @@ class ActivityController extends AbstractController
             'interaction' => $interaction,
             'userChoice' => $userChoice,
         ], $color);
+    }
+
+    /**
+     * @param string $currentName
+     * @return string
+     */
+    function randomName (string $currentName): string {
+        $infos = pathinfo($currentName);
+        try {
+            $bytes = random_bytes(15);
+        } catch (Exception $e) {
+            $bytes = openssl_random_pseudo_bytes(15);
+        }
+        return bin2hex($bytes) . '.' . $infos['extension'];
     }
 }
