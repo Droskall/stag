@@ -12,7 +12,7 @@ $category = array_pop($data);
 foreach ($data as $value) {
     $image = '/assets/img/activity-placeholder.png';
 
-    if ($value['activity']->getImage() === null) {
+    if ($value['activity']->getImage() !== null) {
         $image = $value['activity']->getImage();
     }
 
