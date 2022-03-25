@@ -18,7 +18,7 @@ foreach ($data as $value) {
                     <h2><?= $value['activity']->getName() ?></h2>
                     <span class="circle"><?= $value['interactions'] ?></span>
                 </div>
-                <div class="small-image" style="background-image: url(<?= $value['activity']->getImage() ?>);"></div>
+                <div class="small-image" style="background-image: url('/uploads/<?= $value['activity']->getImage()?>');"></div>
             </div>
         </a>
     </div>
