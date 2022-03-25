@@ -154,7 +154,7 @@ class StickerManager
         );
 
         if ($query) {
-            return $query->fetch()['type'];
+            return $query->fetch();
         }
 
         return null;

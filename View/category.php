@@ -10,21 +10,15 @@ $category = array_pop($data);
 <div class="flex content">
 <?php
 foreach ($data as $value) {
-    $image = '/assets/img/activity-placeholder.png';
-
-    if ($value['activity']->getImage() !== null) {
-        $image = $value['activity']->getImage();
-    }
-
     ?>
     <div class="preview_container">
-        <a href="/index.php?c=activity&id=<?= $value['activity']->getId() ?>">
+        <a href="/index.php?c=activity&a=show-activity&id=<?= $value['activity']->getId() ?>">
             <div class="activity_preview white" style="border-color: <?= $color ?>">
                 <div class="flex">
                     <h2><?= $value['activity']->getName() ?></h2>
                     <span class="circle"><?= $value['interactions'] ?></span>
                 </div>
-                <div class="small-image" style="background-image: url(<?= $image ?>);"></div>
+                <div class="small-image" style="background-image: url(<?= $value['activity']->getImage() ?>);"></div>
             </div>
         </a>
     </div>

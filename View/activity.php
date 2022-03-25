@@ -1,37 +1,71 @@
+<?php
+$activity = $data['activity'];
+$interaction = $data['interaction'];
+$userChoice = $data['userChoice'];
+$emojis = array_keys($interaction);
+?>
+
 <div id="activity" class="flex white">
-    <article class="flex">
+    <article class="flex" style="border-color: <?= $color ?>;">
             <!--    activity image    -->
-        <div class="big-image" style="background-image: url('/assets/img/sport.jpg')"></div>
+        <div class="big-image" style="background-image: url(<?= $activity->getImage() ?>)"></div>
         <div id="description" class="flex">
             <div id="top-activity">
                 <!--   activity title    -->
-                <h2>Titre de l'activité</h2>
+                <h2><?= $activity->getName() ?></h2>
                 <div id="all-reaction" class="flex">
-                    <div>
-                        <span>1</span>
-                        <img src="/assets/img/emojis/bad_colored.PNG" alt="dislike">
-                    </div>
-                    <div>
-                        <span>3</span>
-                        <img src="/assets/img/emojis/good_colored.PNG" alt="like">
-                    </div>
+                    <?php
+                        foreach ($interaction as $key => $value) {
+                            if ($value !== '0') {
+                        ?>
+                            <div>
+                                <span><?= $value ?></span>
+                                <img src="/assets/img/emojis/<?= $key ?>_colored.PNG" alt="<?= $key ?>">
+                            </div>
+                        <?php
+                            }
+                        }
+                    ?>
                 </div>
             </div>
             <div id="content-activity" class="flex">
-                <p>lieu : xxxxx</p>
-                <p>horaires : date - heure</p>
-                <p><!--   activity description    -->
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci animi aspernatur aut culpa
-                    deserunt dolore dolorem ea ipsa laboriosam, mollitia natus non, porro quae quibusdam quo ratione
-                    suscipit vel veniam
-                </p>
+                <p>lieu : <?= $activity->getLocation() ?></p>
+                <p>horaires : <?= $activity->getSchedules() ?></p>
+                <p><?= $activity->getDescription() ?></p>
+                <?php
+                // may be null
+                if ($activity->getLink() !== null) {
+                    ?>
+                    <a href="<?= $activity->getLink() ?>"><?= $activity->getLink() ?></a>
+                    <?php
+                }
+                if ($activity->getEmail() !== null) {
+                    ?>
+                    <address>Email : <?= $activity->getEmail() ?></address>
+                    <?php
+                }
+                if ($activity->getPhone() !== null) {
+                    ?>
+                    <address>Téléphone : <?= $activity->getPhone() ?></address>
+                    <?php
+                }
+                ?>
             </div>
+
             <div class="user-reaction flex"><!--   user choice    -->
-                <img src="/assets/img/emojis/bad_white.PNG" alt="">
-                <img src="/assets/img/emojis/fun_white.PNG" alt="">
-                <img src="/assets/img/emojis/good_white.PNG" alt="">
-                <img src="/assets/img/emojis/happy_white.PNG" alt="">
-                <img src="/assets/img/emojis/heart_white.PNG" alt="">
+                <?php
+                    foreach ($emojis as $value) {
+                        if ($value === $userChoice) {
+                        ?>
+                            <img src="/assets/img/emojis/<?= $value ?>_colored.PNG" alt="<?= $value ?>">
+                        <?php
+                        } else {
+                        ?>
+                            <img src="/assets/img/emojis/<?= $value ?>_white.PNG" alt="<?= $value ?>">
+                        <?php
+                        }
+                    }
+                ?>
             </div>
         </div>
     </article>

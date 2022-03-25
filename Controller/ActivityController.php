@@ -4,15 +4,17 @@
 namespace App\Controller;
 
 
+use App\Color;
 use Model\Entity\Activity;
 use Model\Manager\ActivityManager;
+use Model\Manager\StickerManager;
 
 class ActivityController extends AbstractController
 {
 
     public function default()
     {
-        self::render('activity');
+        self::render('home');
     }
 
     /**
@@ -60,13 +62,40 @@ class ActivityController extends AbstractController
 
     /**
      * Displays the activity that has a certain id
-     * @param $id
+     * @param int $id
      */
-    public function showActivity($id){
+    public function showActivity(int $id){
         $activityManager = new ActivityManager();
 
-        $activity = $this->$activityManager->getById($id);
-        $this->render('activity');
-    }
+        $activity = $activityManager->getById($id);
 
+        if ($activity === null) {
+            self::default();
+            exit();
+        }
+
+        $stickerManager = new StickerManager();
+        $interaction = [
+            'bad' => $stickerManager->countInteractionsByType('activity_id', $id, 'bad'),
+            'fun' => $stickerManager->countInteractionsByType('activity_id', $id, 'fun'),
+            'good' => $stickerManager->countInteractionsByType('activity_id', $id, 'good'),
+            'happy' => $stickerManager->countInteractionsByType('activity_id', $id, 'happy'),
+            'heart' => $stickerManager->countInteractionsByType('activity_id', $id, 'heart'),
+        ];
+
+        $userChoice = null;
+
+        if (isset($_SESSION['user'])) {
+            $userChoice = $stickerManager->hasAlreadyReacted($id, $_SESSION['user']->getId());
+            $userChoice = $userChoice ? $userChoice['type'] : null;
+        }
+
+        $color = Color::getColor($activity->getCategory());
+
+        self::render('activity', $data = [
+            'activity' => $activity,
+            'interaction' => $interaction,
+            'userChoice' => $userChoice,
+        ], $color);
+    }
 }

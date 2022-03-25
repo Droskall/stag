@@ -367,6 +367,7 @@ h1 {
 #activity article {
     border: 5px #d54398 solid;
     border-radius: 20px;
+    width: 100%;
 }
 
 #activity article > div {
@@ -375,8 +376,9 @@ h1 {
 }
 
 .big-image {
-    border: 1px solid gray;
     height: 80vh;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 #description {
