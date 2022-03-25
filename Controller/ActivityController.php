@@ -37,12 +37,21 @@ class ActivityController extends AbstractController
                 $content = htmlentities($_POST['content']);
                 $location = htmlentities($_POST['location']);
                 $email = htmlentities($_POST['email']);
+                if (empty($email)) {
+                    $email = null;
+                }
                 $phone = htmlentities($_POST['phone']);
+                if (empty($phone)) {
+                    $phone = null;
+                }
                 $schedules = htmlentities($_POST['schedules']);
                 $link = htmlentities($_POST['url']);
+                if (empty($link)) {
+                    $link = null;
+                }
 
                 $activity = new Activity(null,$category, $type , $title, $content, $location, $email,
-                    $phone, $schedules, $link, null);
+                    $phone, $schedules, $link, 'activity-placeholder.png');
 
                 if(isset($_FILES['picture'])){
                     $tmp_name = $_FILES['picture']['tmp_name'];
@@ -51,9 +60,9 @@ class ActivityController extends AbstractController
                     move_uploaded_file($tmp_name, 'uploads/' . $image);
                 }
 
-                $activityManager->addActivity($activity);
-                header("Location: index.php?c=activity");
+                $id = $activityManager->addActivity($activity);
 
+                header("Location: index.php?c=activity&a=show-activity&id=" . $id);
             }
         }
 

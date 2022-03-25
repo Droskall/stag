@@ -13,7 +13,7 @@ class CategoryController extends AbstractController
 {
     public function default()
     {
-        $this->render('category');
+        $this->render('home');
     }
 
     /**

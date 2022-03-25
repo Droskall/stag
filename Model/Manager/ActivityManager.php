@@ -77,9 +77,9 @@ class ActivityManager {
     /**
      * Add an activity into the database.
      * @param Activity $activity
-     * @return bool
+     * @return int
      */
-    public function addActivity(Activity $activity): bool
+    public function addActivity(Activity $activity): int
     {
         $request = $this->db->prepare("INSERT INTO activity (category, type, name, description, location, email, phone, schedules, link, image) 
             VALUES (:category, :type, :name, :description, :location, :email, :phone, :schedules, :link, :image)
@@ -97,7 +97,9 @@ class ActivityManager {
         $request->bindValue(":link", $activity->getLink());
         $request->bindValue(":image", $activity->getImage());
 
-        return $request->execute();
+        $request->execute();
+
+        return $this->db->lastInsertId();
     }
 
 
