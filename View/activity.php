@@ -8,7 +8,7 @@ $emojis = array_keys($interaction);
 <div id="activity" class="flex white">
     <article class="flex" style="border-color: <?= $color ?>;">
             <!--    activity image    -->
-        <div class="big-image" style="background-image: url(<?= $activity->getImage() ?>)"></div>
+        <div class="big-image" style="background-image: url('/uploads/<?= $activity->getImage() ?>')"></div>
         <div id="description" class="flex">
             <div id="top-activity">
                 <!--   activity title    -->
@@ -54,17 +54,28 @@ $emojis = array_keys($interaction);
 
             <div class="user-reaction flex"><!--   user choice    -->
                 <?php
+                if (isset($_SESSION['user'])) {
                     foreach ($emojis as $value) {
-                        if ($value === $userChoice) {
+                        if ($userChoice === null) {
                         ?>
-                            <img src="/assets/img/emojis/<?= $value ?>_colored.PNG" alt="<?= $value ?>">
+                            <a href="/index.php?c=sticker&a=add&id=<?= $activity->getId() ?>">
+                                <img src="/assets/img/emojis/<?= $value ?>_white.PNG" alt="<?= $value ?>">
+                            </a>
+
                         <?php
                         } else {
-                        ?>
-                            <img src="/assets/img/emojis/<?= $value ?>_white.PNG" alt="<?= $value ?>">
-                        <?php
+                            if ($value === $userChoice) {
+                            ?>
+                                <img src="/assets/img/emojis/<?= $value ?>_colored.PNG" alt="<?= $value ?>">
+                            <?php
+                            } else {
+                            ?>
+                                <img src="/assets/img/emojis/<?= $value ?>_white.PNG" alt="<?= $value ?>">
+                            <?php
+                            }
                         }
                     }
+                }
                 ?>
             </div>
         </div>

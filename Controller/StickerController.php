@@ -10,5 +10,7 @@ class StickerController extends AbstractController
         self::render('home');
     }
 
-
+    public function add(int $id, string $type) {
+        
+    }
 }
