@@ -58,7 +58,7 @@ $emojis = array_keys($interaction);
                     foreach ($emojis as $value) {
                         if ($userChoice === null) {
                         ?>
-                            <a href="/index.php?c=sticker&a=add&id=<?= $activity->getId() ?>">
+                            <a href="/index.php?c=sticker&a=add&id=<?= $activity->getId() ?>&type=<?= $value ?>">
                                 <img src="/assets/img/emojis/<?= $value ?>_white.PNG" alt="<?= $value ?>">
                             </a>
 
@@ -66,11 +66,15 @@ $emojis = array_keys($interaction);
                         } else {
                             if ($value === $userChoice) {
                             ?>
-                                <img src="/assets/img/emojis/<?= $value ?>_colored.PNG" alt="<?= $value ?>">
+                                <a href="/index.php?c=sticker&a=delete&id=<?= $activity->getId() ?>">
+                                    <img src="/assets/img/emojis/<?= $value ?>_colored.PNG" alt="<?= $value ?>">
+                                </a>
                             <?php
                             } else {
                             ?>
-                                <img src="/assets/img/emojis/<?= $value ?>_white.PNG" alt="<?= $value ?>">
+                                <a href="/index.php?c=sticker&a=update&id=<?= $activity->getId() ?>&type=<?= $value ?>">
+                                    <img src="/assets/img/emojis/<?= $value ?>_white.PNG" alt="<?= $value ?>">
+                                </a>
                             <?php
                             }
                         }
