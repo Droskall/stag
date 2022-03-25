@@ -94,7 +94,7 @@
                                     <input type="text" id="schedules" name="schedules">
                                 </div>
                                 <div>
-                                    <label for="url">Lien * :</label>
+                                    <label for="url">Lien :</label>
                                     <input type="url" id="url" name="url">
                                 </div>
                                 <div>
