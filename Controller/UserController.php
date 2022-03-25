@@ -12,6 +12,13 @@ class UserController extends AbstractController
      */
     public function default()
     {
+        if (!isset($_SESSION['user'])) {
+            header('Location: index.php');
+        }
+        if ($_SESSION['user']->getRole() !== 'admin') {
+            header('Location: index.php');
+        }
+
         $data = [];
         $userManager = new UserManager();
         $users = $userManager->getAll();
