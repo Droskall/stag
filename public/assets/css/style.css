@@ -558,8 +558,8 @@ h1 {
     justify-content: center;
 }
 
-.list {
-    flex-direction: column;
+.userList {
+    margin: 0.5px;
 }
 
 .frame {
@@ -614,5 +614,9 @@ h1 {
 
     #connection, #register {
         width: 80%;
+    }
+
+    .list {
+        flex-direction: column;
     }
 }
