@@ -19,6 +19,7 @@ body {
     background-image: url("/assets/img/bocage.jpg");
     background-size: cover;
     background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 h1 {
