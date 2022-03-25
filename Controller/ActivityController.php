@@ -22,7 +22,7 @@ class ActivityController extends AbstractController
      */
     public function add(){
         if(isset($_POST["title"]) && strlen($_POST["title"]) > 45){
-            echo "<div id='error'>Merci de respecter la limite du titre</div>";
+            echo "<div id='error'>Merci de respecter la limite du titre (45 caractères)</div>";
         }
         else{
             if(isset($_POST['category-type'], $_POST['activity-type'], $_POST['title'],

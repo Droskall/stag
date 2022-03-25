@@ -1,5 +1,6 @@
 <?php
 
+require __DIR__ . "/Config.php";
 require __DIR__ . "/Color.php";
 
 require __DIR__ . "/Model/Entity/Activity.php";
@@ -24,5 +25,6 @@ require __DIR__ . "/Controller/ToolboxController.php";
 require __DIR__ . "/Controller/ConnectionController.php";
 require __DIR__ . "/Controller/ProfileController.php";
 require __DIR__ . "/Controller/UserController.php";
+require __DIR__ . "/Controller/StickerController.php";
 
 require __DIR__ . "/Routeur.php";
