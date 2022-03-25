@@ -277,7 +277,9 @@ span.circle {
     width: 89%;
     height: 20rem;
     margin: 1rem auto;
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 /*
