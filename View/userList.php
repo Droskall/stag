@@ -5,11 +5,11 @@
             <?php
             foreach ($data as $item){?>
                 <div class="frame flex">
-                    <!--   todo replace by avatar   -->
+                    <!--   TODO replace by avatar   -->
                     <img src="/assets/img/avatar.png" width="50px" alt="user logo">
                     <div>
-                        <p>Nom : <?= $item->getUsername() ?></p>
-                        <p>Email : <?= $item->getEmail() ?></p>
+                        <p class="userList">Nom : <?= $item->getUsername() ?></p>
+                        <p class="userList">Email : <?= $item->getEmail() ?></p>
                         <div class="flex">
                             Role : <p><?= $item->getRole() ?></p>
                             <form action="/index.php?c=user&a=update" method="post">
