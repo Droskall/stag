@@ -5,7 +5,7 @@ $userChoice = $data['userChoice'];
 $emojis = array_keys($interaction);
 ?>
 
-<div id="activity" class="flex white">
+<div id="activity" class="white">
     <article class="flex" style="border-color: <?= $color ?>;">
             <!--    activity image    -->
         <div class="big-image" style="background-image: url('/uploads/<?= $activity->getImage() ?>')"></div>

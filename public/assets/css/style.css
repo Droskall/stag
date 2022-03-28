@@ -375,11 +375,10 @@ h1 {
 
 #activity article > div {
     flex-basis: 50%;
-    margin: 1rem;
+    margin: 2rem;
 }
 
 .big-image {
-    height: 80vh;
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -387,6 +386,11 @@ h1 {
 #description {
     flex-direction: column;
     font-size: 2rem;
+}
+
+#description p, #description address, #description a {
+    display: block;
+    margin-bottom: 1.5rem;
 }
 
 #top-activity {
@@ -473,14 +477,19 @@ h1 {
 }
 
 #toolbox a {
+    font-size: 1.5rem;
+    color: var(--black);
     flex-basis: 45%;
     margin: 2rem;
     background-color: #a2c31b;
     justify-content: center;
+    align-items: center;
+    padding: 1rem;
 }
 
 #toolbox img {
     width: 78%;
+    margin: 1rem;
 }
 
 /*
@@ -590,7 +599,30 @@ h1 {
  */
 
 /*
- * menu
+ * Activity | Toolbox
+ */
+@media screen and (max-width: 950px) {
+    #activity article {
+        display: block;
+    }
+
+    #activity .big-image {
+        float: left;
+        width: 30rem;
+        min-height: 20rem;
+    }
+
+    #description, #content-activity {
+        display: block;
+    }
+
+    #toolbox a {
+        flex-basis: 80%;
+    }
+}
+
+/*
+ * Menu
  */
 @media screen and (max-width: 860px){
     div.menu {
@@ -621,6 +653,9 @@ h1 {
     }
 }
 
+/*
+ * Menu | Activity
+ */
 @media screen and (max-width: 700px){
     .connection_register {
         flex-direction: column;
@@ -632,5 +667,28 @@ h1 {
 
     .list {
         flex-direction: column;
+    }
+
+    #activity img {
+        width: 2.8rem;
+        height: 2.8rem;
+    }
+}
+
+/*
+ * Activity
+ */
+@media screen and (max-width: 650px) {
+    #activity .big-image {
+        display: block;
+        min-height: 20rem;
+        width: 85%;
+    }
+
+}
+
+@media screen and (max-width: 500px) {
+   #content-activity {
+        font-size: 1.6rem;
     }
 }
