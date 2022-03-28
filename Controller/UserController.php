@@ -41,4 +41,18 @@ class UserController extends AbstractController
 
         self::render('userList', $data);
     }
+
+    public function delete(){
+
+        $data = [];
+        $userManager = new UserManager();
+        $users = $userManager->getAll();
+        foreach ($users as $user){
+            $data[] = $user;
+        }
+
+        $userManager->deleteUser($_POST["id"]);
+
+        self::render('userList', $data);
+    }
 }

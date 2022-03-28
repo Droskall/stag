@@ -20,7 +20,10 @@
                                 </select>
                                 <input type="submit" name="update">
                             </form>
-                            <input type="submit" name="suppr" value="Supprimer">
+                            <form action="/index.php?c=user&a=delete" method="post">
+                                <input type="hidden" name="id" value="<?= $item->getId() ?>">
+                                <input type="submit" name="suppr" value="Supprimer">
+                            </form>
                         </div>
                     </div>
                 </div>

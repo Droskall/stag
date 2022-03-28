@@ -88,16 +88,19 @@ class UserManager {
 
     /**
      * Delete a user from user db.
-     * @param User $user
+     * @param $id
      * @return bool
      */
-    public function deleteUser(User $user): bool {
-        if(self::userExists($user->getId())) {
-            return $this->db->exec("
-            DELETE FROM user WHERE id = {$user->getId()}
+    public function deleteUser($id)
+    {
+
+           $request = $this->db->prepare("
+            DELETE FROM user WHERE id = :id
         ");
-        }
-        return false;
+
+           $request->bindValue(":id", $id);
+
+           $request->execute();
     }
 
     /**
