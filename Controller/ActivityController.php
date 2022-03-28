@@ -55,18 +55,17 @@ class ActivityController extends AbstractController
                     $phone, $schedules, $link, 'activity-placeholder.png');
 
                 if(isset($_FILES['picture'])){
-                    $tmp_name = $_FILES['picture']['tmp_name'];
-                    $image = $this->randomName($_FILES['picture']['name']);
-                    $activity->setImage($image);
-                    move_uploaded_file($tmp_name, 'uploads/' . $image);
+                    if((int)$_FILES['picture']['size'] <= (3 * 1024 * 1024)){ // maximum size = 3 mo
+                        $tmp_name = $_FILES['picture']['tmp_name'];
+                        $name = $this->randomName($_FILES['picture']['name']);
+                        $activity->setImage($name);
+                        move_uploaded_file($tmp_name, 'uploads/' . $name);
+                    }
                 }
-
                 $id = $activityManager->addActivity($activity);
-
                 header("Location: index.php?c=activity&a=show-activity&id=" . $id);
             }
         }
-
         $this->render('profile');
     }
 

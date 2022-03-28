@@ -73,10 +73,9 @@
                                 </div>
                                 <div>
                                     <label for="picture">image : </label>
-                            <!--        todo gerer la taille max de l'image     -->
-                                    <input type="file" id="picture" name="picture" accept=".image/jpeg, .jpg, .png">
+                                    <input type="file" id="picture" name="picture" accept=".image/jpeg, .jpg, .png">&nbsp;(Max: 3Mo)
                                 </div>
-                                <textarea name="content" id="content" cols="40" rows="10"></textarea>*
+                                <textarea name="content" id="content" cols="30" rows="10"></textarea>*
                                 <div>
                                     <label for="location">Localisation * :</label>
                                     <input type="text" id="location" name="location">
