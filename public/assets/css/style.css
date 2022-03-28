@@ -539,7 +539,7 @@ h1 {
     align-items: center;
 }
 
-.buton a {
+.button a {
     display:block;
     border-radius: 20px;
     width:100px;
@@ -569,7 +569,22 @@ h1 {
     padding: 1rem;
 }
 
+/*
+ * Sticker list
+ */
+.linkContainer {
+    flex-wrap: wrap;
+    justify-content: center;
+}
 
+.linkContainer .white {
+    margin: 1rem;
+}
+
+.linkContainer a {
+    color: var(--black);
+    font-size: 1.6rem;
+}
 /*
  * RESPONSIVE
  */
@@ -577,7 +592,6 @@ h1 {
 /*
  * menu
  */
-
 @media screen and (max-width: 860px){
     div.menu {
         display: none;

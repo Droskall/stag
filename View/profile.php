@@ -14,29 +14,29 @@
                 <div id="user-reaction" class="flex">
                     <h3>Vos interractions</h3>
                     <div class="flex">
-                        <a href="">
+                        <a href="/index.php?c=profile&a=sticker-list&type=heart">
                             <img src="/assets/img/emojis/heart_colored.png" alt="heart">
                             <span>Coup de coeur</span>
                         </a>
-                        <a href="">
+                        <a href="/index.php?c=profile&a=sticker-list&type=good">
                             <img src="/assets/img/emojis/good_colored.png" alt="love">
                             <span>Sympa</span>
                         </a>
-                        <a href="">
+                        <a href="/index.php?c=profile&a=sticker-list&type=fun">
                             <img src="/assets/img/emojis/fun_colored.png" alt="fun">
                             <span>Drole</span>
                         </a>
-                        <a href="">
+                        <a href="/index.php?c=profile&a=sticker-list&type=happy">
                             <img src="/assets/img/emojis/happy_colored.png" alt="happy">
                             <span>Heureux</span>
                         </a>
-                        <a href="">
+                        <a href="/index.php?c=profile&a=sticker-list&type=bad">
                             <img src="/assets/img/emojis/bad_colored.png" alt="dislike">
                             <span>Pas intérressé</span>
                         </a>
                     </div>
                     <?php if($_SESSION["user"]->getRole() === "admin"){?>
-                        <div class="buton">
+                        <div class="button">
                             <a href="/index.php?c=user" id="listUser">Liste Utilisateurs</a>
                         </div>
                     <?php }?>
