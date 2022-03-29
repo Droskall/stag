@@ -37,7 +37,7 @@ class ActivityManager {
      * @return array
      */
     public function getActivitiesByCategory(string $category): array {
-        $query = $this->db->query("SELECT * FROM " . self::TABLE . " WHERE category = '$category'");
+        $query = $this->db->query("SELECT * FROM " . self::TABLE . " WHERE category = '$category' ORDER BY id DESC ");
 
         $array = [];
 
@@ -59,7 +59,7 @@ class ActivityManager {
      * @return array
      */
     public function getByCategoryAndType($category, $type) {
-        $query = $this->db->query("SELECT * FROM " . self::TABLE . " WHERE category = '$category' AND type = '$type'");
+        $query = $this->db->query("SELECT * FROM " . self::TABLE . " WHERE category = '$category' AND type = '$type' ORDER BY id DESC");
 
         $array = [];
 
