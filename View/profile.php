@@ -75,7 +75,7 @@
                                     <label for="picture">image : </label>
                                     <input type="file" id="picture" name="picture" accept=".image/jpeg, .jpg, .png">&nbsp;(Max: 3Mo)
                                 </div>
-                                <textarea name="content" id="content" cols="30" rows="10"></textarea>*
+                                <textarea name="content" id="content" cols="40" rows="10"></textarea>*
                                 <div>
                                     <label for="location">Localisation * :</label>
                                     <input type="text" id="location" name="location">
@@ -103,22 +103,26 @@
                         </div>
                         <div id="add-link">
                             <h3>Ajouter un lien utile</h3>
-                            <div>
-                                <label for="link-type">Type</label>
-                                <select name="link-type" id="link-type">
-                                    <option value="mealth">Sante</option>
-                                    <option value="mobility">Mobilité</option>
-                                    <option value="help">Aide</option>
-                                    <option value="other">Autre</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="newUrl"></label>
-                                <input type="url" id="newUrl" name="new-url" placeholder="lien">
-                            </div>
-                            <div>
-                                <input type="submit" name="addLink">
-                            </div>
+                            <form action="/Index.php?c=toolbox&a=add-link" method="post">
+                                <div>
+                                    <label for="link-type">Type</label>
+                                    <select name="link-type" id="link-type">
+                                        <option value="health">Sante</option>
+                                        <option value="mobility">Mobilité</option>
+                                        <option value="help">Aide</option>
+                                        <option value="other">Autre</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <input type=text name="title" placeholder="titre">
+                                </div>
+                                <div>
+                                    <input type="url" id="newUrl" name="new-url" placeholder="lien">
+                                </div>
+                                <div>
+                                    <input type="submit" name="add-link">
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
