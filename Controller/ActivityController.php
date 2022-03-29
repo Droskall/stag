@@ -55,9 +55,6 @@ class ActivityController extends AbstractController
                     $phone, $schedules, $link, 'activity-placeholder.png');
 
                 if(isset($_FILES['picture']) && $_FILES['picture']['error'] === 0){
-                    echo '<pre>';
-                    var_dump($_FILES);
-                    echo '</pre>';
                     if((int)$_FILES['picture']['size'] <= (3 * 1024 * 1024)){ // maximum size = 3 mo
                         $tmp_name = $_FILES['picture']['tmp_name'];
                         $name = $this->randomName($_FILES['picture']['name']);
