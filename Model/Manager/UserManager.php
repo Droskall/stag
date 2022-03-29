@@ -93,10 +93,7 @@ class UserManager {
      */
     public function deleteUser($id)
     {
-
-           $request = $this->db->prepare("
-            DELETE FROM user WHERE id = :id
-        ");
+           $request = $this->db->prepare("DELETE FROM user WHERE id = :id");
 
            $request->bindValue(":id", $id);
 

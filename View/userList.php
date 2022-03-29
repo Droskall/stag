@@ -18,7 +18,7 @@
                                     <option value="admin">admin</option>
                                     <option value="user">user</option>
                                 </select>
-                                <input type="submit" name="update">
+                                <input type="submit" name="update" value="Valider">
                             </form>
                             <form action="/index.php?c=user&a=delete" method="post">
                                 <input type="hidden" name="id" value="<?= $item->getId() ?>">
