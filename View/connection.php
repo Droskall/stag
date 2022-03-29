@@ -1,20 +1,20 @@
-<div class="flex white connection_register">
+<div class="flex white connection_register" id="contains">
     <form id="connection" action="/index.php?c=connection&a=connect" method="post">
         <h2>Connexion</h2>
-        <input type="email" placeholder="Votre email" name="email">
-        <input type="password" placeholder="Votre mot de passe" name="password">
+        <input type="email" placeholder="Votre email" name="email" id="email">
+        <input type="password" placeholder="Votre mot de passe" name="password" id="pswd">
 
-        <input type="submit" name="submit" value="connexion">
+        <input type="submit" name="submit" value="connexion" id="buttonC">
     </form>
 
     <form id="register" action="/index.php?c=connection&a=register" method="post">
         <h2>Inscription</h2>
-        <input type="email" placeholder="Votre email" name="email">
-        <input type="text" placeholder="Votre pseudo" name="username">
+        <input type="email" placeholder="Votre email" name="email" id="emailInscript">
+        <input type="text" placeholder="Votre pseudo" name="username" id="pseudoInscript">
 
-        <input type="password" placeholder="Votre mot de passe" name="password">
-        <input type="password" placeholder="Répéter votre mot de passe" name="passwordRepeat">
+        <input type="password" placeholder="Votre mot de passe" name="password" id="passwordInscript">
+        <input type="password" placeholder="Répéter votre mot de passe" name="passwordRepeat" id="passwordConfirmInscript">
 
-        <input type="submit" name="submit" value="inscription">
+        <input type="submit" name="submit" value="inscription" id="buttonValidateI">
     </form>
 </div>
