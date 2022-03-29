@@ -2,13 +2,11 @@
 <?php
 foreach ($data as $value) {
 ?>
-    <div class="white">
-        <a href="<?= $value->getUrl() ?>" target="_blank">
-            <div class="frame">
-                <span><?= $value->getTitle() ?></span>
-            </div>
-        </a>
-    </div>
+    <a href="<?= $value->getUrl() ?>" target="_blank">
+        <div class="frame white" style="border-color: <?= $color ?>">
+            <span><?= $value->getTitle() ?></span>
+        </div>
+    </a>
 <?php
 }
 ?>

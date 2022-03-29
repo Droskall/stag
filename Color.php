@@ -23,8 +23,11 @@ class Color
             case 'numerical':
                 $color = '#4ea392';
                 break;
-            case 'util':
+            case 'utile':
                 $color = '#a2c31b';
+                break;
+            case 'profil':
+                $color = '#d2afaf';
                 break;
         }
 

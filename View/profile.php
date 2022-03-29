@@ -1,5 +1,5 @@
 <section id="profile" class="white flex">
-    <div class="flex">
+    <div class="flex profile_color">
         <h2>PROFIL</h2>
         <div id="profile-content" class="flex">
             <div class="flex">
@@ -42,7 +42,7 @@
                         </div>
                     <?php }?>
 
-                    <div class="buttondelete">
+                    <div class="buttonDelete">
                         <input type="hidden" name="id" value="<?= $_SESSION['user']->getId() ?>">
                         <a href="/index.php?c=user&a=deleteself" id="deleteUser">Supprimer son compte</a>
                     </div>

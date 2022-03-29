@@ -2,13 +2,11 @@
 <?php
 foreach ($data as $value) {
 ?>
-    <div class="white">
-        <a href="/index.php?c=activity&a=show-activity&id=<?= $value->getActivity()->getId() ?>">
-            <div class="frame">
-                <span><?= $value->getActivity()->getName() ?></span>
-            </div>
-        </a>
-    </div>
+    <a href="/index.php?c=activity&a=show-activity&id=<?= $value->getActivity()->getId() ?>">
+        <div class="frame white profile_color">
+            <span><?= $value->getActivity()->getName() ?></span>
+        </div>
+    </a>
 <?php
 }
 ?>

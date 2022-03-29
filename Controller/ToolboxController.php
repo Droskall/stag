@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 
+use App\Color;
 use App\Config;
 use Model\Entity\link;
 use Model\Manager\LinkManager;
@@ -64,7 +65,9 @@ class ToolboxController extends AbstractController
 
         $links = $linkManager->getLinkByType($type);
 
-        self::render('linkList', $data = $links);
+        $color = Color::getColor('utile');
+
+        self::render('linkList', $data = $links, $color);
     }
 
     /**
@@ -79,8 +82,10 @@ class ToolboxController extends AbstractController
             exit();
         }
 
+        $color = Color::getColor('utile');
+
         $linkManager = new LinkManager();
         $links = $linkManager->getLinkByType($type);
-        self::render('linkList', $data = $links);
+        self::render('linkList', $data = $links, $color);
     }
 }
