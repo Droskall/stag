@@ -35,11 +35,17 @@
                             <span>Pas intérressé</span>
                         </a>
                     </div>
+
                     <?php if($_SESSION["user"]->getRole() === "admin"){?>
                         <div class="button">
                             <a href="/index.php?c=user" id="listUser">Liste Utilisateurs</a>
                         </div>
                     <?php }?>
+
+                    <div class="buttondelete">
+                        <input type="hidden" name="id" value="<?= $_SESSION['user']->getId() ?>">
+                        <a href="/index.php?c=user&a=deleteself" id="deleteUser">Supprimer son compte</a>
+                    </div>
                 </div>
             </div>
 
@@ -110,7 +116,6 @@
                                         <option value="health">Sante</option>
                                         <option value="mobility">Mobilité</option>
                                         <option value="help">Aide</option>
-                                        <option value="other">Autre</option>
                                     </select>
                                 </div>
                                 <div>

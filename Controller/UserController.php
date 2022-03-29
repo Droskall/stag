@@ -55,4 +55,12 @@ class UserController extends AbstractController
 
         self::render('userList', $data);
     }
+
+    public function deleteself(){
+
+        $userManager = new UserManager();
+        $userManager->deleteUser($_SESSION['user']->getId());
+
+        header('Location: index.php?c=connection&a=logout');
+    }
 }
