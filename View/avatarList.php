@@ -7,8 +7,6 @@
                 <img src="/assets/img/avatar/<?= $value ?>" alt="<?= explode('.', $value)[0] ?>" class="avatar">
             </div>
         </a>
-
-
     <?php
     }
 ?>

@@ -31,7 +31,9 @@
     }
     ?>
     <div>
-        <img src="/assets/img/logo.png" alt="logo de La 3CA">
+        <a href="/index.php">
+            <img src="/assets/img/logo.png" alt="logo de La 3CA">
+        </a>
         <span>Communauté de Commune du Coeur de l'Avesnois</span>
         <?php
         if (isset($_SESSION['user'])) {?>
