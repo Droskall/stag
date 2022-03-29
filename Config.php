@@ -11,4 +11,10 @@ class Config
         'happy',
         'heart',
     ];
+
+    public const LINK_TYPE = [
+        'health',
+        'mobility',
+        'help',
+    ];
 }

@@ -82,16 +82,19 @@ class LinkManager
     /**
      * Get links by type
      * @param string $type
-     * @return mixed|null
+     * @return array
      */
-    public function getLinkByType(string $type) {
-        $query = $this->db->query("SELECT * FROM " . self::TABLE . " WHERE type = '$type'");
+    public function getLinkByType(string $type): array {
+        $query = $this->db->query("SELECT * FROM " . self::TABLE . " WHERE type = '$type' ORDER BY title");
 
-        if ($query && $data = $query->fetch()) {
-            return $data;
+        $array = [];
+
+        if ($query && $data = $query->fetchAll()) {
+            foreach ($data as $value) {
+                $array[] = self::createLink($value);
+            }
         }
-
-        return null;
+        return $array;
     }
 
 }

@@ -3,9 +3,9 @@
 foreach ($data as $value) {
 ?>
     <div class="white">
-        <a href="/index.php?c=activity&a=show-activity&id=<?= $value->getActivity()->getId() ?>">
+        <a href="<?= $value->getUrl() ?>" target="_blank">
             <div class="frame">
-                <span><?= $value->getActivity()->getName() ?></span>
+                <span><?= $value->getTitle() ?></span>
             </div>
         </a>
     </div>
