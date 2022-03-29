@@ -291,15 +291,24 @@ span.circle {
     background-size: 110%;
     background-repeat: no-repeat;
     background-position: bottom;
-    padding: 5vh 0;
+    padding: 2vh 0;
     justify-content: space-evenly;
 }
 
 #band div {
-    width: 22vw;
-    padding-bottom: 22vw;
-
+    width: 15vw;
+    padding-bottom: 15vw;
     background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#band a:nth-child(even) div{
+    margin-top: 9vh;
+}
+
+#band a:nth-child(odd) div{
+    margin-bottom: 9vh;
 }
 
 #band a:nth-child(1) div {
@@ -352,8 +361,8 @@ h1 {
     align-items: baseline;
 }
 
-#title span:first-child {
-    margin: 0 2rem;
+#title span {
+    margin: 0 1rem;
     font-size: 5vh;
 }
 
