@@ -199,6 +199,8 @@ ul li:nth-child(5) a:hover {
 }
 
 #logoUser img {
+    display: block;
+    border-radius: 50px;
     max-width: 100%;
 }
 
@@ -589,6 +591,29 @@ h1 {
     background-color: #d03333;
     color:white;
     text-decoration:none;
+}
+
+/*
+ * Avatar list
+ */
+div.avatar {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 1rem;
+}
+
+.avatar_background {
+    background-color: #e2d5d5;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 20px;
+}
+
+img.avatar {
+    display: inline-block;
+    border-radius: 20px;
+    width: 25rem;
+    height: 25rem;
 }
 
 /*

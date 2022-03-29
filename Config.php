@@ -17,4 +17,12 @@ class Config
         'mobility',
         'help',
     ];
+
+    public const AVATAR_LIST = [
+        'avatar.png',
+        'demon.png',
+        'pica.png',
+        'smiley.png',
+        'venom.png',
+    ];
 }

@@ -6,7 +6,11 @@
                 <h2>Utilisateur</h2>
                 <div id="user-data">
                     <h3>Vos informations personnelles</h3>
-                    <img src="/assets/img/avatar.png" alt="user logo">
+
+                    <img class="avatar" src="/assets/img/avatar/<?= $data['avatar'] ?>" alt="user's avatar">
+
+                    <button><a href="/index.php?c=profile&a=avatar-list">changer d'avatar</a></button>
+
                     <p>Nom / Pseudo : <?= $_SESSION['user']->getUsername() ?></p>
                     <p>Email : <?= $_SESSION['user']->getEmail() ?></p>
                     <p>Role : <?= $_SESSION['user']->getRole() ?></p>

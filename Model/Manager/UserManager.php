@@ -132,4 +132,13 @@ class UserManager {
         }
         return $users;
     }
+
+    /**
+     * @param $avatar
+     * @param $id
+     * @return false|\PDOStatement
+     */
+    public function updateAvatar($avatar, $id) {
+        return $this->db->query("UPDATE user SET avatar = '$avatar' WHERE id = $id");
+    }
 }
