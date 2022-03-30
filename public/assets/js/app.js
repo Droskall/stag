@@ -32,16 +32,16 @@ if (close) {
     })
 }
 
-// // bubbles effect
-// let bubbles = document.getElementById('band').getElementsByTagName('a');
-//
-// for (let i = 0 ; i < bubbles.length ; i++){
-//     bubbles[i].addEventListener('click', function (e){
-//         // e.preventDefault();
-// //         this.classList.toggle("grow");
-//     })
-// }
-//
+ //bubbles effect
+ let bubbles = document.getElementById('band').getElementsByTagName('a');
+
+ for (let i = 0 ; i < bubbles.length ; i++){
+     bubbles[i].addEventListener('click', function (e){
+        e.preventDefault();
+        this.classList.toggle("loader");
+     })
+ }
+
 
 // FormConnexion/Inscription verif
 

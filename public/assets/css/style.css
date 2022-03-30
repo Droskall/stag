@@ -331,15 +331,18 @@ span.circle {
     background-image: url("/assets/img/bubble/bubble_green.png");
 }
 
-.grow {
-    animation-name: bursts;
-    animation-duration: 2s;
+.loader {
+    animation: loading 2s;
+    border-radius: 50%;
 }
 
-@keyframes bursts {
-    to {
-        width: 100vh;
-        height: 100vh;
+@keyframes loading {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(8);
+        opacity: 0;
     }
 }
 
