@@ -14,6 +14,7 @@
                     <p>Nom / Pseudo : <?= $_SESSION['user']->getUsername() ?></p>
                     <p>Email : <?= $_SESSION['user']->getEmail() ?></p>
                     <p>Role : <?= $_SESSION['user']->getRole() ?></p>
+                    <a href="/index.php?c=profile&a=user-info" class="change_info">Modifier les informations personnelles</a>
                 </div>
                 <div id="user-reaction" class="flex">
                     <h3>Vos interractions</h3>

@@ -141,4 +141,21 @@ class UserManager {
     public function updateAvatar($avatar, $id) {
         return $this->db->query("UPDATE user SET avatar = '$avatar' WHERE id = $id");
     }
+
+    /**
+     *
+     * @param $email
+     * @param $username
+     * @param $id
+     * @return bool
+     */
+    public function updateMailName($email, $username, $id) {
+            $stmt = $this->db->prepare("UPDATE user SET email = :email, username = :username WHERE id = :id");
+
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':username', $username);
+            $stmt->bindParam(':id', $id);
+
+            return $stmt->execute();
+    }
 }

@@ -602,6 +602,11 @@ h1 {
     color: #f8f9fa;
 }
 
+.change_info {
+    color: #d2afaf;
+    text-decoration-line: underline;
+}
+
 /*
  * Avatar list
  */

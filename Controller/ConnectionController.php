@@ -22,7 +22,7 @@ class ConnectionController extends AbstractController
             exit();
         }
 
-        if (!isset($_POST['email'], $_POST['username'], $_POST['password'])) {
+        if (!isset($_POST['email']) || !isset($_POST['username']) || !isset($_POST['password'])) {
             self::default();
             exit();
         }
@@ -36,7 +36,7 @@ class ConnectionController extends AbstractController
             $error[] = "l'adresse email doit faire entre 8 et 150 caractères";
         }
 
-        if (strlen($_POST['username']) < 5 || strlen($_POST['username']) >= 100) {
+        if (strlen($username) < 5 || strlen($username) >= 100) {
             $error[] = "le pseudo doit faire entre 8 et 100 caractères";
         }
 
@@ -73,7 +73,7 @@ class ConnectionController extends AbstractController
             $user->setPassword('');
             $_SESSION['user'] = $user;
 
-            self::render('home');
+            self::default();
 
         } else {
             $_SESSION['error'] = ["Les mot de passe ne corespondent pas"];
@@ -123,8 +123,7 @@ class ConnectionController extends AbstractController
 
             self::render('home');
 
-        }
-        else {
+        } else {
 
             $_SESSION['error'] = ['Adresse mail ou mot de passe incorrect'];
             self::default();
