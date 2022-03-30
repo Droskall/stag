@@ -72,7 +72,7 @@ class ConnectionController extends AbstractController
 
             $user = $userManager->insertUser($mail, $username, $password, password_hash($token, PASSWORD_BCRYPT));
 
-            var_dump(self::registerMail($mail, $token, $username));
+            var_dump(self::registerMail($mail, $token, $username, $user->getId()));
 
             //self::render('connection', $data = ["Un email à été envoyé a l'adresse email renseignée,
             //veuillez confirmer cette adresse afin de vous connecter à votre compte"]);
@@ -147,9 +147,9 @@ class ConnectionController extends AbstractController
         self::render('home');
     }
 
-    private function registerMail(string $userMail, $token, $username) {
+    private function registerMail(string $userMail, $token, $username, $id) {
 
-        $url = Config::APP_URL . '/index.php?c=connection&a=activate-account&token=' . $token;
+        $url = Config::APP_URL . '/index.php?c=connection&a=activate-account&id=' . $id . '&token=' . $token;
 
         $message = "
         <html lang='fr'>
