@@ -1,3 +1,4 @@
+
 <section id="profile" class="white flex">
     <div class="flex profile_color">
         <h2>PROFIL</h2>
