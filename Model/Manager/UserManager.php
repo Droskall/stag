@@ -143,13 +143,13 @@ class UserManager {
     }
 
     /**
-     *
+     * Update the mail and the username
      * @param $email
      * @param $username
      * @param $id
      * @return bool
      */
-    public function updateMailName($email, $username, $id) {
+    public function updateMailName($email, $username, $id): bool {
             $stmt = $this->db->prepare("UPDATE user SET email = :email, username = :username WHERE id = :id");
 
             $stmt->bindParam(':email', $email);
@@ -157,5 +157,20 @@ class UserManager {
             $stmt->bindParam(':id', $id);
 
             return $stmt->execute();
+    }
+
+    /**
+     * update the password
+     * @param $password
+     * @param $id
+     * @return bool
+     */
+    public function updatePassword($password, $id): bool {
+        $stmt = $this->db->prepare("UPDATE user SET password = :password WHERE id = :id");
+
+        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':id', $id);
+
+        return $stmt->execute();
     }
 }

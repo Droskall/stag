@@ -91,7 +91,7 @@ class ProfileController extends AbstractController
 
 
     /**
-     * sanitize post value and change the mail and the username
+     * sanitize post values and change the mail and the username
      */
     public function changeMailName() {
         if (!isset($_SESSION['user'])) {
@@ -157,6 +157,65 @@ class ProfileController extends AbstractController
 
             $_SESSION['error'] = ['Mot de passe incorrect'];
             self::default();
+            exit();
+        }
+    }
+
+    /**
+     * sanitize post values and change the password
+     */
+    public function changePassword() {
+
+        if (!isset($_POST['submit'])) {
+            self::default();
+            exit();
+        }
+
+        if (!isset($_POST['password']) || !isset($_POST['passwordRepeat']) || !isset($_POST['oldPassword'])) {
+            self::default();
+            exit();
+        }
+
+        $password = $_POST['password'];
+        $passwordRepeat = $_POST['passwordRepeat'];
+        $oldPassword = $_POST['oldPassword'];
+
+        if (strlen($password) < 8 || strlen($password) >= 255 ) {
+            $_SESSION['error'] = ["le mot de passe doit faire au moins 8 caractères"];
+            self::userInfo();
+            exit();
+        }
+
+        if(!preg_match('/^(?=.*[!@#$%^&*-\])(?=.*[0-9])(?=.*[A-Z]).{8,20}$/', $password)) {
+            $_SESSION['error'] = ["Le mot de passe n'est pas assez sécurisé"];
+            self::userInfo();
+            exit();
+        }
+
+        if ($password === $passwordRepeat) {
+
+            $userManager = new UserManager();
+
+            $user = $userManager->getUser($_SESSION['user']->getEmail());
+
+            if (password_verify($oldPassword, $user->getPassword())) {
+
+                $password = password_hash($password, PASSWORD_BCRYPT);
+
+                $user = $userManager->updatePassword($password, $_SESSION['user']->getId());
+                self::default();
+
+            } else {
+
+                $_SESSION['error'] = ['Mot de passe incorrect'];
+                self::userInfo();
+                exit();
+            }
+
+        } else {
+
+            $_SESSION['error'] = ["Les mots de passe ne corespondent pas"];
+            self::userInfo();
             exit();
         }
     }
