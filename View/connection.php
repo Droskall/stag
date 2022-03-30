@@ -17,4 +17,9 @@
 
         <input type="submit" name="submit" value="inscription" id="buttonValidateI">
     </form>
+
+    <?php
+    if (isset($data))
+        echo '<p>' . $data[0] . '</p>'
+    ?>
 </div>

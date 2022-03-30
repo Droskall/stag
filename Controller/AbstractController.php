@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use Exception;
+
 abstract class AbstractController
 {
 
@@ -21,5 +23,14 @@ abstract class AbstractController
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
         return addslashes($data);
+    }
+
+    public function randomChars() {
+        try {
+            $bytes = random_bytes(15);
+        } catch (Exception $e) {
+            $bytes = openssl_random_pseudo_bytes(15);
+        }
+        return bin2hex($bytes);
     }
 }

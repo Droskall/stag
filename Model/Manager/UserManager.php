@@ -50,7 +50,7 @@ class UserManager {
             ->setEmail($email)
             ->setUsername($name)
             ->setPassword($pass)
-            ->setRole('user');
+            ->setRole('none');
     }
 
     /**
@@ -91,13 +91,13 @@ class UserManager {
      * @param $id
      * @return bool
      */
-    public function deleteUser($id)
+    public function deleteUser($id): bool
     {
            $request = $this->db->prepare("DELETE FROM user WHERE id = :id");
 
            $request->bindValue(":id", $id);
 
-           $request->execute();
+           return $request->execute();
     }
 
     /**

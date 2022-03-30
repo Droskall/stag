@@ -166,6 +166,11 @@ class ProfileController extends AbstractController
      */
     public function changePassword() {
 
+        if (!isset($_SESSION['user'])) {
+            header('Location: index.php');
+            exit();
+        }
+
         if (!isset($_POST['submit'])) {
             self::default();
             exit();

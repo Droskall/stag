@@ -70,13 +70,13 @@ class ConnectionController extends AbstractController
 
             $user = $userManager->insertUser($mail, $username, $password);
 
-            $user->setPassword('');
-            $_SESSION['user'] = $user;
+            // TODO envoi du mail de confirmation
 
-            self::default();
+            self::render('connection', $data = ["Un email à été envoyé a l'adresse email renseignée, 
+            veuillez confirmer cette adresse afin de vous connecter à votre compte"]);
 
         } else {
-            $_SESSION['error'] = ["Les mots de passe ne corespondent pas"];
+            $_SESSION['error'] = ["Les mot de passe ne corespondent pas"];
             self::default();
             exit();
         }
@@ -139,5 +139,9 @@ class ConnectionController extends AbstractController
         session_destroy();
 
         self::render('home');
+    }
+
+    private function mail() {
+
     }
 }

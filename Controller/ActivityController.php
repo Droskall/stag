@@ -119,11 +119,7 @@ class ActivityController extends AbstractController
      */
     function randomName (string $currentName): string {
         $infos = pathinfo($currentName);
-        try {
-            $bytes = random_bytes(15);
-        } catch (Exception $e) {
-            $bytes = openssl_random_pseudo_bytes(15);
-        }
-        return bin2hex($bytes) . '.' . $infos['extension'];
+
+        return self::randomChars() . '.' . $infos['extension'];
     }
 }
