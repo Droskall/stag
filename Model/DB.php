@@ -2,15 +2,16 @@
 
 namespace Model;
 
+use App\Config;
 use PDO;
 use PDOException;
 
 class DB {
 
-    private string $host = "localhost";
-    private string $db = "sodavesnois";
-    private string $user = "root";
-    private string $password = "";
+    private string $host = Config::HOST;
+    private string $db = Config::DB_NAME;
+    private string $user = Config::USER;
+    private string $password = Config::PASSWORD;
 
     private static ?PDO $dbInstance = null;
 

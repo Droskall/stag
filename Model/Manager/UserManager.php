@@ -34,14 +34,16 @@ class UserManager {
      * @param $email
      * @param $name
      * @param $pass
+     * @param $token
      * @return User
      */
-    public function insertUser($email ,$name, $pass): User {
+    public function insertUser($email ,$name, $pass, $token): User {
 
-        $request = $this->db->prepare("INSERT INTO user (email, username, password, role) VALUES ( :mail ,:name, :pass , 'user')");
+        $request = $this->db->prepare("INSERT INTO user (email, username, password, role, token) VALUES ( :mail ,:name, :pass , 'none', :token)");
         $request->bindValue(":mail", $email);
         $request->bindValue(":name", $name);
         $request->bindValue(":pass", $pass);
+        $request->bindValue(':token', $token);
         $request->execute();
 
         $user = new User();

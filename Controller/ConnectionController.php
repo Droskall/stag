@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 
+use App\Config;
 use Model\Manager\UserManager;
 
 class ConnectionController extends AbstractController
@@ -67,13 +68,14 @@ class ConnectionController extends AbstractController
         if ($password === $_POST['passwordRepeat']) {
 
             $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+            $token = self::randomChars();
 
-            $user = $userManager->insertUser($mail, $username, $password);
+            $user = $userManager->insertUser($mail, $username, $password, password_hash($token, PASSWORD_BCRYPT));
 
-            // TODO envoi du mail de confirmation
+            var_dump(self::registerMail($mail, $token, $username));
 
-            self::render('connection', $data = ["Un email à été envoyé a l'adresse email renseignée, 
-            veuillez confirmer cette adresse afin de vous connecter à votre compte"]);
+            //self::render('connection', $data = ["Un email à été envoyé a l'adresse email renseignée,
+            //veuillez confirmer cette adresse afin de vous connecter à votre compte"]);
 
         } else {
             $_SESSION['error'] = ["Les mot de passe ne corespondent pas"];
@@ -110,6 +112,10 @@ class ConnectionController extends AbstractController
             $error[] = "L'utilisateur demandé n'est pas enregistré";
         }
 
+        if ($user->getRole() === 'none') {
+            $error[] = "Cette adresse mail n'a pas été vérifiée";
+        }
+
         if (count($error) > 0) {
             $_SESSION['error'] = $error;
             self::default();
@@ -141,7 +147,41 @@ class ConnectionController extends AbstractController
         self::render('home');
     }
 
-    private function mail() {
+    private function registerMail(string $userMail, $token, $username) {
 
+        $url = Config::APP_URL . '/index.php?c=connection&a=activate-account&token=' . $token;
+
+        $message = "
+        <html lang='fr'>
+            <head>
+                <title>Vérification de votre compte So D'Avesnois</title>
+            </head>
+            <body>
+                <span>Bonjour $username,</span>
+                <p>
+                    Afin de finaliser votre inscription sur le site So D'Avesnois, 
+                    <br>
+                    merci de cliquer <a href=\"$url\">sur ce lien</a> pour vérifier votre adresse email.
+                </p>
+            </body>
+        </html>
+        ";
+
+        $subject = 'Vérification de votre adresse email';
+        $headers = [
+            'Reply-to' => "no-reply@email.com",
+            'X-Mailer' => 'PHP/' . phpversion(),
+            'Mime-version' => '1.0',
+            'Content-type' => 'text/html; charset=utf-8'
+        ];
+
+        return mail($userMail, $subject, $message, $headers, "-f no-reply@email.com");
+    }
+
+    /**
+     * go to activate-account
+     */
+    public function activateAccount() {
+        self::render('activate-account');
     }
 }
