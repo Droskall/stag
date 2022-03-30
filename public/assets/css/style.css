@@ -331,7 +331,7 @@ span.circle {
     background-image: url("/assets/img/bubble/bubble_green.png");
 }
 
-.loader {
+.loader:hover {
     animation: loading 2s;
     border-radius: 50%;
 }
