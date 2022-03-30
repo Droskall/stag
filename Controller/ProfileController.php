@@ -90,6 +90,9 @@ class ProfileController extends AbstractController
     }
 
 
+    /**
+     * sanitize post value and change the mail and the username
+     */
     public function changeMailName() {
         if (!isset($_SESSION['user'])) {
             header('Location: index.php');
@@ -108,7 +111,14 @@ class ProfileController extends AbstractController
 
         $mail = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
         $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
+        $password = $_POST['password'];
         $error = [];
+
+        if (empty($password)) {
+            $_SESSION['error'] = ['le mot de passe doit être renseigné'];
+            self::userInfo();
+            exit();
+        }
 
         if (strlen($mail) < 8 || strlen($mail) >= 100) {
             $error[] = "l'adresse email doit faire entre 8 et 150 caractères";
@@ -120,7 +130,7 @@ class ProfileController extends AbstractController
 
         if (count($error) > 0) {
             $_SESSION['error'] = $error;
-            self::default();
+            self::userInfo();
             exit();
         }
 
@@ -128,20 +138,20 @@ class ProfileController extends AbstractController
 
         if ($userManager->getUser($mail) !== null && $mail !== $_SESSION['user']->getEmail()) {
             $_SESSION['error'] = ['adresse mail déjà enregistré'];
-            self::default();
+            self::userInfo();
             exit();
         }
 
         $user = $userManager->getUser($_SESSION['user']->getEmail());
 
-        if (password_verify($_POST['password'], $user->getPassword())) {
+        if (password_verify($password, $user->getPassword())) {
 
            $userManager->updateMailName($mail, $username, $user->getId());
 
             $user->setPassword('');
             $_SESSION['user'] = $user;
 
-            self::render('home');
+            self::default();
 
         } else {
 

@@ -10,9 +10,9 @@
 
     <form id="change_password" action="/index.php?c=profile&a=change-password" method="post">
         <h2>Mot de passe</h2>
-        <input type="password" placeholder="Votre nouveau mot de passe" name="newPassword">
-        <input type="password" placeholder="Votre nouveau mot de passe" name="passwordRepeat">
-        <input type="password" placeholder="Votre ancien mot de passe" name="password">
+        <input type="password" placeholder="Nouveau mot de passe" name="newPassword">
+        <input type="password" placeholder="Nouveau mot de passe" name="passwordRepeat">
+        <input type="password" placeholder="Ancien mot de passe" name="password">
 
         <input type="submit" name="submit" value="changer">
     </form>
