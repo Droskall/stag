@@ -340,7 +340,7 @@ span.circle {
         transform: scale(1);
     }
     100% {
-        transform: scale(8);
+        transform: scale(7);
         opacity: 0;
     }
 }

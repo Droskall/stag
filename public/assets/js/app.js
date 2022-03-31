@@ -39,6 +39,7 @@ const numerical = document.querySelector('#band div:nth-child(3)');
 const utile = document.querySelector('#band div:nth-child(4)');
 
 if (sport) {
+    document.body.style.overflow = 'hidden';
     animation(sport, 'c=category&a=get-category&name=sport&type');
     animation(cultural, 'c=category&a=get-category&name=cultural&type');
     animation(numerical, 'c=category&a=get-category&name=numerical&type');
