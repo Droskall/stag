@@ -22,37 +22,16 @@ class ActivityController extends AbstractController
      * Add a new activity.
      */
     public function add(){
+
         if(isset($_POST["title"]) && strlen($_POST["title"]) > 45){
             echo "<div id='error'>Merci de respecter la limite du titre (45 caractères)</div>";
         }
         else{
-            if(isset($_POST['category-type'], $_POST['activity-type'], $_POST['title'],
-            $_POST['content'], $_POST['location'], $_POST['email'], $_POST['phone'],
-            $_POST['schedules'], $_POST['url'])) {
+            if($activity = $this->checkData($_POST['category-type'], $_POST['activity-type'], $_POST['title'],
+                $_POST['content'], $_POST['location'], $_POST['email'], $_POST['phone'],
+                $_POST['schedules'], $_POST['url'])){
 
                 $activityManager = new ActivityManager();
-
-                $category = htmlentities($_POST['category-type']);
-                $type = htmlentities($_POST['activity-type']);
-                $title = htmlentities($_POST['title']);
-                $content = htmlentities($_POST['content']);
-                $location = htmlentities($_POST['location']);
-                $email = htmlentities($_POST['email']);
-                if (empty($email)) {
-                    $email = null;
-                }
-                $phone = htmlentities($_POST['phone']);
-                if (empty($phone)) {
-                    $phone = null;
-                }
-                $schedules = htmlentities($_POST['schedules']);
-                $link = htmlentities($_POST['url']);
-                if (empty($link)) {
-                    $link = null;
-                }
-
-                $activity = new Activity(null,$category, $type , $title, $content, $location, $email,
-                    $phone, $schedules, $link, 'activity-placeholder.png');
 
                 if(isset($_FILES['picture']) && $_FILES['picture']['error'] === 0){
                     if((int)$_FILES['picture']['size'] <= (3 * 1024 * 1024)){ // maximum size = 3 mo
@@ -72,14 +51,6 @@ class ActivityController extends AbstractController
             }
         }
         $this->render('profile');
-    }
-
-    public function formupdate() {
-
-        $this->render('updateActivity');
-    }
-
-    public function update(){
     }
 
     /**
@@ -139,6 +110,66 @@ class ActivityController extends AbstractController
         $activityManager = new ActivityManager();
         $activityManager->deleteActivity($id);
         header('Location: /index.php?c=category&a=get-category&name=' . $pg . '&type');
+    }
+
+    /**
+     * @param int $id
+     */
+    public function upAct (int $id){
+        if(isset($_POST["title"]) && strlen($_POST["title"]) > 45){
+            echo "<div id='error'>Merci de respecter la limite du titre (45 caractères)</div>";
+        }
+        else {
+            if(isset($_POST['category-type'], $_POST['activity-type'], $_POST['title'],
+                $_POST['content'], $_POST['location'], $_POST['email'], $_POST['phone'],
+                $_POST['schedules'], $_POST['url'])) {
+                $activityManager = new ActivityManager();
+                $activityManager->updateActivity($id);
+                header('Location: /index.php?c=activity&a=show-activity&id=20');
+            }
+        }
+
+    }
+
+    /**
+     * @param $category
+     * @param $activity
+     * @param $title
+     * @param $content
+     * @param $location
+     * @param $email
+     * @param $phone
+     * @param $schedules
+     * @param $url
+     * @return Activity|null
+     */
+    private function checkData($category, $activity, $title, $content, $location, $email, $phone, $schedules, $url){
+        if(isset($category, $activity, $title, $content, $location, $email, $schedules, $url)){
+            $category = htmlentities($category);
+            $type = htmlentities($activity);
+            $title = htmlentities($title);
+            $content = htmlentities($content);
+            $location = htmlentities($location);
+
+            $email = empty($email) ? null : htmlentities($email);
+            $phone = empty($phone) ? null : htmlentities($phone);
+            $schedules = empty($schedules) ? null : htmlentities($schedules);
+            $link = empty($link) ? null : htmlentities($link);
+
+            return new Activity(null,$category, $type , $title, $content, $location, $email,
+                $phone, $schedules, $link, 'activity-placeholder.png');
+        }
+        return null;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function actToUpdate (int $id) {
+        $activityManager = new ActivityManager();
+        $this->render('updateActivity', $data =
+            ['activity' => $activityManager->getById($id)]
+        );
     }
 
 }
