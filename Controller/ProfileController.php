@@ -109,30 +109,17 @@ class ProfileController extends AbstractController
             exit();
         }
 
-        $mail = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-        $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
-        $password = $_POST['password'];
-        $error = [];
+        $data = self::checkMailUsernamePassword();
 
-        if (empty($password)) {
-            $_SESSION['error'] = ['le mot de passe doit être renseigné'];
+        if (count($data['error']) > 0) {
+            $_SESSION['error'] = $data['error'];
             self::userInfo();
             exit();
         }
 
-        if (strlen($mail) < 8 || strlen($mail) >= 100) {
-            $error[] = "l'adresse email doit faire entre 8 et 150 caractères";
-        }
-
-        if (strlen($username) < 5 || strlen($username) >= 100) {
-            $error[] = "le pseudo doit faire entre 8 et 100 caractères";
-        }
-
-        if (count($error) > 0) {
-            $_SESSION['error'] = $error;
-            self::userInfo();
-            exit();
-        }
+        $mail = $data['mail'];
+        $username = $data['username'];
+        $password = $data['password'];
 
         $userManager = new UserManager();
 
