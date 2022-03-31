@@ -191,21 +191,3 @@ class ConnectionController extends AbstractController
     }
 
 }
-
-// if (user_id = role !== none){
-//          redirect index : avec message votre compte à déjà été validé
-//}
-//
-// elseif{ (check $token_url = $token_db)
-//          compte actif (role = user) ? => $data = User
-//          $data->setPassword = ""
-//          $_SESSION['user] = User
-//          redirect active-account
-//        est-ce qu'on modifie le token ?
-//}
-//
-// else {
-//    $data = une erreur est survenue
-//    redirect active-account
-//}
-
