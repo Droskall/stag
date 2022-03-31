@@ -41,6 +41,7 @@ const utile = document.querySelector('#band div:nth-child(4)');
 if (sport) {
     if (window.innerWidth > 550) {
         document.body.style.overflow = 'hidden';
+        document.body.style.background = 'white';
     }
 
     animation(sport, 'c=category&a=get-category&name=sport&type');
