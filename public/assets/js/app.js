@@ -83,22 +83,26 @@ let pattern = /^[^ ]+@[^ ]+.[a-z]{2,3}$/;
 /**
  * Event when the login button is clicked and verification of the login form fields
  */
-btnConnexion.addEventListener("click", function(e){
-    if(email.value === "" || password.value === ""){
-        e.preventDefault();
-        message("Merci de remplir les champs requis");
-    }
-    else if(email.value.length < 2 || email.value.length > 50 || password.value.length < 4 ||
-        password.value.length > 60){
-        e.preventDefault();
-        message("Votre email ou mot de passe est incorrect");
-    }
-});
+if (btnConnexion) {
+    btnConnexion.addEventListener("click", function(e){
+        if(email.value === "" || password.value === ""){
+            e.preventDefault();
+            message("Merci de remplir les champs requis");
+        }
+        else if(email.value.length < 2 || email.value.length > 50 || password.value.length < 4 ||
+            password.value.length > 60){
+            e.preventDefault();
+            message("Votre email ou mot de passe est incorrect");
+        }
+    });
+}
+
 
 /**
  * Event when clicking on the registration button and verification of the fields of the registration form
  */
-btnInscriptionI.addEventListener('click', function (e){
+if (btnInscriptionI) {
+    btnInscriptionI.addEventListener('click', function (e){
         if(pseudoI.value === "" || passwordI.value === "" || passwordConfirmI.value === "" ||
             emailI.value === ""){
             e.preventDefault();
@@ -120,7 +124,9 @@ btnInscriptionI.addEventListener('click', function (e){
                 message("Votre pseudo ou votre mot de passe ne comporte pas le nombre de caractères requis !");
             }
         }
-});
+    });
+}
+
 
 /**
  * Function which allows you to create error or success messages!

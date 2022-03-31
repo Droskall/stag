@@ -2,6 +2,7 @@
 $category = array_pop($data);
 ?>
 <div class="preview white" style="border-color: <?= $color ?>">
+    <button class="preview" style="background-color: <?= $color ?>"><a href="/index.php?c=category&a=get-category&name=<?= $category ?>&type">tout</a></button>
     <button class="preview" style="background-color: <?= $color ?>"><a href="/index.php?c=category&a=get-category&name=<?= $category ?>&type=club">Clubs</a></button>
     <button class="preview" style="background-color: <?= $color ?>"><a href="/index.php?c=category&a=get-category&name=<?= $category ?>&type=event">Événements</a></button>
     <button class="preview" style="background-color: <?= $color ?>"><a href="/index.php?c=category&a=get-category&name=<?= $category ?>&type=place">Lieux</a></button>
