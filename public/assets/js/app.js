@@ -39,7 +39,10 @@ const numerical = document.querySelector('#band div:nth-child(3)');
 const utile = document.querySelector('#band div:nth-child(4)');
 
 if (sport) {
-    document.body.style.overflow = 'hidden';
+    if (window.innerWidth > 550) {
+        document.body.style.overflow = 'hidden';
+    }
+
     animation(sport, 'c=category&a=get-category&name=sport&type');
     animation(cultural, 'c=category&a=get-category&name=cultural&type');
     animation(numerical, 'c=category&a=get-category&name=numerical&type');
@@ -48,10 +51,13 @@ if (sport) {
 
 function animation(div, url) {
     div.addEventListener('click', function () {
+        div.classList.remove('floating_bubble');
+        div.classList.remove('floating-reverse_bubble');
         div.classList.add('loader');
+        div.style.zIndex = '10';
         setTimeout(function () {
             window.location.href = '/index.php?' + url;
-        }, 1100)
+        }, 1000)
     })
 }
 
