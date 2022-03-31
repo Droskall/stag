@@ -51,6 +51,10 @@ a {
     font-size: 1.3rem;
 }
 
+.error p {
+    text-align: center;
+}
+
 #close {
     position: absolute;
     right: 5px;
