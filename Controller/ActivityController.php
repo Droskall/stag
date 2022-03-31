@@ -120,12 +120,28 @@ class ActivityController extends AbstractController
             echo "<div id='error'>Merci de respecter la limite du titre (45 caractères)</div>";
         }
         else {
-            if(isset($_POST['category-type'], $_POST['activity-type'], $_POST['title'],
+            if($activity = $this->checkData($_POST['category-type'], $_POST['activity-type'], $_POST['title'],
                 $_POST['content'], $_POST['location'], $_POST['email'], $_POST['phone'],
-                $_POST['schedules'], $_POST['url'])) {
+                $_POST['schedules'], $_POST['url'])){
+
                 $activityManager = new ActivityManager();
-                $activityManager->updateActivity($id);
-                header('Location: /index.php?c=activity&a=show-activity&id=20');
+
+                if(isset($_FILES['picture']) && $_FILES['picture']['error'] === 0){
+                    if((int)$_FILES['picture']['size'] <= (3 * 1024 * 1024)){ // maximum size = 3 mo
+                        $tmp_name = $_FILES['picture']['tmp_name'];
+                        $name = $this->randomName($_FILES['picture']['name']);
+                        $activity->setImage($name);
+                        move_uploaded_file($tmp_name, 'uploads/' . $name);
+                    }
+                    else{
+                        $_SESSION['error'] = ["L'image sélectionnée est trop grande"];
+                        header("Location: index.php?c=profile");
+                        exit();
+                    }
+                }
+
+                $id = $activityManager->updateActivity($activity, $id);
+                header("Location: index.php?c=activity&a=show-activity&id=" . $id);
             }
         }
 
