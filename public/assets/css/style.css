@@ -288,6 +288,10 @@ span.circle {
 /*
  * home
  */
+.bubble_container {
+    flex-direction: column;
+}
+
 #band {
     background-image: url("/assets/img/ados-saut.png");
     background-size: 110%;
@@ -305,11 +309,11 @@ span.circle {
     background-position: center;
 }
 
-#band a:nth-child(even) div{
+#band div:nth-child(even) {
     margin-top: 9vh;
 }
 
-#band div:nth-child(odd){
+#band div:nth-child(odd) {
     margin-bottom: 9vh;
 }
 
@@ -785,6 +789,77 @@ textarea {
 
 }
 
+/*
+ * Menu
+ */
+@media screen and (max-width: 550px) {
+
+    .bubble_container section:nth-child(1) {
+        order: 1;
+    }
+
+    #homeTitle {
+        height: 15rem;
+        background-color: #e09700;
+        color: #f8f9fa;
+    }
+
+    #band {
+        background-image: none;
+        background-color: white;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        order: 1;
+    }
+
+    #band div:nth-child(even), #band div:nth-child(odd) {
+        margin: 1rem;
+        width: 18rem;
+        height: 18rem;
+    }
+
+    #band div:nth-child(odd) {
+        align-self: center;
+    }
+
+    .floating_bubble{
+        animation: 10s ease-in-out infinite floating;
+    }
+
+    .floating-reverse_bubble {
+        animation: 10s ease-in-out infinite floating-reverse;
+    }
+
+    @keyframes floating {
+        0% {
+            transform: translate(-3.5rem, 1rem);
+        }
+        50% {
+            transform: translate(3.5rem, -0.5rem);
+        }
+        100% {
+            transform: translate(-3.5rem, 1rem);
+        }
+    }
+
+    @keyframes floating-reverse {
+        0% {
+            transform: translate(3.5rem, -0.5rem);
+        }
+        50% {
+            transform: translate(-3.5rem, 1rem);
+        }
+        100% {
+            transform: translate(3.5rem, -0.5rem);
+        }
+
+    }
+}
+
+/*
+ * Activity
+ */
 @media screen and (max-width: 500px) {
    #content-activity {
         font-size: 1.6rem;
