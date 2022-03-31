@@ -464,6 +464,7 @@ h1 {
 
 #connection, #register {
     width: 40%;
+    margin-top: 1rem;
 }
 
 .connection_register input {
@@ -481,6 +482,10 @@ h1 {
     border: none;
     background-color: #e09700;
     color: #f8f9fa;
+}
+
+#change_password, #change_email_username {
+    margin-top: 1rem;
 }
 
 /*
@@ -519,6 +524,10 @@ h1 {
 #profile {
     flex-direction: column;
     align-items: center;
+}
+
+#profile h2 {
+    margin-top: 1rem;
 }
 
 #profile > div {
