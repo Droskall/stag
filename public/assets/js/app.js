@@ -33,8 +33,26 @@ if (close) {
 }
 
  //bubbles effect
+const sport = document.querySelector('#band div:nth-child(1)');
+const cultural = document.querySelector('#band div:nth-child(2)');
+const numerical = document.querySelector('#band div:nth-child(3)');
+const utile = document.querySelector('#band div:nth-child(4)');
 
+if (sport) {
+    animation(sport, 'c=category&a=get-category&name=sport&type');
+    animation(cultural, 'c=category&a=get-category&name=cultural&type');
+    animation(numerical, 'c=category&a=get-category&name=numerical&type');
+    animation(utile, 'c=toolbox');
+}
 
+function animation(div, url) {
+    div.addEventListener('click', function () {
+        div.classList.add('loader');
+        setTimeout(function () {
+            window.location.href = '/index.php?' + url;
+        }, 1100)
+    })
+}
 // FormConnexion/Inscription verif
 
 let container = document.getElementById('contains');
@@ -96,7 +114,7 @@ btnInscriptionI.addEventListener('click', function (e){
 });
 
 /**
- * Fontion which allows you to create error or success messages!
+ * Function which allows you to create error or success messages!
  * @param message = Message content to display
  * @param type = success or error
  */
