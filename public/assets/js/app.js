@@ -53,6 +53,7 @@ function animation(div, url) {
         }, 1100)
     })
 }
+
 // FormConnexion/Inscription verif
 
 let container = document.getElementById('contains');
