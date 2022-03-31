@@ -78,17 +78,20 @@ $emojis = array_keys($interaction);
                             <?php
                             }
                         }
-                    }
-                }
-                ?>
-            </div>
+                    }?>
+                    </div>
             <?php
             if($_SESSION["user"]->getRole() === "admin"){?>
                 <a id="delArt" href="/index.php?c=activity&a=del-act&id=<?= $activity->getId() ?>&pg=<?= $activity->getCategory() ?>">
-                    <i class="fas fa-sign-out-alt"></i>
-                </a><?php
-            }?>
-        </div>
+                    suppr
+                </a>
+                <a id="updateArt" href="/index.php?c=activity&a=actToUpdate&id=<?= $activity->getId() ?>">
+                    update
+                </a>
+                <?php
+                }?>
+            </div><?php
+                }
+                ?>
     </article>
-
 </div>
