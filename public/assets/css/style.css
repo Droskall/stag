@@ -339,6 +339,10 @@ span.circle {
     background-image: url("/assets/img/bubble/bubble_green.png");
 }
 
+#band div:hover {
+    cursor: pointer;
+}
+
 .loader {
     animation: loading 2s;
 }
@@ -356,7 +360,6 @@ span.circle {
 /*
  * title
  */
-
 .white {
     background-color: white;
 }
