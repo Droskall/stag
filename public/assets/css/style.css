@@ -378,7 +378,7 @@ h1 {
  * Activity
  */
 
-#activity, #toolbox, #profile, #userList {
+#activity, #toolbox, #profile {
     width: 90%;
     margin: 3rem auto;
     padding: 3rem;
@@ -654,22 +654,50 @@ img.avatar {
 textarea {
     resize: none;
 }
+
 /*
  * user list
  */
 #userList {
+    padding: 2rem;
+}
+
+#userList h2 {
+    color: #f8f9fa;
+    display: inline-block;
+    width: 20rem;
+    padding: 0.2rem  1rem;
+    background: linear-gradient(190deg, #dcaab6 0%, #d27d7d 100%);
+}
+
+#userList .flex{
+    flex-wrap: wrap;
     justify-content: center;
 }
 
-.userList {
-    margin: 1px;
-}
-
 .frame {
-    border: 5px #000 solid;
+    border: 5px #d2afaf solid;
     border-radius: 20px;
     margin: 1rem;
     padding: 1rem;
+}
+
+#userList img {
+    border-radius: 50px;
+    margin: 1rem;
+    width: 8rem;
+    height: 8rem;
+}
+
+#userList div > div {
+    margin-top: 0.5rem;
+}
+
+#userList input, #userList select {
+    margin: 0.5rem;
+    padding: 0.3rem 0.5rem;
+    background-color: #f8f9fa;
+    border: 1px solid #d27d7d;
 }
 
 /*
