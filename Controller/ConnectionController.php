@@ -17,7 +17,8 @@ class ConnectionController extends AbstractController
     /**
      * register a new user
      */
-    public function register() {
+    public function register()
+    {
         if (!isset($_POST['submit'])) {
             self::default();
             exit();
@@ -59,7 +60,7 @@ class ConnectionController extends AbstractController
             exit();
         }
 
-        if(!preg_match('/^(?=.*[!@#$%^&*-\])(?=.*[0-9])(?=.*[A-Z]).{8,20}$/', $password)) {
+        if (!preg_match('/^(?=.*[!@#$%^&*-\])(?=.*[0-9])(?=.*[A-Z]).{8,20}$/', $password)) {
             $_SESSION['error'] = ["Le mot de passe n'est pas assez sécurisé"];
             self::default();
             exit();
@@ -72,10 +73,12 @@ class ConnectionController extends AbstractController
 
             $user = $userManager->insertUser($mail, $username, $password, password_hash($token, PASSWORD_BCRYPT));
 
-            var_dump(self::registerMail($mail, $token, $username, $user->getId()));
-
-            //self::render('connection', $data = ["Un email à été envoyé a l'adresse email renseignée,
-            //veuillez confirmer cette adresse afin de vous connecter à votre compte"]);
+            if (self::registerMail($mail, $token, $username, $user->getId())) {
+                self::render('connection', $data = ["Un email à été envoyé a l'adresse email renseignée,
+                veuillez confirmer cette adresse afin de vous connecter à votre compte"]);
+            } else {
+                self::render('connection', $data = ["Une erreur c'est produite"]);
+            }
 
         } else {
             $_SESSION['error'] = ["Les mot de passe ne corespondent pas"];
@@ -87,7 +90,8 @@ class ConnectionController extends AbstractController
     /**
      * Connect a user
      */
-    public function connect() {
+    public function connect()
+    {
         if (!isset($_POST['submit'])) {
             self::default();
             exit();
@@ -105,7 +109,7 @@ class ConnectionController extends AbstractController
             $error[] = "l'adresse email doit faire entre 8 et 150 caractères";
         }
 
-        $userManager  = new UserManager();
+        $userManager = new UserManager();
         $user = $userManager->getUser($mail);
 
         if ($user === null) {
@@ -137,7 +141,8 @@ class ConnectionController extends AbstractController
         }
     }
 
-    public function logout() {
+    public function logout()
+    {
 
         // We destroy the variables of our session.
         session_unset();
@@ -147,9 +152,10 @@ class ConnectionController extends AbstractController
         self::render('home');
     }
 
-    private function registerMail(string $userMail, $token, $username, $id) {
+    private function registerMail(string $userMail, $token, $username, $id)
+    {
 
-        $url = Config::APP_URL . '/index.php?c=connection&a=activate-account&id=' . $id . '&token=' . $token;
+        $url = Config::APP_URL . '/index.php?c=connection&a=activate&id=' . $id . '&token=' . $token;
 
         $message = "
         <html lang='fr'>
@@ -167,6 +173,7 @@ class ConnectionController extends AbstractController
         </html>
         ";
 
+        $to = $userMail;
         $subject = 'Vérification de votre adresse email';
         $headers = [
             'Reply-to' => "no-reply@email.com",
@@ -175,13 +182,41 @@ class ConnectionController extends AbstractController
             'Content-type' => 'text/html; charset=utf-8'
         ];
 
-        return mail($userMail, $subject, $message, $headers, "-f no-reply@email.com");
+        return mail($to, $subject, $message, $headers, "-f no-reply@email.com");
     }
 
     /**
      * go to activate-account
      */
-    public function activateAccount() {
-        self::render('activate-account');
+    public function activate(int $id)
+    {
+        $userManager = new UserManager();
+        $user = $userManager->getById($id);
+
+        if ($user->getRole() !== 'none'){
+            self::render('home');
+        }
+
+        $userManager->modifUserRole('user', $id);
+        self::render('activate');
     }
+
 }
+
+// if (user_id = role !== none){
+//          redirect index : avec message votre compte à déjà été validé
+//}
+//
+// elseif{ (check $token_url = $token_db)
+//          compte actif (role = user) ? => $data = User
+//          $data->setPassword = ""
+//          $_SESSION['user] = User
+//          redirect active-account
+//        est-ce qu'on modifie le token ?
+//}
+//
+// else {
+//    $data = une erreur est survenue
+//    redirect active-account
+//}
+

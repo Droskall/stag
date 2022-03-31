@@ -16,7 +16,7 @@ class UserManager {
      */
     public function getById(int $id): User {
         $user = new User();
-        $request = $this->db->prepare("SELECT id, username FROM user WHERE id = $id");
+        $request = $this->db->prepare("SELECT id, username, role FROM user WHERE id = $id");
         $request->bindValue('id', $id);
         $result = $request->execute();
         if ($result) {
@@ -24,6 +24,7 @@ class UserManager {
             if ($user_data) {
                 $user->setId($user_data['id']);
                 $user->setUsername($user_data['username']);
+                $user->setRole($user_data['role']);
             }
         }
         return $user;
