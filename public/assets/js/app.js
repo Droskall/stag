@@ -40,7 +40,7 @@ const utile = document.querySelector('#band div:nth-child(4)');
 
 if (sport) {
     if (window.innerWidth > 550) {
-        document.body.style.overflow = 'hidden';
+        document.body.style.overflowX = 'hidden';
         document.body.style.background = 'white';
     }
 

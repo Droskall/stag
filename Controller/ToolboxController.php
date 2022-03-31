@@ -13,7 +13,7 @@ class ToolboxController extends AbstractController
 {
     public function default()
     {
-        $this->render('toolbox');
+        $this->render('toolbox', null, $color = Color::getColor('utile'));
     }
 
     /**
