@@ -623,9 +623,9 @@ div.avatar {
 }
 
 .avatar_background {
-    background-color: #e2d5d5;
+    background-color: #f8f9fa;
     margin: 1rem;
-    padding: 1rem;
+    border-color: #e2d5d5;
     border-radius: 20px;
 }
 
