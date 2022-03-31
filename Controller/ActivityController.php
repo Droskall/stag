@@ -130,4 +130,15 @@ class ActivityController extends AbstractController
 
         return self::randomChars() . '.' . $infos['extension'];
     }
+
+    /**
+     * @param int $id
+     * @param $pg
+     */
+    public function delAct (int $id, string $pg){
+        $activityManager = new ActivityManager();
+        $activityManager->deleteActivity($id);
+        header('Location: /index.php?c=category&a=get-category&name=' . $pg . '&type');
+    }
+
 }

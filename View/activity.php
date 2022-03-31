@@ -6,6 +6,7 @@ $emojis = array_keys($interaction);
 ?>
 
 <div id="activity" class="white">
+
     <article class="flex" style="border-color: <?= $color ?>;">
             <!--    activity image    -->
         <div class="big-image" style="background-image: url('/uploads/<?= $activity->getImage() ?>')"></div>
@@ -51,7 +52,6 @@ $emojis = array_keys($interaction);
                 }
                 ?>
             </div>
-
             <div class="user-reaction flex"><!--   user choice    -->
                 <?php
                 if (isset($_SESSION['user'])) {
@@ -82,6 +82,13 @@ $emojis = array_keys($interaction);
                 }
                 ?>
             </div>
+            <?php
+            if($_SESSION["user"]->getRole() === "admin"){?>
+                <a id="delArt" href="/index.php?c=activity&a=del-act&id=<?= $activity->getId() ?>&pg=<?= $activity->getCategory() ?>">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a><?php
+            }?>
         </div>
     </article>
+
 </div>
