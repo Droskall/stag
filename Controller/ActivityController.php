@@ -74,6 +74,14 @@ class ActivityController extends AbstractController
         $this->render('profile');
     }
 
+    public function formupdate() {
+
+        $this->render('updateActivity');
+    }
+
+    public function update(){
+    }
+
     /**
      * Displays the activity that has a certain id
      * @param int $id

@@ -117,7 +117,8 @@ class ActivityManager {
      * @param $link
      * @param $image
      */
-    public function modifActivity($id, $category, $type, $name, $description, $location, $email, $phone, $schedules, $link, $image){
+    public function modifActivity($id, $category, $type, $name, $description, $location, $email, $phone, $schedules, $link, $image): int
+    {
         $request = $this->db->prepare("UPDATE activity SET category = :category, type = :type, name = :name, description = :description,
                     location = :location, email = :email, phone = :phone, schedules = :schedules, link = :link,
                     image = :image 
@@ -135,6 +136,7 @@ class ActivityManager {
         $request->bindValue(":image", $image);
         $request->bindValue(":id", $id);
         $request->execute();
+
     }
 
     /**
