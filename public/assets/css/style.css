@@ -196,10 +196,10 @@ ul li:nth-child(5) a:hover {
 
 #logoUser {
     display: inline-block;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 3rem;
+    height: 3rem;
     margin: 2rem;
-    min-width: 2rem;
+    min-width: 2.5rem;
 }
 
 #logoUser img {
