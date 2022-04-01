@@ -29,7 +29,7 @@ class ActivityController extends AbstractController
         else{
             if($activity = $this->checkData($_POST['category-type'], $_POST['activity-type'], $_POST['title'],
                 $_POST['content'], $_POST['location'], $_POST['email'], $_POST['phone'],
-                $_POST['schedules'], $_POST['url'])){
+                $_POST['schedules'], $_POST['url'], 'profile')){
 
                 $activityManager = new ActivityManager();
 
@@ -117,14 +117,14 @@ class ActivityController extends AbstractController
      * update activity with new data
      * @param int $id
      */
-    public function upAct (int $id, string $img){
+    public function upAct (int $id){
         if(isset($_POST["title"]) && strlen($_POST["title"]) > 45){
             echo "<div id='error'>Merci de respecter la limite du titre (45 caractères)</div>";
         }
         else {
             if($activity = $this->checkData($_POST['category-type'], $_POST['activity-type'], $_POST['title'],
                 $_POST['content'], $_POST['location'], $_POST['email'], $_POST['phone'],
-                $_POST['schedules'], $_POST['url'])){
+                $_POST['schedules'], $_POST['url'], 'activity&a=actToUpdate&id=' . $id)){
 
                 $activityManager = new ActivityManager();
 
@@ -159,8 +159,15 @@ class ActivityController extends AbstractController
      * @param $url
      * @return Activity|null
      */
-    private function checkData($category, $activity, $title, $content, $location, $email, $phone, $schedules, $url){
+    private function checkData($category, $activity, $title, $content, $location, $email, $phone, $schedules, $url, $redirect){
         if(isset($category, $activity, $title, $content, $location, $email, $schedules, $url)){
+
+            if (strlen($title) < 1 || strlen($content) < 1 || strlen($location) < 1 || strlen($schedules) < 1) {
+                $_SESSION['error'] = ["Veuillez renseigner tous les champs requis"];
+                header('Location: /index.php?c=' . $redirect);
+                exit();
+            }
+
             $category = htmlentities($category);
             $type = htmlentities($activity);
             $title = htmlentities($title);
@@ -169,7 +176,6 @@ class ActivityController extends AbstractController
 
             $email = empty($email) ? null : htmlentities($email);
             $phone = empty($phone) ? null : htmlentities($phone);
-            $schedules = empty($schedules) ? null : htmlentities($schedules);
             $link = empty($url) ? null : htmlentities($url);
 
             return new Activity(null,$category, $type , $title, $content, $location, $email,
