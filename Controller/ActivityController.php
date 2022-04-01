@@ -103,6 +103,7 @@ class ActivityController extends AbstractController
     }
 
     /**
+     * delete activity
      * @param int $id
      * @param $pg
      */
@@ -113,9 +114,10 @@ class ActivityController extends AbstractController
     }
 
     /**
+     * update activity with new data
      * @param int $id
      */
-    public function upAct (int $id){
+    public function upAct (int $id, string $img){
         if(isset($_POST["title"]) && strlen($_POST["title"]) > 45){
             echo "<div id='error'>Merci de respecter la limite du titre (45 caractères)</div>";
         }
@@ -129,13 +131,12 @@ class ActivityController extends AbstractController
                 if(isset($_FILES['picture']) && $_FILES['picture']['error'] === 0){
                     if((int)$_FILES['picture']['size'] <= (3 * 1024 * 1024)){ // maximum size = 3 mo
                         $tmp_name = $_FILES['picture']['tmp_name'];
-                        $name = $this->randomName($_FILES['picture']['name']);
-                        $activity->setImage($name);
-                        move_uploaded_file($tmp_name, 'uploads/' . $name);
+                        $activity->setImage($img);
+                        move_uploaded_file($tmp_name, 'uploads/' . $img);
                     }
                     else{
                         $_SESSION['error'] = ["L'image sélectionnée est trop grande"];
-                        header("Location: index.php?c=profile");
+                        header("Location: index.php?c=activity&a=actToUpdate&id=" . $id);
                         exit();
                     }
                 }
@@ -144,7 +145,6 @@ class ActivityController extends AbstractController
                 header("Location: index.php?c=activity&a=show-activity&id=" . $id);
             }
         }
-
     }
 
     /**
@@ -170,7 +170,7 @@ class ActivityController extends AbstractController
             $email = empty($email) ? null : htmlentities($email);
             $phone = empty($phone) ? null : htmlentities($phone);
             $schedules = empty($schedules) ? null : htmlentities($schedules);
-            $link = empty($link) ? null : htmlentities($link);
+            $link = empty($url) ? null : htmlentities($url);
 
             return new Activity(null,$category, $type , $title, $content, $location, $email,
                 $phone, $schedules, $link, 'activity-placeholder.png');
@@ -179,6 +179,7 @@ class ActivityController extends AbstractController
     }
 
     /**
+     * display form of activity to update
      * @param int $id
      */
     public function actToUpdate (int $id) {
