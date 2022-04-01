@@ -157,6 +157,7 @@ class ActivityController extends AbstractController
      * @param $phone
      * @param $schedules
      * @param $url
+     * @param $redirect
      * @return Activity|null
      */
     private function checkData($category, $activity, $title, $content, $location, $email, $phone, $schedules, $url, $redirect){
