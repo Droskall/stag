@@ -132,12 +132,10 @@ class ConnectionController extends AbstractController
 
     public function logout()
     {
-
         // We destroy the variables of our session.
         session_unset();
         // We destroy our session.
         session_destroy();
-
         self::render('home');
     }
 
@@ -184,6 +182,7 @@ class ConnectionController extends AbstractController
 
         if ($user->getRole() !== 'none'){
             self::render('home');
+            exit();
         }
 
         $userManager->modifUserRole('user', $id);
