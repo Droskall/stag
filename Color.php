@@ -26,7 +26,7 @@ class Color
             case 'utile':
                 $color = '#a2c31b';
                 break;
-            case 'profil':
+            case 'profile':
                 $color = '#d2afaf';
                 break;
         }

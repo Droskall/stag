@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 
+use App\Color;
 use App\Config;
 use Model\Manager\StickerManager;
 use Model\Manager\UserManager;
@@ -17,7 +18,11 @@ class ProfileController extends AbstractController
             exit();
         }
 
-        $this->render('profile', $data = ['avatar' => $_SESSION['user']->getAvatar()]);
+        $this->render(
+            'profile',
+            $data = ['avatar' => $_SESSION['user']->getAvatar()],
+            $color = Color::getColor('profile')
+        );
     }
 
     /**

@@ -59,15 +59,19 @@ class ActivityManager {
      * @return array
      */
     public function getByCategoryAndType($category, $type) {
-        $query = $this->db->query("SELECT * FROM " . self::TABLE . " WHERE category = '$category' AND type = '$type' ORDER BY id DESC");
+        $query = $this->db->query("
+            SELECT * FROM " . self::TABLE . " WHERE category = '$category' AND type = '$type' ORDER BY id DESC");
 
         $array = [];
 
         if ($query && $data = $query->fetchAll()) {
 
             foreach ($data as $value) {
-                $array[] = new Activity($value["id"], $value['category'], $value["type"], $value['name'], $value['description'], $value['location'],
-                    $value["email"], $value["phone"], $value["schedules"], $value['link'], $value['image']);
+                $array[] = new Activity(
+                    $value["id"], $value['category'], $value["type"], $value['name'], $value['description'],
+                    $value['location'], $value["email"], $value["phone"], $value["schedules"], $value['link'],
+                    $value['image']
+                );
             }
         }
 
@@ -81,10 +85,10 @@ class ActivityManager {
      */
     public function addActivity(Activity $activity): int
     {
-        $request = $this->db->prepare("INSERT INTO activity (category, type, name, description, location, email, phone, schedules, link, image) 
+        $request = $this->db->prepare("
+            INSERT INTO activity (category, type, name, description, location, email, phone, schedules, link, image) 
             VALUES (:category, :type, :name, :description, :location, :email, :phone, :schedules, :link, :image)
-            "
-        );
+            ");
 
         $request->bindValue(':category', $activity->getCategory());
         $request->bindValue(':type', $activity->getType());
@@ -104,39 +108,31 @@ class ActivityManager {
 
 
     /**
-     * Modify an activity
+     * update activity
+     * @param $act
      * @param $id
-     * @param $category
-     * @param $type
-     * @param $name
-     * @param $description
-     * @param $location
-     * @param $email
-     * @param $phone
-     * @param $schedules
-     * @param $link
-     * @param $image
+     * @return bool
      */
-    public function modifActivity($id, $category, $type, $name, $description, $location, $email, $phone, $schedules, $link, $image): int
+    public function updateActivity($act,$id)
     {
-        $request = $this->db->prepare("UPDATE activity SET category = :category, type = :type, name = :name, description = :description,
-                    location = :location, email = :email, phone = :phone, schedules = :schedules, link = :link,
-                    image = :image 
-                    WHERE id = :id"
+        $request = $this->db->prepare("
+            UPDATE activity SET category = :category, type = :type, name = :name, description = :description,
+            location = :location, email = :email, phone = :phone, schedules = :schedules, link = :link
+            WHERE id = :id"
         );
-        $request->bindValue(":category", $category);
-        $request->bindValue(":type", $type);
-        $request->bindValue(":name", $name);
-        $request->bindValue(":description", $description);
-        $request->bindValue(":location", $location);
-        $request->bindValue(":email", $email);
-        $request->bindValue(":phone", $phone);
-        $request->bindValue(":schedules", $schedules);
-        $request->bindValue(":link", $link);
-        $request->bindValue(":image", $image);
+        // update : category / type / name / Location / Email / tel / horaire / lien
+        $request->bindValue(":category", $act->getCategory());
+        $request->bindValue(":type", $act->getType());
+        $request->bindValue(":name", $act->getName());
+        $request->bindValue(":description", $act->getDescription());
+        $request->bindValue(":location", $act->getLocation());
+        $request->bindValue(":email", $act->getEmail());
+        $request->bindValue(":phone", $act->getPhone());
+        $request->bindValue(":schedules", $act->getSchedules());
+        $request->bindValue(":link", $act->getLink());
         $request->bindValue(":id", $id);
-        $request->execute();
 
+        return $request->execute();
     }
 
     /**
@@ -160,13 +156,15 @@ class ActivityManager {
         $request->bindValue(":id", $id);
         if($request->execute()){
             if($selected = $request->fetch()){
-                return new Activity($selected["id"], $selected['category'], $selected["type"], $selected['name'],
+                return new Activity(
+                    $selected["id"], $selected['category'], $selected["type"], $selected['name'],
                     $selected['description'], $selected['location'], $selected["email"], $selected["phone"],
-                    $selected["schedules"], $selected['link'], $selected['image']);
+                    $selected["schedules"], $selected['link'], $selected['image']
+                );
             }
         }
-
         return null;
     }
+
 }
 
