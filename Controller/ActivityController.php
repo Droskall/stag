@@ -117,7 +117,7 @@ class ActivityController extends AbstractController
      * update activity with new data
      * @param int $id
      */
-    public function upAct (int $id){
+    public function upAct (int $id, string $img){
         if(isset($_POST["title"]) && strlen($_POST["title"]) > 45){
             echo "<div id='error'>Merci de respecter la limite du titre (45 caractères)</div>";
         }
@@ -131,9 +131,8 @@ class ActivityController extends AbstractController
                 if(isset($_FILES['picture']) && $_FILES['picture']['error'] === 0){
                     if((int)$_FILES['picture']['size'] <= (3 * 1024 * 1024)){ // maximum size = 3 mo
                         $tmp_name = $_FILES['picture']['tmp_name'];
-                        $name = $activityManager->getById($id)->getImage();
-                        $activity->setImage($name);
-                        move_uploaded_file($tmp_name, 'uploads/' . $name);
+                        $activity->setImage($img);
+                        move_uploaded_file($tmp_name, 'uploads/' . $img);
                     }
                     else{
                         $_SESSION['error'] = ["L'image sélectionnée est trop grande"];
