@@ -108,7 +108,7 @@ class ActivityManager {
 
 
     /**
-     * update activity
+     * update activity execept image name
      * @param $act
      * @param $id
      * @return null|int
@@ -117,7 +117,7 @@ class ActivityManager {
     {
         $request = $this->db->prepare("
             UPDATE activity SET category = :category, type = :type, name = :name, description = :description,
-            location = :location, email = :email, phone = :phone, schedules = :schedules, link = :link
+            location = :location, email = :email, phone = :phone, schedules = :schedules, link = :link, image = :image
             WHERE id = :id"
         );
         // update : category / type / name / Location / Email / tel / horaire / lien
@@ -130,6 +130,7 @@ class ActivityManager {
         $request->bindValue(":phone", $act->getPhone());
         $request->bindValue(":schedules", $act->getSchedules());
         $request->bindValue(":link", $act->getLink());
+        $request->bindValue(":image", $act->getImage());
         $request->bindValue(":id", $id);
 
         if($request->execute()) {
