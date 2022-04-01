@@ -103,6 +103,7 @@ class ActivityController extends AbstractController
     }
 
     /**
+     * delete activity
      * @param int $id
      * @param $pg
      */
@@ -113,6 +114,7 @@ class ActivityController extends AbstractController
     }
 
     /**
+     * update activity with new data
      * @param int $id
      */
     public function upAct (int $id){
@@ -170,7 +172,7 @@ class ActivityController extends AbstractController
             $email = empty($email) ? null : htmlentities($email);
             $phone = empty($phone) ? null : htmlentities($phone);
             $schedules = empty($schedules) ? null : htmlentities($schedules);
-            $link = empty($link) ? null : htmlentities($link);
+            $link = empty($url) ? null : htmlentities($url);
 
             return new Activity(null,$category, $type , $title, $content, $location, $email,
                 $phone, $schedules, $link, 'activity-placeholder.png');
@@ -179,6 +181,7 @@ class ActivityController extends AbstractController
     }
 
     /**
+     * display form of activity to update
      * @param int $id
      */
     public function actToUpdate (int $id) {

@@ -111,7 +111,7 @@ class ActivityManager {
      * update activity
      * @param $act
      * @param $id
-     * @return bool
+     * @return null|int
      */
     public function updateActivity($act,$id)
     {
@@ -132,7 +132,10 @@ class ActivityManager {
         $request->bindValue(":link", $act->getLink());
         $request->bindValue(":id", $id);
 
-        return $request->execute();
+        if($request->execute()) {
+            return $id;
+        }
+        return null;
     }
 
     /**
