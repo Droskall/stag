@@ -131,13 +131,13 @@ class ActivityController extends AbstractController
                 if(isset($_FILES['picture']) && $_FILES['picture']['error'] === 0){
                     if((int)$_FILES['picture']['size'] <= (3 * 1024 * 1024)){ // maximum size = 3 mo
                         $tmp_name = $_FILES['picture']['tmp_name'];
-                        $name = $this->randomName($_FILES['picture']['name']);
+                        $name = $activityManager->getById($id)->getImage();
                         $activity->setImage($name);
                         move_uploaded_file($tmp_name, 'uploads/' . $name);
                     }
                     else{
                         $_SESSION['error'] = ["L'image sélectionnée est trop grande"];
-                        header("Location: index.php?c=profile");
+                        header("Location: index.php?c=activity&a=actToUpdate&id=" . $id);
                         exit();
                     }
                 }
@@ -146,7 +146,6 @@ class ActivityController extends AbstractController
                 header("Location: index.php?c=activity&a=show-activity&id=" . $id);
             }
         }
-
     }
 
     /**
