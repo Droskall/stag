@@ -492,6 +492,38 @@ h1 {
 }
 
 /*
+ * Activate account
+ */
+.activate_account {
+    width: 70rem;
+    max-width: 90%;
+    margin: 1rem auto;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 15px;
+    color: #e09700;
+}
+
+.activate_account h1 {
+    color: var(--black);
+    margin: 0 auto 1rem auto;
+    width: 90%;
+    background: linear-gradient(190deg, #e2be77 0%, #e09700 100%);
+}
+
+.activate_account button {
+    background-color: var(--black);
+    border: none;
+    border-radius: 15px;
+    margin: 1rem;
+    padding: 0.5rem 0.8rem 0.7rem 0.8rem;
+}
+
+.activate_account a {
+    color: #f8f9fa;
+}
+
+/*
  * toolbox
  */
 

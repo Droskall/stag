@@ -1,9 +1,9 @@
-<div>
-    <h1>Votre compte a ete créer avec succes</h1>
+<div class="white activate_account">
+    <h1>Votre compte à été créé avec succès</h1>
 
     <p>Vous pouvez vous connecter maintenant !</p>
 
-    <a class="menu" href="/index.php?c=connection">Connexion</a>
+    <button><a href="/index.php?c=connection">Connexion</a></button>
 </div>
 
 

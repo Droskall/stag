@@ -180,9 +180,12 @@ class ConnectionController extends AbstractController
         $userManager = new UserManager();
         $user = $userManager->getById($id);
 
+        /*
         if ($user->getRole() !== 'none'){
             self::render('home');
+            exit();
         }
+        */
 
         $userManager->modifUserRole('user', $id);
         self::render('activate');
