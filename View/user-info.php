@@ -1,4 +1,4 @@
-<div class="flex white connection_register">
+<div class="flex white connection_register" id="contains">
     <form id="change_email_username" action="/index.php?c=profile&a=change-mail-name" method="post">
         <h2>Email / Username</h2>
         <input type="email" name="email" value="<?= $data['user']->getEmail() ?>">
