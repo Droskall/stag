@@ -105,12 +105,14 @@ class ConnectionController extends AbstractController
             $error[] = "L'utilisateur demandé n'est pas enregistré";
         }
 
-        if ($user->getRole() === 'none') {
-            $error[] = "Cette adresse mail n'a pas été vérifiée";
-        }
-
         if (count($error) > 0) {
             $_SESSION['error'] = $error;
+            self::default();
+            exit();
+        }
+
+        if ($user->getRole() === 'none') {
+            $_SESSION['error'] = ["Cette adresse mail n'a pas été vérifiée"];
             self::default();
             exit();
         }
