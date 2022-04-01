@@ -3,7 +3,6 @@
 
 namespace App\Controller;
 
-
 use App\Config;
 use Model\Manager\UserManager;
 
@@ -63,6 +62,7 @@ class ConnectionController extends AbstractController
             $user = $userManager->insertUser($mail, $username, $password, password_hash($token, PASSWORD_BCRYPT));
 
             if (self::registerMail($mail, $token, $username, $user->getId())) {
+
                 self::render('connection', $data = ["Un email à été envoyé a l'adresse email renseignée,
                 veuillez confirmer cette adresse afin de vous connecter à votre compte"]);
             } else {

@@ -5,6 +5,8 @@
         <input type="password" placeholder="Votre mot de passe" name="password" id="pswd">
 
         <input type="submit" name="submit" value="connexion" id="buttonC">
+
+        <a href="#">Mot de passe oublié ?</a>
     </form>
 
     <form id="register" action="/index.php?c=connection&a=register" method="post">
