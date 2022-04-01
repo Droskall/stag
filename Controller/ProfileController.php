@@ -138,12 +138,16 @@ class ProfileController extends AbstractController
 
         if (password_verify($password, $user->getPassword())) {
 
-           $userManager->updateMailName($mail, $username, $user->getId());
+            $userManager->updateMailName($mail, $username, $user->getId());
+            $userManager->modifUserRole('none', $user->getId());
 
             $user->setPassword('');
             $_SESSION['user'] = $user;
 
-            self::default();
+            if (self::verifNewMail($mail, $username, $user->getId())) {
+                self::render('connection', $data = ["Un email à été envoyé a l'adresse email renseignée,
+                veuillez confirmer cette adresse afin de vous reconnecter à votre compte"]);
+            }
 
         } else {
 
@@ -151,6 +155,53 @@ class ProfileController extends AbstractController
             self::default();
             exit();
         }
+    }
+
+    private function verifNewMail(string $userMail, $username, $id)
+    {
+
+        $url = Config::APP_URL . '/index.php?c=profile&a=reactivate&id=' . $id;
+
+        $message = "
+        <html lang='fr'>
+            <head>
+                <title>Vérification de votre compte So D'Avesnois</title>
+            </head>
+            <body>
+                <span>Bonjour $username,</span>
+                <p>
+                    Afin de finaliser votre nouvelle adresse mail sur le site So D'Avesnois, 
+                    <br>
+                    merci de cliquer <a href=\"$url\">sur ce lien</a> pour vérifier votre adresse email.
+                </p>
+            </body>
+        </html>
+        ";
+
+        $to = $userMail;
+        $subject = 'Vérification de votre adresse email';
+        $headers = [
+            'Reply-to' => "no-reply@email.com",
+            'X-Mailer' => 'PHP/' . phpversion(),
+            'Mime-version' => '1.0',
+            'Content-type' => 'text/html; charset=utf-8'
+        ];
+
+        return mail($to, $subject, $message, $headers, "-f no-reply@email.com");
+    }
+
+    public function reactivate(int $id)
+    {
+        $userManager = new UserManager();
+        $user = $userManager->getById($id);
+
+        if ($user->getRole() !== 'none'){
+            self::render('home');
+            exit();
+        }
+
+        $userManager->modifUserRole('user', $id);
+        self::render('activate');
     }
 
     /**
