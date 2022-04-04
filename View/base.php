@@ -68,7 +68,26 @@ if(!isset($color)) {
 }
 ?>
 <footer style="background-color: <?= $color ?>">
+    <div class="flex">
+        <div>
+            <h3>Nous contacter</h3>
+            <address>tel : 03.27.56.11.80</address>
+        </div>
 
+        <div>
+            <h3>Nous trouver</h3>
+            <address>43 rue Cambrésienne</address>
+            <address>59440 Avesnes sur Helpe</address>
+        </div>
+
+        <div>
+            <h3>Les horaires</h3>
+            <p>Lundi au jeudi de 9h à 12h et de 13h30 à 17h30</p>
+            <p>Vendredi de 9h à 12h et de 13h30 à 16h30</p>
+        </div>
+    </div>
+
+    <p>&copy</p>
 </footer>
 
 <script src="https://kit.fontawesome.com/25d98733ec.js" crossorigin="anonymous"></script>

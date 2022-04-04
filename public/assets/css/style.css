@@ -15,6 +15,7 @@ html {
 
 body {
     width: 100%;
+
     color: var(--black);
     background-image: url("/assets/img/bocage.jpg");
     background-size: cover;
@@ -769,6 +770,23 @@ textarea {
 .linkContainer .frame {
     border-color: #d2afaf;
 }
+
+/*
+ * Footer
+ */
+footer {
+    color: white;
+    padding: 1rem;
+
+    width: 100%;
+    bottom: 0;
+}
+
+footer div {
+    margin: 1rem;
+    justify-content: space-around;
+}
+
 /*
  * RESPONSIVE
  */
