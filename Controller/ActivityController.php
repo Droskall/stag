@@ -98,7 +98,6 @@ class ActivityController extends AbstractController
      */
     function randomName (string $currentName): string {
         $infos = pathinfo($currentName);
-
         return self::randomChars() . '.' . $infos['extension'];
     }
 
@@ -131,8 +130,11 @@ class ActivityController extends AbstractController
                 if(isset($_FILES['picture']) && $_FILES['picture']['error'] === 0){
                     if((int)$_FILES['picture']['size'] <= (3 * 1024 * 1024)){ // maximum size = 3 mo
                         $tmp_name = $_FILES['picture']['tmp_name'];
-                        $activity->setImage($img);
-                        move_uploaded_file($tmp_name, 'uploads/' . $img);
+                        $name = $activity->getImage() === "activity-placeholder.png" ?
+                            $this->randomName($_FILES['picture']['name']) : $activity->getImage();
+
+                        $activity->setImage($name);
+                        move_uploaded_file($tmp_name, 'uploads/' . $name);
                     }
                     else{
                         $_SESSION['error'] = ["L'image sélectionnée est trop grande"];
@@ -174,6 +176,7 @@ class ActivityController extends AbstractController
             $title = htmlentities($title);
             $content = htmlentities($content);
             $location = htmlentities($location);
+            $schedules = htmlentities($schedules);
 
             $email = empty($email) ? null : htmlentities($email);
             $phone = empty($phone) ? null : htmlentities($phone);
