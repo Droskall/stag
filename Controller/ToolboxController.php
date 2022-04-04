@@ -20,45 +20,24 @@ class ToolboxController extends AbstractController
      * add a new link
      */
     public function addLink() {
-        // connected ?
-        if (!isset($_SESSION['user'])) {
-            self::default();
-            exit();
-        }
+        // connected & isset ?
+        $this->checkIssetData($_SESSION['user'], $_POST['add-link'], $_POST['link-type'], $_POST['title'], $_POST['new-url']);
+
         if ($_SESSION['user']->getRole() !== 'admin') {
             self::default();
             exit();
         }
 
-        // isset ?
-        if (!isset($_POST['add-link'])) {
-            self::default();
-            exit();
-        }
-        if (!isset($_POST['link-type']) ||!isset($_POST['title']) || !isset($_POST['new-url'])) {
-            self::default();
-            exit();
-        }
-
         // empty ?
-        if (empty($_POST['link-type']) || empty($_POST['title']) || empty($_POST['new-url'])) {
-            $_SESSION['error'] = ["Tout les champs doivent être renseignés"];
-            self::render('profile');
-            exit();
-        }
+        $this->checkEmptyData($_POST['link-type'], $_POST['title'], $_POST['new-url']);
 
-        $url = filter_var($_POST['new-url'], FILTER_SANITIZE_URL);
-        $url = filter_var($url, FILTER_VALIDATE_URL);
+        // filter sanitize
+        $url = $this->cleanData($_POST['new-url']);
 
         $title = strip_tags($_POST['title']);
 
-        $type = $_POST['link-type'];
-
         // allowed link type ?
-        if (!in_array($type, Config::LINK_TYPE)) {
-            self::default();
-            exit();
-        }
+        $type = $this->linkInConfig($_POST['link-type']);
 
         $linkManager = new LinkManager();
         $linkManager->addLink($url, $type, $title);
@@ -68,6 +47,30 @@ class ToolboxController extends AbstractController
         $color = Color::getColor('utile');
 
         self::render('linkList', $data = $links, $color);
+    }
+
+    public function updateUrl(int $id){
+        // connected & isset ?
+        $this->checkIssetData($_SESSION['user'], $_POST['add-link'], $_POST['link-type'], $_POST['title'], $_POST['new-url']);
+
+        if ($_SESSION['user']->getRole() !== 'admin') {
+            self::default();
+            exit();
+        }
+
+        // empty ?
+        $this->checkEmptyData($_POST['link-type'], $_POST['title'], $_POST['new-url']);
+
+        // filter sanitize
+        $url = $this->cleanData($_POST['new-url']);
+
+        $title = strip_tags($_POST['title']);
+
+        // allowed link type ?
+        $type = $this->linkInConfig($_POST['link-type']);
+
+        $linkManager = new LinkManager();
+        $linkManager->updateLink($id, $url, $type, $title);
     }
 
     /**
@@ -87,5 +90,57 @@ class ToolboxController extends AbstractController
         $linkManager = new LinkManager();
         $links = $linkManager->getLinkByType($type);
         self::render('linkList', $data = $links, $color);
+    }
+
+    /**
+     * @param mixed ...$param
+     */
+    private function checkIssetData(...$param){
+        foreach ($param as $item){
+            if(!isset($item)){
+                self::default();
+                exit();
+            }
+        }
+    }
+
+    /**
+     * @param mixed ...$param
+     */
+    private function checkEmptyData(...$param){
+        foreach ($param as $item){
+            if(empty($item)){
+                $_SESSION['error'] = ["Tous les champs doivent être renseignés"];
+                self::render('profile');
+                exit();
+            }
+        }
+    }
+
+    /**
+     * @param string $newUrl
+     * @return mixed
+     */
+    private function cleanData(string $newUrl){
+        $url = filter_var($newUrl, FILTER_SANITIZE_URL);
+        return filter_var($url, FILTER_VALIDATE_URL);
+    }
+
+    /**
+     * @param string $linkType
+     * @return string
+     */
+    private function linkInConfig (string $linkType){
+        if(!in_array($linkType, Config::LINK_TYPE)){
+            self::default();
+            exit();
+        }
+        return $linkType;
+    }
+
+    public function linkToUpdate(int $id){
+        $linkManager = new LinkManager();
+        $this->render('updateLink', $data =
+        ['link' => $linkManager->getLinkById($id)]);
     }
 }
