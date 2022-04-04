@@ -97,4 +97,13 @@ class LinkManager
         return $array;
     }
 
+    public function getLinkById(int $id)
+    {
+        $query = $this->db->query("SELECT * FROM " . self::TABLE . " WHERE id = $id");
+        if($query){
+            return self::createLink($query->fetch());
+        }
+        return null;
+    }
+
 }
