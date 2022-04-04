@@ -856,13 +856,13 @@ textarea {
 /*
  * Activity
  */
+
 @media screen and (max-width: 650px) {
     #activity .big-image {
         display: block;
         min-height: 20rem;
         width: 85%;
     }
-
 }
 
 /*
