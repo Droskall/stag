@@ -83,10 +83,10 @@ $emojis = array_keys($interaction);
             <?php
             if($_SESSION["user"]->getRole() === "admin"){?>
                 <a id="delArt" href="/index.php?c=activity&a=del-act&id=<?= $activity->getId() ?>&pg=<?= $activity->getCategory() ?>">
-                    suppr
+                    <i class="fas fa-trash-alt"></i>
                 </a>
                 <a id="updateArt" href="/index.php?c=activity&a=actToUpdate&id=<?= $activity->getId() ?>">
-                    update
+                    <i class="fas fa-edit"></i>
                 </a>
                 <?php
                 }?>
