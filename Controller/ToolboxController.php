@@ -11,6 +11,9 @@ use Model\Manager\LinkManager;
 
 class ToolboxController extends AbstractController
 {
+    /**
+     *
+     */
     public function default()
     {
         $this->render('toolbox', null, $color = Color::getColor('utile'));
@@ -49,7 +52,10 @@ class ToolboxController extends AbstractController
         self::render('linkList', $data = $links, $color);
     }
 
-    public function updateUrl(int $id){
+    /**
+     * @param int $id
+     */
+    public function upLink(int $id){
         // connected & isset ?
         $this->checkIssetData($_SESSION['user'], $_POST['add-link'], $_POST['link-type'], $_POST['title'], $_POST['new-url']);
 
@@ -71,6 +77,7 @@ class ToolboxController extends AbstractController
 
         $linkManager = new LinkManager();
         $linkManager->updateLink($id, $url, $type, $title);
+        header("Location: index.php?c=toolbox&a=list&type=$type");
     }
 
     /**
@@ -138,9 +145,11 @@ class ToolboxController extends AbstractController
         return $linkType;
     }
 
+    /**
+     * @param int $id
+     */
     public function linkToUpdate(int $id){
         $linkManager = new LinkManager();
-        $this->render('updateLink', $data =
-        ['link' => $linkManager->getLinkById($id)]);
+        $this->render('updateLink', $data = [ 'link' => $linkManager->getLinkById($id)]);
     }
 }

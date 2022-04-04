@@ -101,8 +101,7 @@ class LinkManager
     {
         $query = $this->db->query("SELECT * FROM " . self::TABLE . " WHERE id = $id");
         if($query){
-            $data = self::createLink($query->fetch());
-            return [$data];
+            return self::createLink($query->fetch());
         }
         return null;
     }
