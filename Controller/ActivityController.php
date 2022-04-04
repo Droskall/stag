@@ -24,7 +24,9 @@ class ActivityController extends AbstractController
     public function add(){
 
         if(isset($_POST["title"]) && strlen($_POST["title"]) > 45){
-            echo "<div id='error'>Merci de respecter la limite du titre (45 caractères)</div>";
+            $_SESSION['error'] = ['Merci de respecter la limite du titre (45 caractères)'];
+            header("Location: index.php?c=profile");
+            exit();
         }
         else{
             if($activity = $this->checkData($_POST['category-type'], $_POST['activity-type'], $_POST['title'],
@@ -118,15 +120,16 @@ class ActivityController extends AbstractController
      */
     public function upAct (int $id){
         if(isset($_POST["title"]) && strlen($_POST["title"]) > 45){
-            echo "<div id='error'>Merci de respecter la limite du titre (45 caractères)</div>";
+            $_SESSION['error'] = ['Merci de respecter la limite du titre (45 caractères)'];
+            header("Location: index.php?c=activity&a=actToUpdate&id=" . $id);
+            exit();
         }
         else {
             $activityManager = new ActivityManager();
-            $oldImage = $activityManager->getById($id)->getImage();
 
             if($activity = $this->checkData($_POST['category-type'], $_POST['activity-type'], $_POST['title'],
                 $_POST['content'], $_POST['location'], $_POST['email'], $_POST['phone'],
-                $_POST['schedules'], $oldImage, $_POST['url'], 'activity&a=actToUpdate&id=' . $id)){
+                $_POST['schedules'], $_POST['url'], 'activity&a=actToUpdate&id=' . $id, $activityManager->getById($id)->getImage())){
 
                 if(isset($_FILES['picture']) && $_FILES['picture']['error'] === 0){
                     if((int)$_FILES['picture']['size'] <= (3 * 1024 * 1024)){ // maximum size = 3 mo
@@ -161,9 +164,10 @@ class ActivityController extends AbstractController
      * @param $schedules
      * @param $url
      * @param $redirect
+     * @param null $image
      * @return Activity|null
      */
-    private function checkData($category, $activity, $title, $content, $location, $email, $phone, $schedules, $image, $url, $redirect){
+    private function checkData($category, $activity, $title, $content, $location, $email, $phone, $schedules, $url, $redirect, $image = null){
         if(isset($category, $activity, $title, $content, $location, $email, $schedules, $url)){
 
             if (strlen($title) < 1 || strlen($content) < 1 || strlen($location) < 1 || strlen($schedules) < 1) {
@@ -182,6 +186,8 @@ class ActivityController extends AbstractController
             $email = empty($email) ? null : htmlentities($email);
             $phone = empty($phone) ? null : htmlentities($phone);
             $link = empty($url) ? null : htmlentities($url);
+
+            $image = $image === null ? 'activity-placeholder.png' : $image;
 
             return new Activity(null,$category, $type , $title, $content, $location, $email,
                 $phone, $schedules, $link, $image);
