@@ -8,7 +8,10 @@
                 <div id="user-data">
                     <h3>Vos informations personnelles</h3>
 
-                    <img class="avatar" src="/assets/img/avatar/<?= $data['avatar'] ?>" alt="user's avatar">
+                    <div>
+                        <img class="avatar" src="/assets/img/avatar/<?= $data['avatar'] ?>" alt="user's avatar">
+                    </div>
+
 
                     <button class="change_avatar"><a href="/index.php?c=profile&a=avatar-list">changer d'avatar</a></button>
 
