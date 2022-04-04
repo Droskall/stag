@@ -353,7 +353,7 @@ span.circle {
     }
     100% {
         transform: scale(7);
-        opacity: 0;
+        opacity: 0.5;
     }
 }
 
