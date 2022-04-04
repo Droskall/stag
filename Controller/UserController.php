@@ -51,6 +51,14 @@ class UserController extends AbstractController
             $data[] = $user;
         }
 
+        if ($userManager->getById($_POST["id"])->getRole() === 'admin') {
+            if ($userManager->isLastAdmin() === '1') {
+                $_SESSION['error'] =  ["Vous ne pouvez pas supprimer ce compte tant qu'un autre admin n'a pas été créé"];
+                self::render('userList', $data);
+                exit();
+            }
+        }
+
         $userManager->deleteUser($_POST["id"]);
 
         self::render('userList', $data);
@@ -59,6 +67,12 @@ class UserController extends AbstractController
     public function deleteself(){
 
         $userManager = new UserManager();
+        if ($userManager->isLastAdmin() === '1') {
+            $_SESSION['error'] =  ["Vous ne pouvez pas supprimer votre compte tant qu'un autre admin n'a pas été créé"];
+            header('Location: /index.php?c=profile');
+            exit();
+        }
+
         $userManager->deleteUser($_SESSION['user']->getId());
 
         header('Location: index.php?c=connection&a=logout');
