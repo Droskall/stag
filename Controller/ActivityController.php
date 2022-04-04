@@ -121,11 +121,12 @@ class ActivityController extends AbstractController
             echo "<div id='error'>Merci de respecter la limite du titre (45 caractères)</div>";
         }
         else {
+            $activityManager = new ActivityManager();
+            $oldImage = $activityManager->getById($id)->getImage();
+
             if($activity = $this->checkData($_POST['category-type'], $_POST['activity-type'], $_POST['title'],
                 $_POST['content'], $_POST['location'], $_POST['email'], $_POST['phone'],
-                $_POST['schedules'], $_POST['url'], 'activity&a=actToUpdate&id=' . $id)){
-
-                $activityManager = new ActivityManager();
+                $_POST['schedules'], $oldImage, $_POST['url'], 'activity&a=actToUpdate&id=' . $id)){
 
                 if(isset($_FILES['picture']) && $_FILES['picture']['error'] === 0){
                     if((int)$_FILES['picture']['size'] <= (3 * 1024 * 1024)){ // maximum size = 3 mo
@@ -162,7 +163,7 @@ class ActivityController extends AbstractController
      * @param $redirect
      * @return Activity|null
      */
-    private function checkData($category, $activity, $title, $content, $location, $email, $phone, $schedules, $url, $redirect){
+    private function checkData($category, $activity, $title, $content, $location, $email, $phone, $schedules, $image, $url, $redirect){
         if(isset($category, $activity, $title, $content, $location, $email, $schedules, $url)){
 
             if (strlen($title) < 1 || strlen($content) < 1 || strlen($location) < 1 || strlen($schedules) < 1) {
@@ -183,7 +184,7 @@ class ActivityController extends AbstractController
             $link = empty($url) ? null : htmlentities($url);
 
             return new Activity(null,$category, $type , $title, $content, $location, $email,
-                $phone, $schedules, $link, 'activity-placeholder.png');
+                $phone, $schedules, $link, $image);
         }
         return null;
     }

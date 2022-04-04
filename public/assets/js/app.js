@@ -16,13 +16,6 @@ menuSpan.addEventListener('click', () => {
 
 })
 
-// background
-let body = document.body;
-//body.style.height = innerHeight + "px";
-
-// footer
-
-
 // close php error message
 const close = document.querySelector('#close');
 const errorDiv = document.querySelector('div.error');
