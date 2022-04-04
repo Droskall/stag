@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Config;
 use Model\Manager\UserManager;
+use Model\Manager\Traits\ManagerTrait;
 
 class ConnectionController extends AbstractController
 {
@@ -132,6 +133,10 @@ class ConnectionController extends AbstractController
         }
     }
 
+    /**
+     * Disconnect
+     * @return void
+     */
     public function logout()
     {
         // We destroy the variables of our session.
@@ -141,6 +146,13 @@ class ConnectionController extends AbstractController
         self::render('home');
     }
 
+    /**
+     * @param string $userMail
+     * @param $token
+     * @param $username
+     * @param $id
+     * @return bool
+     */
     private function registerMail(string $userMail, $token, $username, $id)
     {
 
@@ -182,7 +194,7 @@ class ConnectionController extends AbstractController
         $userManager = new UserManager();
         $user = $userManager->getById($id);
 
-        if ($user->getRole() !== 'none'){
+        if ($user->getRole() !== 'none') {
             self::render('home');
             exit();
         }
@@ -191,4 +203,81 @@ class ConnectionController extends AbstractController
         self::render('activate');
     }
 
+    /**
+     * @return void
+     */
+    public function pswdForget()
+    {
+        self::render('passwordForget');
+    }
+
+    /**
+     * @return void
+     */
+    public function newPswd()
+    {
+        if (!isset($_POST['submit'])) {
+            self::default();
+            exit();
+        }
+
+        if (!isset($_POST['email'])) {
+            self::default();
+            exit();
+        }
+
+        $data = self::checkMailUsernamePassword();
+
+        if (count($data['error']) > 0) {
+            $_SESSION['error'] = $data['error'];
+            self::default();
+            exit();
+        }
+
+        $mail = $data['mail'];
+        $username = $data['username'];
+
+        if (self::forgetPassword($mail, $username)){
+            self::render('connection');
+        }
+    }
+
+    /**
+     * @param string $userMail
+     * @param $username
+     * @return bool
+     */
+    public function forgetPassword(string $userMail, $username)
+        {
+            $password = uniqid();
+            $passwordHash = password_hash($password, PASSWORD_BCRYPT);
+            $useManager = new UserManager();
+            $user = $useManager->updatePasswordByMail($passwordHash, $userMail);
+
+            $message = "
+        <html lang='fr'>
+            <head>
+                <title>Changement de mot de passe pour votre compte So D'Avesnois</title>
+            </head>
+            <body>
+                <span>Bonjour $username,</span>
+                <p>
+                    Bonjour, voici votre nouveau mot de passe : $password, 
+                </p>
+            </body>
+        </html>
+        ";
+
+            $to = $userMail;
+            $subject = 'Nouveau MDP';
+            $headers = [
+                'Reply-to' => "no-reply@email.com",
+                'X-Mailer' => 'PHP/' . phpversion(),
+                'Mime-version' => '1.0',
+                'Content-type' => 'text/html; charset=utf-8'
+            ];
+
+            return mail($to, $subject, $message, $headers, "-f no-reply@email.com");
+        }
 }
+

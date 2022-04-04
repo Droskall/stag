@@ -5,7 +5,8 @@ namespace Model\Manager;
 use Model\Entity\User;
 use Model\Manager\Traits\ManagerTrait;
 
-class UserManager {
+class UserManager
+{
 
     use ManagerTrait;
 
@@ -14,7 +15,8 @@ class UserManager {
      * @param int $id
      * @return User
      */
-    public function getById(int $id): User {
+    public function getById(int $id): User
+    {
         $user = new User();
         $request = $this->db->prepare("SELECT id, username, role FROM user WHERE id = $id");
         $request->bindValue('id', $id);
@@ -38,7 +40,8 @@ class UserManager {
      * @param $token
      * @return User
      */
-    public function insertUser($email ,$name, $pass, $token): User {
+    public function insertUser($email, $name, $pass, $token): User
+    {
 
         $request = $this->db->prepare("INSERT INTO user (email, username, password, role, token) VALUES ( :mail ,:name, :pass , 'none', :token)");
         $request->bindValue(":mail", $email);
@@ -61,19 +64,20 @@ class UserManager {
      * @param $email
      * @return User
      */
-    public function getUser($email): ?User{
+    public function getUser($email): ?User
+    {
         $request = $this->db->prepare("SELECT * FROM user WHERE email = :email");
         $request->bindValue(":email", $email);
 
-        if ($request->execute() && $select = $request->fetch()){
-                $user = new User();
+        if ($request->execute() && $select = $request->fetch()) {
+            $user = new User();
             return $user
-                    ->setId($select["id"])
-                    ->setEmail($select["email"])
-                    ->setUsername($select["username"])
-                    ->setPassword($select['password'])
-                    ->setAvatar($select["avatar"])
-                    ->setRole($select["role"]);
+                ->setId($select["id"])
+                ->setEmail($select["email"])
+                ->setUsername($select["username"])
+                ->setPassword($select['password'])
+                ->setAvatar($select["avatar"])
+                ->setRole($select["role"]);
         }
         return null;
     }
@@ -96,11 +100,11 @@ class UserManager {
      */
     public function deleteUser($id): bool
     {
-           $request = $this->db->prepare("DELETE FROM user WHERE id = :id");
+        $request = $this->db->prepare("DELETE FROM user WHERE id = :id");
 
-           $request->bindValue(":id", $id);
+        $request->bindValue(":id", $id);
 
-           return $request->execute();
+        return $request->execute();
     }
 
     /**
@@ -108,7 +112,8 @@ class UserManager {
      * @param $role
      * @param $id
      */
-    public function modifUserRole($role, $id){
+    public function modifUserRole($role, $id)
+    {
 
         $request = $this->db->prepare("UPDATE user SET role = :role WHERE id = :id");
 
@@ -128,7 +133,7 @@ class UserManager {
         $users = [];
         $result = $this->db->query("SELECT * FROM user");
 
-        if($result) {
+        if ($result) {
             foreach ($result->fetchAll() as $data) {
                 $users[] = (new UserManager)->getUser($data['email']);
             }
@@ -141,7 +146,8 @@ class UserManager {
      * @param $id
      * @return false|\PDOStatement
      */
-    public function updateAvatar($avatar, $id) {
+    public function updateAvatar($avatar, $id)
+    {
         return $this->db->query("UPDATE user SET avatar = '$avatar' WHERE id = $id");
     }
 
@@ -152,14 +158,15 @@ class UserManager {
      * @param $id
      * @return bool
      */
-    public function updateMailName($email, $username, $id): bool {
-            $stmt = $this->db->prepare("UPDATE user SET email = :email, username = :username WHERE id = :id");
+    public function updateMailName($email, $username, $id): bool
+    {
+        $stmt = $this->db->prepare("UPDATE user SET email = :email, username = :username WHERE id = :id");
 
-            $stmt->bindParam(':email', $email);
-            $stmt->bindParam(':username', $username);
-            $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':id', $id);
 
-            return $stmt->execute();
+        return $stmt->execute();
     }
 
     /**
@@ -168,11 +175,28 @@ class UserManager {
      * @param $id
      * @return bool
      */
-    public function updatePassword($password, $id): bool {
+    public function updatePassword($password, $id): bool
+    {
         $stmt = $this->db->prepare("UPDATE user SET password = :password WHERE id = :id");
 
         $stmt->bindParam(':password', $password);
         $stmt->bindParam(':id', $id);
+
+        return $stmt->execute();
+    }
+
+    /**
+     * update the password by email
+     * @param $password
+     * @param $mail
+     * @return bool
+     */
+    public function updatePasswordByMail($password, $mail): bool
+    {
+        $stmt = $this->db->prepare("UPDATE user SET password = :password WHERE email = :email");
+
+        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':email', $mail);
 
         return $stmt->execute();
     }
