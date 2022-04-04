@@ -6,7 +6,7 @@
 
         <input type="submit" name="submit" value="connexion" id="buttonC">
 
-        <a href="#">Mot de passe oublié ?</a>
+        <a href="/index.php?c=connection&a=pswd-forget">Mot de passe oublié ?</a>
     </form>
 
     <form id="register" action="/index.php?c=connection&a=register" method="post">
