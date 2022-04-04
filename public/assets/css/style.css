@@ -267,6 +267,7 @@ span.circle {
     border: 1px solid gray;
     border-radius: 50px;
     padding: 1rem 1rem;
+    margin: 0.5rem;
 }
 
 .activity_preview h2 {
