@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Controller;
 
 use App\Config;
@@ -238,7 +237,7 @@ class ConnectionController extends AbstractController
         $username = $data['username'];
 
         if (self::forgetPassword($mail, $username)){
-            self::render('connection');
+            self::render('connection', $data = ["Un email à été envoyé a l'adresse email renseignée !"]);
         }
     }
 
