@@ -18,7 +18,9 @@ menuSpan.addEventListener('click', () => {
 
 // background
 let body = document.body;
-body.style.height = innerHeight + "px";
+//body.style.height = innerHeight + "px";
+
+// footer
 
 
 // close php error message
