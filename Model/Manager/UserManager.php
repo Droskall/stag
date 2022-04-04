@@ -200,4 +200,13 @@ class UserManager
 
         return $stmt->execute();
     }
+
+    /**
+     * count the admin number
+     * @return mixed
+     */
+    public function isLastAdmin() {
+        $query = $this->db->query("SELECT count(id) FROM user WHERE role = 'admin'");
+        return $query->fetch()['count(id)'];
+    }
 }
