@@ -32,12 +32,12 @@ $emojis = array_keys($interaction);
             <div id="content-activity" class="flex">
                 <p>lieu : <?= $activity->getLocation() ?></p>
                 <p>horaires : <?= $activity->getSchedules() ?></p>
-                <p><?= $activity->getDescription() ?></p>
+                <p><?= html_entity_decode($activity->getDescription())?></p>
                 <?php
                 // may be null
                 if ($activity->getLink() !== null) {
                     ?>
-                    <a href="<?= $activity->getLink() ?>"><?= $activity->getLink() ?></a>
+                    <a href="<?= $activity->getLink() ?>" target="_blank"><?= $activity->getLink() ?></a>
                     <?php
                 }
                 if ($activity->getEmail() !== null) {

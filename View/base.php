@@ -64,7 +64,7 @@
 
 <?php
 if(!isset($color)) {
-    $color = 'gray';
+    $color = '#aeaeae';
 }
 ?>
 <footer style="background-color: <?= $color ?>">
