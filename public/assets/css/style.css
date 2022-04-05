@@ -708,18 +708,26 @@ textarea {
 }
 
 /*
- * user list
+ * user list / link list
  */
-#userList {
+#userList, #linkList {
     padding: 2rem;
+    text-align: center;
 }
 
-#userList h2 {
+#userList h2, #linkList h2 {
     color: #f8f9fa;
     display: inline-block;
     width: 20rem;
     padding: 0.2rem  1rem;
-    background: linear-gradient(190deg, #dcaab6 0%, #d27d7d 100%);
+}
+
+#userList h2 {
+    background: linear-gradient(190deg, #dcaab6 50%, #d27d7d 100%);
+}
+
+#linkList h2 {
+    background: #a2c31b;
 }
 
 #userList .flex{

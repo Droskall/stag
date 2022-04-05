@@ -77,6 +77,7 @@ class ToolboxController extends AbstractController
 
         $linkManager = new LinkManager();
         $linkManager->updateLink($id, $url, $type, $title);
+
         header("Location: index.php?c=toolbox&a=list&type=$type");
     }
 
@@ -93,10 +94,13 @@ class ToolboxController extends AbstractController
         }
 
         $color = Color::getColor('utile');
-
         $linkManager = new LinkManager();
         $links = $linkManager->getLinkByType($type);
-        self::render('linkList', $data = $links, $color);
+        $item = $type === 'health' ? 'Santé' : ($type === 'mobility' ? 'Mobilité' : 'Aide');
+        self::render('linkList', $data = [
+            'type' => $item,
+            'links' => $links
+        ], $color);
     }
 
     /**
