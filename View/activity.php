@@ -31,13 +31,13 @@ $emojis = array_keys($interaction);
             </div>
             <div id="content-activity" class="flex">
                 <p>lieu : <?= $activity->getLocation() ?></p>
-                <p>horaires : <?= $activity->getSchedules() ?></p>
+                <p>horaires : <?= html_entity_decode($activity->getSchedules()) ?></p>
                 <p><?= html_entity_decode($activity->getDescription())?></p>
                 <?php
                 // may be null
                 if ($activity->getLink() !== null) {
                     ?>
-                    <a href="<?= $activity->getLink() ?>" target="_blank"><?= $activity->getLink() ?></a>
+                    <a href="<?= $activity->getLink() ?>" target="_blank">Plus d'informations</a>
                     <?php
                 }
                 if ($activity->getEmail() !== null) {
