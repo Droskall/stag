@@ -246,7 +246,7 @@ class ConnectionController extends AbstractController
      * @param $username
      * @return bool
      */
-    public function forgetPassword(string $userMail, $username)
+    private function forgetPassword(string $userMail, $username)
         {
             $password = uniqid();
             $passwordHash = password_hash($password, PASSWORD_BCRYPT);
