@@ -15,6 +15,7 @@
                             <option value="health">Sante</option>
                             <option value="mobility">Mobilité</option>
                             <option value="help">Aide</option>
+                            <option value="formation">Formation</option>
                         </select>
                     </div>
                     <div>
