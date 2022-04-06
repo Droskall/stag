@@ -870,7 +870,7 @@ footer h3 {
 }
 
 /*
- * Menu | Activity
+ * Menu | Activity | Home
  */
 @media screen and (max-width: 700px){
     .connection_register {
@@ -889,6 +889,10 @@ footer h3 {
         width: 2.8rem;
         height: 2.8rem;
     }
+
+    #title span {
+        font-size: 6rem;
+    }
 }
 
 /*
@@ -904,7 +908,7 @@ footer h3 {
 }
 
 /*
- * Menu
+ * Menu | Home
  */
 @media screen and (max-width: 550px) {
 
@@ -914,13 +918,17 @@ footer h3 {
 
     #homeTitle {
         background-color: #e09700;
-        color: #f8f9fa;
         border: 3px solid white;
         border-left: none;
         padding-bottom: 0.3rem;
         margin: 1rem 0;
         height: 6rem;
         width: 30rem;
+    }
+
+    #title span {
+        color: #f8f9fa;
+        font-size: 3rem;
     }
 
     h1 {
