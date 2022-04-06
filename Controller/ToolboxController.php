@@ -84,6 +84,10 @@ class ToolboxController extends AbstractController
         header("Location: index.php?c=toolbox&a=list&type=$type");
     }
 
+    /**
+     * @param int $id
+     * @return void
+     */
     public function delUrl(int $id){
 
         if ($_SESSION['user']->getRole() !== 'admin') {
