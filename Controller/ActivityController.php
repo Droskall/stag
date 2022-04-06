@@ -23,8 +23,8 @@ class ActivityController extends AbstractController
      */
     public function add(){
 
-        if(isset($_POST["title"]) && strlen($_POST["title"]) > 45){
-            $_SESSION['error'] = ['Merci de respecter la limite du titre (45 caractères)'];
+        if(isset($_POST["title"]) && strlen($_POST["title"]) > 255){
+            $_SESSION['error'] = ['Merci de respecter la limite du titre (255 caractères)'];
             header("Location: index.php?c=profile");
             exit();
         }
@@ -119,8 +119,8 @@ class ActivityController extends AbstractController
      * @param int $id
      */
     public function upAct (int $id){
-        if(isset($_POST["title"]) && strlen($_POST["title"]) > 45){
-            $_SESSION['error'] = ['Merci de respecter la limite du titre (45 caractères)'];
+        if(isset($_POST["title"]) && strlen($_POST["title"]) > 255){
+            $_SESSION['error'] = ['Merci de respecter la limite du titre (255 caractères)'];
             header("Location: index.php?c=activity&a=actToUpdate&id=" . $id);
             exit();
         }
