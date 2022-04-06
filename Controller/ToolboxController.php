@@ -49,7 +49,10 @@ class ToolboxController extends AbstractController
 
         $color = Color::getColor('utile');
 
-        self::render('linkList', $data = $links, $color);
+        self::render('linkList', $data = [
+            'links' => $links,
+            'type' => $type,
+            ], $color);
     }
 
     /**
