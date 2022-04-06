@@ -61,7 +61,7 @@ class UserController extends AbstractController
 
         $userManager->deleteUser($_POST["id"]);
 
-        self::render('userList', $data);
+        self::render('profile', $data);
     }
 
     public function deleteself(){
