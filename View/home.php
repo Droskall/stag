@@ -11,6 +11,6 @@
 
     </section>
     <section class="white flex" id="homeTitle">
-        <h1 class="flex" id="title"><span>So</span><span>D'Avesnois !</span></h1>
+        <h1 class="flex" id="title"><span>So</span><span>d'Avesnois !</span></h1>
     </section>
 </div>
