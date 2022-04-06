@@ -438,6 +438,7 @@ h1 {
     flex-basis: 80%;
     flex-direction: column;
     justify-content: space-evenly;
+    margin-top: 1rem;
 }
 
 #content-activity p {
@@ -977,9 +978,13 @@ footer h3 {
 }
 
 /*
- * Admin | Profile
+ * Admin | Profile | footer (body)
  */
 @media screen and (max-width: 460px) {
+    body {
+        padding-bottom: 20rem;
+    }
+
     #admin input {
         width: 15rem;
     }
