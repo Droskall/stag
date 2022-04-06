@@ -84,6 +84,19 @@ class ToolboxController extends AbstractController
         header("Location: index.php?c=toolbox&a=list&type=$type");
     }
 
+    public function delUrl(int $id){
+
+        if ($_SESSION['user']->getRole() !== 'admin') {
+            self::default();
+            exit();
+        }
+
+        $linkManager = new LinkManager();
+        $linkManager->deleteLink($id);
+
+        $this->render('toolbox', null, $color = Color::getColor('utile'));
+    }
+
     /**
      * get links by type
      * @param string $type
