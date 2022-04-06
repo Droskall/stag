@@ -27,7 +27,7 @@ class Config
         'health',
         'mobility',
         'help',
-        'formation',
+        'training',
     ];
 
     // avatar list
