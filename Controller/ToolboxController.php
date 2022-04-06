@@ -116,7 +116,7 @@ class ToolboxController extends AbstractController
         $color = Color::getColor('utile');
         $linkManager = new LinkManager();
         $links = $linkManager->getLinkByType($type);
-        $item = $type === 'health' ? 'Santé' : ($type === 'mobility' ? 'Mobilité' : 'Aide');
+        $item = $type === 'health' ? 'Santé' : ($type === 'mobility' ? 'Mobilité' : ($type === 'help' ? 'Aide' : 'formation' ));
         self::render('linkList', $data = [
             'type' => $item,
             'links' => $links
