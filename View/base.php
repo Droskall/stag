@@ -52,7 +52,7 @@
             <ul>
                 <li><a href="/index.php">ACCUEIL</a></li>
                 <li><a href="/index.php?c=category&a=get-category&name=sport&type">ACTIVITES SPORTIVES</a></li>
-                <li><a href="/index.php?c=category&a=get-category&name=cultural&type">SORTIES CULTURELLES</a></li>
+                <li><a href="/index.php?c=category&a=get-category&name=cultural&type">CULTURE ET LOISIR</a></li>
                 <li><a href="/index.php?c=category&a=get-category&name=numerical&type">LE NUMERIQUE</a></li>
                 <li><a href="/index.php?c=toolbox">UTILE</a></li>
             </ul>
