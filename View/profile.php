@@ -1,74 +1,71 @@
 
-<section id="profile" class="white flex">
-    <div class="flex profile_color">
-        <h2>PROFIL</h2>
-        <div id="profile-content" class="flex">
-            <div class="flex">
-                <h2>Utilisateur</h2>
-                <div id="user-data">
-                    <h3>Vos informations personnelles</h3>
-
-                    <div>
-                        <img class="avatar" src="/assets/img/avatar/<?= $data['avatar'] ?>" alt="user's avatar">
-                    </div>
-
-
-                    <button class="change_avatar"><a href="/index.php?c=profile&a=avatar-list">changer d'avatar</a></button>
-
-                    <p>Nom / Pseudo : <?= $_SESSION['user']->getUsername() ?></p>
-                    <p>Email : <?= $_SESSION['user']->getEmail() ?></p>
-                    <p>Role : <?= $_SESSION['user']->getRole() ?></p>
-                    <a href="/index.php?c=profile&a=user-info" class="change_info">Modifier les informations personnelles</a>
-                </div>
-                <div id="user-reaction" class="flex">
-                    <h3>Vos interractions</h3>
-                    <div class="flex">
-                        <a href="/index.php?c=profile&a=sticker-list&type=heart">
-                            <img src="/assets/img/emojis/heart_colored.png" alt="heart">
-                            <span>Coup de coeur</span>
-                        </a>
-                        <a href="/index.php?c=profile&a=sticker-list&type=good">
-                            <img src="/assets/img/emojis/good_colored.png" alt="love">
-                            <span>Sympa</span>
-                        </a>
-                        <a href="/index.php?c=profile&a=sticker-list&type=fun">
-                            <img src="/assets/img/emojis/fun_colored.png" alt="fun">
-                            <span>Drole</span>
-                        </a>
-                        <a href="/index.php?c=profile&a=sticker-list&type=happy">
-                            <img src="/assets/img/emojis/happy_colored.png" alt="happy">
-                            <span>Heureux</span>
-                        </a>
-                        <a href="/index.php?c=profile&a=sticker-list&type=bad">
-                            <img src="/assets/img/emojis/bad_colored.png" alt="dislike">
-                            <span>Pas intérressé</span>
-                        </a>
-                    </div>
-
-                    <?php if($_SESSION["user"]->getRole() === "admin"){?>
-                        <div class="button">
-                            <a href="/index.php?c=user" id="listUser">Liste Utilisateurs</a>
+    <section id="profile" class="white flex">
+        <div class="flex profile_color">
+            <h2>PROFIL</h2>
+            <div id="profile-content" class="flex">
+                <div class="flex">
+                    <h2>Utilisateur</h2>
+                    <div id="user-data">
+                        <h3>Vos informations personnelles</h3>
+                        <div>
+                            <img class="avatar" src="/assets/img/avatar/<?= $data['avatar'] ?>" alt="user's avatar">
                         </div>
-                    <?php }?>
+                        <button class="change_avatar"><a href="/index.php?c=profile&a=avatar-list">changer d'avatar</a></button>
 
-                    <div class="buttonDelete">
-                        <input type="hidden" name="id" value="<?= $_SESSION['user']->getId() ?>">
-                        <a href="/index.php?c=user&a=deleteself" id="deleteUser">Supprimer son compte</a>
+                        <p>Nom / Pseudo : <?= $_SESSION['user']->getUsername() ?></p>
+                        <p>Email : <?= $_SESSION['user']->getEmail() ?></p>
+                        <p>Role : <?= $_SESSION['user']->getRole() ?></p>
+                        <a href="/index.php?c=profile&a=user-info" class="change_info">Modifier les informations personnelles</a>
+                    </div>
+                    <div id="user-reaction" class="flex">
+                        <h3>Vos interractions</h3>
+                        <div class="flex">
+                            <a href="/index.php?c=profile&a=sticker-list&type=heart">
+                                <img src="/assets/img/emojis/heart_colored.png" alt="heart">
+                                <span>Coup de coeur</span>
+                            </a>
+                            <a href="/index.php?c=profile&a=sticker-list&type=good">
+                                <img src="/assets/img/emojis/good_colored.png" alt="love">
+                                <span>Sympa</span>
+                            </a>
+                            <a href="/index.php?c=profile&a=sticker-list&type=fun">
+                                <img src="/assets/img/emojis/fun_colored.png" alt="fun">
+                                <span>Drole</span>
+                            </a>
+                            <a href="/index.php?c=profile&a=sticker-list&type=happy">
+                                <img src="/assets/img/emojis/happy_colored.png" alt="happy">
+                                <span>Heureux</span>
+                            </a>
+                            <a href="/index.php?c=profile&a=sticker-list&type=bad">
+                                <img src="/assets/img/emojis/bad_colored.png" alt="dislike">
+                                <span>Pas intérressé</span>
+                            </a>
+                        </div>
+
+                        <?php if($_SESSION["user"]->getRole() === "admin"){?>
+                            <div class="button">
+                                <a href="/index.php?c=user" id="listUser">Liste Utilisateurs</a>
+                            </div>
+                        <?php }?>
+
+                        <div class="buttonDelete">
+                            <input type="hidden" name="id" value="<?= $_SESSION['user']->getId() ?>">
+                            <a href="/index.php?c=user&a=deleteself" id="deleteUser">Supprimer son compte</a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <?php if($_SESSION["user"]->getRole() === "admin"){?>
+                <?php if($_SESSION["user"]->getRole() === "admin"){?>
                 <div id="admin" class="flex">
                     <h2>Administrateur</h2>
                     <div>
                         <div id="add-activity">
-                            <h3>Ajouter un article</h3>
+                            <h3  id="contains">Ajouter un article</h3>
                             <span>* = champ obligatoire</span>
                             <form action="/index.php?c=activity&a=add" method="post" enctype="multipart/form-data">
                                 <div>
                                     <label for="title">Titre * :</label>
-                                    <input type="text" id="title" name="title">
+                                    <input required type="text" id="title" name="title">
                                 </div>
                                 <div>
                                     <label for="category-type">Categorie * :</label>
@@ -93,7 +90,7 @@
                                 <textarea name="content" id="content" cols="40" rows="10"></textarea>*
                                 <div>
                                     <label for="location">Localisation * :</label>
-                                    <input type="text" id="location" name="location">
+                                    <input required type="text" id="location" name="location">
                                 </div>
                                 <div>
                                     <label for="email">Email :</label>
@@ -105,14 +102,14 @@
                                 </div>
                                 <div>
                                     <label for="schedules">Date & Horaires * :</label>
-                                    <input type="text" id="schedules" name="schedules">
+                                    <input required type="text" id="schedules" name="schedules">
                                 </div>
                                 <div>
                                     <label for="url">Lien :</label>
                                     <input type="url" id="url" name="url">
                                 </div>
                                 <div>
-                                    <input type="submit" name="addAct">
+                                    <input id="addActBtn" type="submit" name="addAct">
                                 </div>
                             </form>
                         </div>
@@ -128,19 +125,19 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <input type=text name="title" placeholder="titre">
+                                    <input required type=text name="title" placeholder="titre *">
                                 </div>
                                 <div>
-                                    <input type="url" id="newUrl" name="new-url" placeholder="lien">
+                                    <input required type="url" id="newUrl" name="new-url" placeholder="lien *">
                                 </div>
                                 <div>
-                                    <input type="submit" name="add-link">
+                                    <input id="linkBtn" type="submit" name="add-link">
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-            <?php }?>
+                <?php }?>
+            </div>
         </div>
-    </div>
-</section>
+    </section>

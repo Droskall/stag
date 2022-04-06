@@ -35,8 +35,8 @@ $emojis = array_keys($interaction);
                 <p><?= html_entity_decode($activity->getDescription())?></p>
                 <?php
                 // may be null
-                if ($activity->getLink() !== null) {phone
-                    ?>schedulesschedules
+                if ($activity->getLink() !== null) {
+                    ?>
                     <a href="<?= $activity->getLink() ?>" target="_blank">Plus d'informations</a>
                     <?php
                 }
