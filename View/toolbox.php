@@ -18,9 +18,10 @@
                 <img src="/assets/img/toolLogo/help01.jpg" alt="logo help">
             </div>
         </a>
-        <a class="flex" href="/index.php?c=toolbox&=list&type=training">
+        <a class="flex" href="/index.php?c=toolbox&a=list&type=training">
             <div>
                 <h2>Formation</h2>
+                <img src="/assets/img/toolLogo/formation.png" alt="logo help">
             </div>
         </a>
     </div>
